@@ -16,7 +16,9 @@ module.exports = {
       'gray-bgIcons': '#6A6A6A',
       'gray-icons': '#DDDDDD',
       'light-blue': '#7485B4',
-      'gray-dots': '#6C6C6C'
+      'gray-dots': '#6C6C6C',
+      'black' : '#000000',
+      'white': '#FFFFFF'
     },
     fontFamily: {
       Karla: ['Karla', 'sans-serif']

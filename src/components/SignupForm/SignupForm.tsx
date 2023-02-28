@@ -1,5 +1,3 @@
-import React from 'react'
-
 type Props = {}
 
 export const SignupForm: React.FC<Props> = (props):JSX.Element => {

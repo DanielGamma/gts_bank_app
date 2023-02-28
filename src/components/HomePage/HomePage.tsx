@@ -1,5 +1,3 @@
-import React from 'react'
-
 type Props = {}
 
 export const HomePage: React.FC<Props> = (props):JSX.Element => {

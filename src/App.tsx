@@ -20,7 +20,7 @@ import { TransferPage } from "./components/TransferPage/TransferPage";
 export default function App() {
   const context = true
   return (
-    <div className="bg-black pt-[40px] pr-[20px] pb-[28px] pl-[28px]">
+    <div className="bg-black pt-[40px] px-[28px] pb-[20px]">
       
       <BrowserRouter>
         <Routes>

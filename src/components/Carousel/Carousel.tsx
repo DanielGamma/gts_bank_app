@@ -1,8 +1,9 @@
 
 
+
 type Props = {}
 
-const Carousel: React.FC<Props> = ({ }) => {
+const Carousel: React.FC<Props> = ({}) => {
 
   
 

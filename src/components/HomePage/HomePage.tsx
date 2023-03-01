@@ -1,44 +1,14 @@
 import { Link } from "react-router-dom"
 import Carousel from "../Carousel/Carousel"
-import { db } from '../../config/firebase_config'
-import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore'
+import { getUser, getAccount } from "../../services/firebaseFunctions"
 import { useEffect, useState } from "react"
+import { User, Account } from "../../services/interfaces"
 
 type Props = {}
 
-interface Card {
-  card: string,
-  card_formatted: string,
-  cvc: string,
-  expiration_date: string,
-  service: string
-}
 
-
-interface User {
-  first_name: string,
-  last_name: string,
-  account: string,
-  profile_picture: string,
-  card: Card,
-  friends: string[]
-  gender: string,
-  phone_number: string,
-  transactions: string[],
-  email: string,
-
-}
-
-interface Account {
-  balance: string
-  created_at: string
-  iban: string
-  owner: string
-}
 
 export const HomePage: React.FC<Props> = (props): JSX.Element => {
-
-  
 
   const [user, setUser] = useState<User>({
     first_name: '',
@@ -65,32 +35,12 @@ export const HomePage: React.FC<Props> = (props): JSX.Element => {
     owner: '',
   })
 
-
-
-  const getUser = async (uid:string) => {
-    const data: any = await getDoc(doc(db, 'users', uid))
-    const result: any = await data.data()
-    return result
-  }
-
-  const getAccount = async (account: string) => {
-    const array: any[] = []
-    const data: any = await getDocs(query(collection(db, 'accounts'), where('iban', '==', account)))
-
-    data.forEach((doc: any) => array.push(doc.data()))
-
-   
-    return array[0]
-  }
-
-
   useEffect(() => {
     getUser('nhI0JztXcOclASp9mtOvr0c8kd53').then(async (res) => {
       setUser(res)
       const account = await getAccount(res.account)
       setAccount(account)
     })
-
   }
     , [])
 

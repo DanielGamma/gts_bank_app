@@ -1,18 +1,25 @@
 import { createContext, useState } from "react";
 
+  interface Card { 
+    card_number: number; 
+    card_formatted: string; 
+    cvc: number; 
+    expiration_date: string; 
+    service: string; 
+  }
+
 interface User { 
-  user_id: number; 
+  user_id: string; 
   account_iban: string; 
-  card: object; 
+  card: Card; 
   email: string; 
   firstName: string;  
   lastName: string; 
   gender: string; 
   phone: number; 
   profile_picture: string; 
-  friends: number[]; 
-  transactions: number[]; 
-  password: string; 
+  friends: string[]; 
+  transactions: string[]; 
   
 } 
 

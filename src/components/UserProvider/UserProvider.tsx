@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 
-interface userLogueado { 
+interface User { 
   firstName: string;  
   lastName: string; 
   email: string; 
@@ -13,7 +13,7 @@ export const userContext = createContext({})
 
 export function UserProvider()  { 
 
-    const [currentUser, setCurrentUser] = useState<userLogueado>() 
+    const [currentUser, setCurrentUser] = useState<User>() 
 
   return (
     <div>

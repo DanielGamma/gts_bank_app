@@ -8,6 +8,10 @@ export const getUser = async (uid: string) => {
     return result
 }
 
+// export const getTransactions = async() => {
+//     const data = await getDocs(query(collection(db, 'accounts'), where('iban', '==', account)))
+// }
+
 export const getAccount = async (account: string) => {
     const array: any[] = []
     const data: any = await getDocs(query(collection(db, 'accounts'), where('iban', '==', account)))

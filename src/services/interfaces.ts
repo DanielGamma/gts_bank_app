@@ -27,3 +27,14 @@ export interface Account {
     iban: string
     owner: string
 }
+
+export interface Transaction {
+    amount: number,
+    category: string,
+    date: Date,
+    origin_account: string | null,
+    receiver_name: string,
+    type: number,
+    user_uid: string
+}
+

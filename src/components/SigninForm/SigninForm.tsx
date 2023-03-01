@@ -1,9 +1,15 @@
-import React from 'react'
+// import React, { useContext } from 'react'
+// import {userContext} from '../../context/context'
+
 
 type Props = {}
 
-export const SigninForm: React.FC<Props> = (props):JSX.Element => {
+export const SigninForm: React.FC<Props> = (props):JSX.Element => {  
+
     return (
-    <div>SigninForm</div>
+      <div>
+
+        
+      </div>
   )
 }

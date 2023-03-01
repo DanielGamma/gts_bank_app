@@ -25,14 +25,14 @@ interface User {
 
 export const userContext = createContext({})
 
-export function UserProvider()  { 
+export default function UserProvider() { 
 
     const [currentUser, setCurrentUser] = useState<User>() 
 
   return (
     <div>
         <userContext.Provider value={{currentUser, setCurrentUser}}>
-            
+
         </userContext.Provider>
 
     </div>

@@ -1,6 +1,3 @@
-// import React, { useContext } from 'react'
-// import {userContext} from '../../context/context'
-
 
 type Props = {}
 

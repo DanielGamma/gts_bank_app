@@ -1,12 +1,19 @@
 import { createContext, useState } from "react";
 
 interface User { 
+  user_id: number; 
+  account_iban: string; 
+  card: object; 
+  email: string; 
   firstName: string;  
   lastName: string; 
-  email: string; 
+  gender: string; 
+  phone: number; 
+  profile_picture: string; 
+  friends: number[]; 
+  transactions: number[]; 
   password: string; 
-  id: number;
-
+  
 } 
 
 export const userContext = createContext({})

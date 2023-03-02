@@ -4,6 +4,6 @@ type Props = {}
 
 export const SigninForm: React.FC<Props> = (props):JSX.Element => {
     return (
-    <div>SigninForm</div>
+    <div className='bg-[red]'><p className='text-white'>hdsgasdfgsaola</p></div>
   )
 }

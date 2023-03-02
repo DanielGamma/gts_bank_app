@@ -16,7 +16,7 @@ import { SignupForm } from "./components/SignupForm/SignupForm";
 import { TransactionFailure } from "./components/TransactionFailure/TransactionFailure";
 import { TransactionSuccess } from "./components/TransactionSuccess/TransactionSuccess";
 import { TransferPage } from "./components/TransferPage/TransferPage"; 
-import { ContextProvider } from "./context/ContextProvider";
+import { ContextProvider } from "./context/UserProvider";
 
 
 export default function App() {

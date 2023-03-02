@@ -1,8 +1,16 @@
-import { Link } from "react-router-dom"
-import Carousel from "../Carousel/Carousel"
-import { getUser, getAccount } from "../../services/firebaseFunctions"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
+// Components
+import { TransferButton } from '../TransferButton/TransferButton'
+import Carousel from "../Carousel/Carousel"
+// Firebase services
+import { getUser, getAccount } from "../../services/firebaseFunctions"
+// Interface models
 import { User, Account } from "../../services/interfaces"
+// Icons
+import TransferIcon from '../../assets/transferbutton.png'
+import BizumIcon from '../../assets/mobile.png'
+
 
 type Props = {}
 
@@ -60,6 +68,18 @@ export const HomePage: React.FC<Props> = (props): JSX.Element => {
         <div className="">
           <p className="text-white-faded text-[26px] font-semibold">{account.balance}€</p>
           <p className="text-gray-nav font-medium">Available Balance</p>
+        </div>
+
+        <div className='flex gap-14	'>
+          <div >
+            <TransferButton url={"transactions/transfer"} icon={TransferIcon}/>
+            <p className='font-karla font-normal alings-center text-white-form pt-2 '>Transfer</p>
+          </div>
+
+          <div>
+            <TransferButton url={"transactions/bizum"} icon={BizumIcon}/>
+            <p  className='font-karla font-normal	alings-center text-white-form pl-2 pt-2' >Bizum</p>
+          </div>
         </div>
       </div>
       <div className="relative flex flex-col gap-2" data-carousel='static'>

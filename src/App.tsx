@@ -18,6 +18,7 @@ import { TransactionSuccess } from "./components/TransactionSuccess/TransactionS
 import { TransferPage } from "./components/TransferPage/TransferPage"; 
 
 export default function App() {
+  
   const context = true
   return (
     <div className="bg-black min-h-screen pt-[40px] px-[28px] pb-[20px]">
@@ -26,10 +27,10 @@ export default function App() {
         <Routes>
           <Route path="/" element={ <HomePage /> } />
           
-          <Route path="/auth" element={ <LoginPage /> }>
-            <Route path="signup" element={ <SignupForm />} />
-            <Route path="signin" element={ <SigninForm />} />
-          </Route>
+          <Route path="/auth" element={ <LoginPage /> }/>
+          <Route path="/auth/signup" element={ <SignupForm />} />
+          <Route path="/auth/signin" element={ <SigninForm />} />
+         
 
           <Route path="/records" element={ <RecordsPage />}>
             <Route path="expenses" element={ <ExpensesPage />} />

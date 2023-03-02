@@ -1,19 +1,17 @@
-import {Link} from "react-router-dom"
+
+import { Link } from "react-router-dom"
 
 type Props = { icon: string, text: string, link: string }
 
-export  const NavButton: React.FC<Props> = (props): JSX.Element => {
-    let className = "flex flex-col text-gray-nav"
+export const NavButton: React.FC<Props> = ({ icon, text, link }): JSX.Element => {
+    let className = "flex flex-col text-gray-nav hover:scale-110 justify-center items-center gap-2"
 
     return (
-
         <div className={className} >
-            <Link to={props.link}>
-                <img src={props.icon} alt="" />
+            <Link to={link}>
+                <img className="focus:w-9" src={icon} alt="" />
             </Link>
-            <p className="text-xs leading-[18px] font-medium">{props.text}</p>
+            <p className="text-xs leading-[18px] font-medium">{text}</p>
         </div>
-
-
     )
 }

@@ -98,7 +98,7 @@ export const SignupForm: React.FC<Props> = (props):JSX.Element => {
 
 
                 <label htmlFor="password" className="text-white-form text-lg">Password</label>
-                <input type="password" {...register('password',{required:true,pattern:{value:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,20}$/, message:"tu sabes"},})}  className="bg-transparent border-b-[1px] border-solid border-[#626262] focus:outline-none !important text-white pb-2 text-lg"/>
+                <input type="password" {...register('password',{required:true,pattern:{value:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,20}$/, message:"Invalid password"},})}  className="bg-transparent border-b-[1px] border-solid border-[#626262] focus:outline-none !important text-white pb-2 text-lg"/>
 
 
                 <label htmlFor="password" className="text-white-form text-lg">Repeat Password</label>
@@ -127,7 +127,7 @@ export const SignupForm: React.FC<Props> = (props):JSX.Element => {
         </div>
 
         <p className="text-white text-sm mt-5">Do you already have a BankMe account? <span className="text-blue-link"><Link to="/auth/signin">Sign in here</Link></span></p>
-        
+
         </>
   )
 }

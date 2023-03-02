@@ -1,3 +1,4 @@
+import { NavMenu } from "../NavMenu/NavMenu"
 import { Header } from "../Header/Header"
 
 type Props = {}

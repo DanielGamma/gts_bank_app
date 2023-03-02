@@ -19,7 +19,7 @@ export const HomePage: React.FC<Props> = (props): JSX.Element => {
           <p className="text-gray-nav font-medium">Available Balance</p>
         </div>
 
-        <div className='flex gap-[55px]'>
+        <div className='flex gap-14	'>
           <div >
             <TransferButton url={"transactions/transfer"} icon={icono}/>
             <p className='font-karla font-normal alings-center text-white-form pt-2 '>Transfer</p>

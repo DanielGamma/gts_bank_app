@@ -15,7 +15,7 @@ import { SigninForm } from "./components/SigninForm/SigninForm";
 import { SignupForm } from "./components/SignupForm/SignupForm";
 import { TransactionFailure } from "./components/TransactionFailure/TransactionFailure";
 import { TransactionSuccess } from "./components/TransactionSuccess/TransactionSuccess";
-import { TransferPage } from "./components/TransferPage/TransferPage";
+import { TransferPage } from "./components/TransferPage/TransferPage"; 
 
 export default function App() {
   const context = true

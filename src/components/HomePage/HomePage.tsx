@@ -21,7 +21,7 @@ export const HomePage: React.FC<Props> = (props): JSX.Element => {
 
         <div className='flex gap-[55px]'>
           <div >
-            <TransferButton url={"transactions/transfer text-base"} icon={icono}/>
+            <TransferButton url={"transactions/transfer"} icon={icono}/>
             <p className='font-karla font-normal alings-center text-white-form pt-2 '>Transfer</p>
           </div>
 

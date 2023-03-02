@@ -18,7 +18,7 @@ const Carousel: React.FC<Props> = ({}) => {
       <div className="flex justify-center gap-4 relative overflow-hidden w-full">
         {
           testArray.map((test, i) => {
-            return <div className=" duration-700 ease-in-out">
+            return <div key={i} className=" duration-700 ease-in-out">
               <article className="h-[163px] w-[275px] bg-gradient-to-r from-[#0a397e] to-[#703c6d] rounded-md"></article>
             </div>
           })

@@ -17,15 +17,11 @@ interface TransactionObject {
     type1: Transaction[]
 }
 
-interface Week{
-    Mon: Transaction[],
-    Tue: Transaction[],
-    Wed: Transaction[],
-    Thu: Transaction[],
-    Fri: Transaction[],
-    Sat: Transaction[],
-    Sun: Transaction[],
+type Week = {
+    [index: string]: Transaction[]
 }
+
+
 
 const TransactionsGraphic: React.FC<Props> = (props): JSX.Element => {
 
@@ -92,7 +88,7 @@ const TransactionsGraphic: React.FC<Props> = (props): JSX.Element => {
             receiver_name: "Sun",
             type: 0,
             user_uid: "hHERVC0jfYYpKlPqYEktYcVZcXE2",
-        } 
+        }
     ];
     const data2 = data.map(e => {
         let day = ''
@@ -117,22 +113,17 @@ const TransactionsGraphic: React.FC<Props> = (props): JSX.Element => {
     useEffect(() => {
         getUser(userId).then(async (res) => {
             const list: Transaction[] = await getTransactions(res.transactions)
-            
-            // const days:Week = list.reduce((acc,transaction) => {
-            //     const date = new Date(transaction.date).toUTCString().slice(0,3)
-                
-            //     acc[date].push(transaction)
-            //     return acc
+            const days: Week = list.reduce((acc: Week, transaction: Transaction) => {
+                const date: keyof Week = new Date(transaction.date).toUTCString().slice(0, 3)
 
-            // },{
-            //     Mon: [],
-            //     Tue: [],
-            //     Wed: [],
-            //     Thu: [],
-            //     Fri: [],
-            //     Sat: [],
-            //     Sun: [],
-            // })
+                if(Object.hasOwn(acc,date)){
+                    acc[date].push(transaction)
+                }else{
+                    acc[date] = []
+                    acc[date].push(transaction)
+                }
+                return acc
+            }, {})
 
 
             // setTransactions(() => {
@@ -149,38 +140,20 @@ const TransactionsGraphic: React.FC<Props> = (props): JSX.Element => {
 
 
     return (
-        <div className='w-full min-h-screen '>
+        <BarChart
+            width={369}
+            height={240}
+            data={data}
+            margin={{ top: 30, right: 5, bottom: 5, left: 5 }}>
+            <XAxis dataKey={'receiver_name'} axisLine={false} tickLine={false} />
+            <YAxis tickLine={false} />
+            <Tooltip />
+            <Legend iconSize={5} iconType='circle' />
+            <Bar barSize={5} dataKey='Income' fill="#5A6ACF" />
+            <Bar barSize={5} dataKey="Expenses" fill="#D8D9DB" />
+        </BarChart>
 
-            {/* COMPONENTE HEADER */}
-            <div className='flex text-white justify-center'>
 
-                <p className='text-2xl font-medium text-white-faded'>Header</p>
-            </div>
-            {/* COMPONENTE HEADER */}
-            <h2 className='text-white-form text-[20px] font-medium'>Graphic</h2>
-            <div className='flex gap-6 w-full justify-end'>
-                <button className='w-[110px] h-10 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Week</button>
-                <button className='w-[110px] h-10 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Month</button>
-            </div>
-
-            <BarChart
-
-                width={369}
-                height={240}
-                data={data}
-                margin={{ top: 30, right: 5, bottom: 5, left: 5 }}
-
-            >
-
-                <XAxis dataKey={'receiver_name'} axisLine={false} tickLine={false} />
-                <YAxis tickLine={false} />
-                <Tooltip />
-                <Legend iconSize={5} iconType='circle'/>
-                <Bar barSize={5} dataKey='Income' fill="#5A6ACF" />
-                <Bar barSize={5} dataKey="Expenses" fill="#D8D9DB" />
-            </BarChart>
-
-        </div>
     )
 }
 

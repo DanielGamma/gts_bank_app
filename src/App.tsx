@@ -20,10 +20,12 @@ import { ContextProvider } from "./context/ContextProvider";
 
 
 export default function App() {
+  
   const context = true
   return (
     <div className="bg-black min-h-screen pt-[40px] px-[28px] pb-[20px]">
       
+<<<<<<< HEAD
       <ContextProvider> 
         <BrowserRouter>
           <Routes>
@@ -33,6 +35,16 @@ export default function App() {
               <Route path="signup" element={ <SignupForm />} />
               <Route path="signin" element={ <SigninForm />} />
             </Route>
+=======
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={ <HomePage /> } />
+          
+          <Route path="/auth" element={ <LoginPage /> }/>
+          <Route path="/auth/signup" element={ <SignupForm />} />
+          <Route path="/auth/signin" element={ <SigninForm />} />
+         
+>>>>>>> adbc97ba887ae12690441b32606ae8cb24de5132
 
             <Route path="/records" element={ <RecordsPage />}>
               <Route path="expenses" element={ <ExpensesPage />} />

@@ -27,9 +27,6 @@ export const SigninForm: React.FC<Props> = (props):JSX.Element => {
   });
 
     return (
-      <div>
-
-        
-      </div>
+    <div className='bg-[red]'><p className='text-white'>hdsgasdfgsaola</p></div>
   )
 }

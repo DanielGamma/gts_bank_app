@@ -1,7 +1,12 @@
+import { NavMenu } from "../NavMenu/NavMenu"
+import { Header } from "../Header/Header"
+
 type Props = {}
 
 export const ExpensesPage: React.FC<Props> = (props):JSX.Element => {
   return (
-    <div>ExpensesPage</div>
+    <>
+      <Header arrow={true} content="Expenses"/>
+    </>
   )
 }

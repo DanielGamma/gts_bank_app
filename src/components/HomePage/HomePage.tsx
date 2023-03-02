@@ -79,7 +79,7 @@ export const HomePage: React.FC<Props> = (props): JSX.Element => {
             {
               testArray.map((test, i) => {
                 return <>
-                  <div className="w-full flex justify-between items-center text-white-faded ">
+                  <div  className="w-full flex justify-between items-center text-white-faded ">
                     <article className="flex gap-4 items-center">
                       <div className="w-[76px] h-[76px] bg-light-blue rounded-full"></div>
                       <p>Grocery</p>

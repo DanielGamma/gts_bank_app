@@ -1,4 +1,3 @@
-import { index } from "d3-array"
 import { Transaction, WeekDivided, Week } from "./interfaces"
 
 interface HoldWeek {
@@ -74,9 +73,9 @@ export const getWeek = (transactionList: WeekDivided[]) => {
     let result: Transaction[] = []
 
     type Legend = {
-        [index:string] : string
+        [index: string]: string
     }
-    const legend:Legend = {
+    const legend: Legend = {
         '0': 'Mon',
         '1': 'Tue',
         '2': 'Wed',
@@ -108,10 +107,7 @@ export const getWeek = (transactionList: WeekDivided[]) => {
 
 
 
-    return {
-        monthly: transactionList,
-        weekly
-    }
+
 }
 
 export const sortedTransactions = (transactionsList: Transaction[]) => {
@@ -125,6 +121,7 @@ export const sortedTransactions = (transactionsList: Transaction[]) => {
         return new Date(transaction.date).getMonth() == actualMonth
     })
 }
+
 export const changeToLocalTime = (date: string): string => {
     const extract = date.slice(date.indexOf(':') - 2, date.indexOf(':'))
     let convert = (Number(extract) + 1).toString()
@@ -137,6 +134,133 @@ export const changeToLocalTime = (date: string): string => {
 
     const result = date.slice(0, date.indexOf(':') - 2) + convert + date.slice(date.indexOf(':'))
     return result
+}
+
+
+export const sortTransactionsByWeek = (transactionList: Transaction[]) => {
+    type Inner = {
+        name: string,
+        expense: number,
+        income: number
+    }
+    type Outer = {
+        [index: string]: Inner
+    }
+    const sortedByWeek: Outer = transactionList.reduce((acc: any, transaction: Transaction) => {
+        const dayName = new Date(transaction.date).toUTCString().slice(0, 3)
+        if (!Object.hasOwn(acc, dayName)) {
+            acc[dayName] = {
+                name: dayName,
+                expense: 0,
+                income: 0
+            }
+        } else {
+            if (transaction.type == 0) {
+                acc[dayName].expense += transaction.amount
+            } else {
+                acc[dayName].income += transaction.amount
+            }
+        }
+        acc[dayName].income = Number(acc[dayName].income.toFixed(2))
+        acc[dayName].expense = Number(acc[dayName].expense.toFixed(2))
+        return acc
+    }, {})
+
+    const result: Inner[] = Object.keys(sortedByWeek).reduce((acc: Inner[], day) => {
+        acc.push(sortedByWeek[day])
+        return acc
+    }, [])
+
+    type Dictionary = {
+        [index: string]: number
+    }
+    const dictionary: Dictionary = {
+        Mon: 1,
+        Tue: 2,
+        Wed: 3,
+        Thu: 4,
+        Fri: 5,
+        Sat: 6,
+        Sun: 7,
+    }
+    return result.sort((a, b) => dictionary[a.name] - dictionary[b.name])
+}
+
+export const sortTransactionsByMonth = (transactionList: Transaction[]) => {
+
+    type Inner = {
+        name: string,
+        income: number,
+        expense: number
+    }
+    type Outer = {
+        [index: string]: Inner
+    }
+    type Dictionary = {
+        [index: string]: Number[]
+    }
+
+    const dictionary: Dictionary = {
+        '1-5': [1, 2, 3, 4, 5],
+        '6-10': [6, 7, 8, 9, 10],
+        '11-15': [11, 12, 13, 14, 15],
+        '16-20': [16, 17, 18, 19, 20],
+        '21-25': [21, 22, 23, 24, 25],
+        '26-31': [26, 27, 28, 29, 30, 31],
+    }
+
+    const sortByMonth: Outer = transactionList.reduce((acc: any, transaction) => {
+        const day = new Date(transaction.date).getDate()
+        const key = Object.keys(dictionary).filter(e => dictionary[e].includes(day))[0]
+        if (!Object.hasOwn(acc, key)) {
+            acc[key] = {
+                name: key,
+                income: 0,
+                expense: 0
+            }
+        } else {
+            if (transaction.type == 0) {
+                acc[key].expense += transaction.amount
+            } else {
+                acc[key].income += transaction.amount
+            }
+        }
+        acc[key].income = Number(acc[key].income.toFixed(2))
+        acc[key].expense = Number(acc[key].expense.toFixed(2))
+        return acc
+    }, {})
+
+
+    const result: Inner[] = Object.keys(sortByMonth).reduce((acc: Inner[], day) => {
+        acc.push(sortByMonth[day])
+        return acc
+    }, [])
+
+
+    return result.sort()
+}
+
+export const findWeekandSort = (transactionList: Transaction[]) => {
+    const today = new Date().getDate()
+    type Dictionary = {
+        [index: string]: number[]
+    }
+
+    const dictionary: Dictionary = {
+        week1: [1, 2, 3, 4, 5, 6, 7],
+        week2: [8, 9, 10, 11, 12, 13, 14],
+        week3: [15, 16, 17, 18, 19, 20, 21],
+        week4: [22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
+    }
+
+    const weekString: string = Object.keys(dictionary).filter(week => dictionary[week].includes(today))[0]
+
+    const result = transactionList.filter((transaction: Transaction) => {
+        const day = new Date(transaction.date).getDate().toString()
+        return dictionary[weekString].includes(Number(day))
+    })
+    return result
+
 }
 
 export { }

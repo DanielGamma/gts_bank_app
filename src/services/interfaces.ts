@@ -35,7 +35,8 @@ export interface Transaction {
     origin_account: string | null,
     receiver_name: string,
     type: number,
-    user_uid: string
+    user_uid: string,
+    day?:string
 }
 
 export type Week = {

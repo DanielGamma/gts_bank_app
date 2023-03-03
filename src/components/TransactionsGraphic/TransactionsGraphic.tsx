@@ -6,53 +6,57 @@ import { db } from '../../config/firebase_config';
 import { getUser, getTransactions } from '../../services/firebaseFunctions';
 import { Transaction } from '../../services/interfaces';
 import { RecordsPage } from '../RecordsPage/RecordsPage';
-import { changeToLocalTime, divideWeeks } from '../../services/utilityFunctions'
+import { findWeekandSort,changeToLocalTime, divideWeeks, getWeek, sortTransactionsByWeek, sortTransactionsByMonth  } from '../../services/utilityFunctions'
 
 type Props = {}
 
 interface TransactionObject {
-    type0: Transaction[],
-    type1: Transaction[]
+    [index:string] : Inner[]
 }
+
+type Inner = {
+    name: string,
+    income: number,
+    expense: number
+}
+
+
 
 const TransactionsGraphic: React.FC<Props> = (props): JSX.Element => {
 
-    const [transactions, setTransactions] = useState<Transaction[]>()
+    const [transactions, setTransactions] = useState<TransactionObject>()
     const [userId, setUserId] = useState<string>('hHERVC0jfYYpKlPqYEktYcVZcXE2')
 
     useEffect(() => {
-        getUser(userId).then(async (res) => {
-            // let list: Transaction[] = await getTransactions(res.transactions)
-            let list: Transaction[] = JSON.parse(localStorage.getItem('lista'))
-            list = list.map(transaction => {
-                transaction.date = changeToLocalTime(transaction.date)
-                return transaction
-            })
-            // Expected output: "1975-08-19T23:15:30.000Z"
-            console.clear()
-            const sortedList = list.reduce((acc: any, transaction: Transaction) => {
-                const dayNumber = new Date(transaction.date).getDate().toString()
-                if (!Object.hasOwn(acc, dayNumber)) {
-                    acc[dayNumber] = []
+        if(userId){
+            getUser(userId).then(async (res) => {
+                // let list: Transaction[] = await getTransactions(res.transactions)
+                let list: Transaction[] = JSON.parse(localStorage.getItem('lista'))
+                list = list.map(transaction => {
+                    transaction.date = changeToLocalTime(transaction.date)
+                    return transaction
+                })
+                console.clear()
+                const weekly = findWeekandSort(list)
+                
+                const real = {
+                    weekly : sortTransactionsByWeek(weekly),
+                    monthly : sortTransactionsByMonth(list)
                 }
-                acc[dayNumber].push(transaction)
-                return acc
-            }, {})
-            
-            // getWeek(divideWeeks(sortedList))
-            setTransactions(divideWeeks(sortedList))
+                setTransactions(real)
 
-        })
+            })
+        }
     }, [userId])
 
 
-    console.log(transactions);
+    
 
     return (
         <BarChart
             width={369}
             height={240}
-            data={transactions}
+            data={transactions ? transactions.weekly : }
             margin={{ top: 30, right: 5, bottom: 5, left: 5 }}>
             <XAxis dataKey={'name'} axisLine={false} tickLine={false} />
             <YAxis tickLine={false} />

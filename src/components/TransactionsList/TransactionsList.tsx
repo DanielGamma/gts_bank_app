@@ -1,6 +1,6 @@
 import income from "../../assets/income.svg"
 import expense from "../../assets/expense.svg"
-import { TransactionItem } from "./TransactionItem"
+import { TransitionItem } from "../TransitionItem/TransitionItem"
 import { getTransactions, getUser } from "../../services/firebaseFunctions"
 import { Transaction } from "../../services/interfaces"
 import { useState, useEffect } from 'react'
@@ -21,7 +21,6 @@ export const TransactionsList: React.FC<Props> = (props): JSX.Element => {
 
     console.log(transactions);
 
-    
 
     return (
         <>
@@ -39,15 +38,15 @@ export const TransactionsList: React.FC<Props> = (props): JSX.Element => {
                     </div>
                 </div>
             </div>
-
-            {
-                transactions.map((trade, i) => {
-                    return (
-                        <TransactionItem key={i} text={trade.receiver_name} money={trade.amount} category={trade.category} />
-                    )
-                })
-            }
-
+            <div className="bg-gray-records rounded-2xl">
+                {
+                    transactions.map((trade, i) => {
+                        return (
+                            <TransitionItem key={i} text={trade.receiver_name} money={trade.amount} category={trade.category} />
+                        )
+                    })
+                }
+            </div>
         </>
     )
-        }
+}

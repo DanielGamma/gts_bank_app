@@ -16,9 +16,6 @@ export const getTransactions = async (transactionsList: string[]) => {
 export const getAccount = async (account: string) => {
     const array: any[] = []
     const data: any = await getDocs(query(collection(db, 'accounts'), where('iban', '==', account)))
-
     data.forEach((doc: any) => array.push(doc.data()))
-
-
     return array[0]
 }

@@ -71,24 +71,13 @@ export const HomePage: React.FC<Props> = (props): JSX.Element => {
           <p className="text-gray-nav font-medium">Available Balance</p>
         </div>
 
-        <div className='flex gap-14	'>
-          <div >
-            <TransferButton url={"transactions/transfer"} icon={TransferIcon}/>
-            <p className='font-karla font-normal alings-center text-white-form pt-2 '>Transfer</p>
-          </div>
-
-          <div>
-            <TransferButton url={"transactions/bizum"} icon={BizumIcon}/>
-            <p  className='font-karla font-normal	alings-center text-white-form pl-2 pt-2' >Bizum</p>
-          </div>
-        </div>
       </div>
       <div className="relative flex flex-col gap-2" data-carousel='static'>
         <h2 className="text-white-faded text-center font-medium text-2xl">My cards</h2>
         <Carousel />
-        <div className="flex gap-14 mt-[37px] self-center">
-          <article className="w-[76px] h-[76px] bg-light-blue rounded-full"></article>
-          <article className="w-[76px] h-[76px] bg-light-blue rounded-full"></article>
+        <div className='flex justify-center gap-14	'>
+          <TransferButton url={"transactions/transfer"} icon={TransferIcon} text={"Transfer"} />
+          <TransferButton url={"transactions/bizum"} icon={BizumIcon} text={"Bizum"} />
         </div>
         {/* TRANSACTIONS COMPONENT */}
         <section className="w-full flex flex-col gap-6">
@@ -97,22 +86,24 @@ export const HomePage: React.FC<Props> = (props): JSX.Element => {
             <Link to='' className="underline text-white-faded">View All</Link>
           </div>
           <div className="flex flex-col gap-5 bg-gray-records px-5 py-4 rounded-[20px]">
-            {
-              testArray.map((test, i) => {
-                return <>
+          {
+            testArray.map((test, i) => {
+              return (
+                <div key={i}>
                   <div className="w-full flex justify-between items-center text-white-faded ">
                     <article className="flex gap-4 items-center">
                       <div className="w-[76px] h-[76px] bg-light-blue rounded-full"></div>
-                      <p>Grocery</p>
+                      <p>Clothes</p>
                     </article>
-                    <p>-€400</p>
+                    <p>- €400</p>
                   </div>
                   {
-                    i < testArray.length - 1 ? <div className="h-px w-full bg-gray-400"></div> : ''
+                    i < testArray.length - 1 ? (<div className="h-px w-full mt-4 bg-gray-400"></div>) : ("")
                   }
-                </>
-              })
-            }
+                </div>
+              );
+            })
+          }
           </div>
         </section>
         {/* TRANSACTIONS COMPONENT */}

@@ -13,34 +13,34 @@ import { MdRestaurant } from "react-icons/md";
 
 type Props = { text: string, money: number, category: string }
 
-const categorys = ["Grocery", "Others", "Commuting", "Health", "Clothes", "Home", "Education", "Traveling", "Leisure", "Salary", "Income"]
 
-export const TransitionItem: React.FC<Props> = (props): JSX.Element => {
+
+export const TransitionItem: React.FC<Props> = ({text, category, money}): JSX.Element => {
     return (
         <>
-            categorys === "Grocery"?
+            {category === "Grocery"?
             <div className='w-12 h-12 rounded-full bg-orange-200 flex justify-center items-center'> <HiShoppingCart /></div>
-            :categorys === "Others"?
+            :category === "Others"?
             <div className='w-12 h-12 rounded-full bg-indigo-200 flex justify-center items-center'> < ImFilm /></div>
-            :categorys === "Commuting"?
+            :category === "Commuting"?
             <div className='w-12 h-12 rounded-full bg-red-100 flex justify-center items-center'> < BsFillFuelPumpFill /></div>
-            :categorys === "Health"?
+            :category === "Health"?
             <div className='w-12 h-12 rounded-full bg-rose-400 flex justify-center items-center'> < IoMdMedkit /></div>
-            :categorys === "Clothes"?
+            :category === "Clothes"?
             <div className='w-12 h-12 rounded-full bg-purple-200 flex justify-center items-center'> < VscJersey /></div>
-            :categorys === "Home"?
+            :category === "Home"?
             <div className='w-12 h-12 rounded-full bg-sky-300 flex justify-center items-center'> < ImHome /></div>
-            :categorys === "Education"?
+            :category === "Education"?
             <div className='w-12 h-12 rounded-full bg-lime-50 flex justify-center items-center'> < IoIosSchool /></div>
-            :categorys === "Traveling"?
+            :category === "Traveling"?
             <div className='w-12 h-12 rounded-full bg-teal-100	flex justify-center items-center'> < MdAirplanemodeActive /></div>
-            :categorys === "Leisure"?
+            :category === "Leisure"?
             <div className='w-12 h-12 rounded-full bg-teal-400	flex justify-center items-center'> < MdRestaurant /></div>
-            :categorys === "Salary"?
+            :category === "Salary"?
             <div className='w-12 h-12 rounded-full bg-slate-300 flex justify-center items-center'> < MdEuroSymbol /></div>
-            :categorys === "Income"?
+            :category === "Income"?
             <div className='w-12 h-12 rounded-full bg-slate-300 flex justify-center items-center'> < MdEuroSymbol /></div>
-            :null
+            :null}
         </>
 
     )

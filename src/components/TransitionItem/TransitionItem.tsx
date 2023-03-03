@@ -51,11 +51,9 @@ export const TransitionItem: React.FC<Props> = ({ text, category, money }): JSX.
                     <h2>€ {money}</h2>
                 </div>
             </div>
+                <hr className='my-1' />
 
-            
-
-
-
+        
         </>
     )
 

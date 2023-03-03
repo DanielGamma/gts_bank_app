@@ -38,7 +38,7 @@ export const TransactionsList: React.FC<Props> = (props): JSX.Element => {
                     </div>
                 </div>
             </div>
-            <div className="bg-gray-records rounded-2xl">
+            <div className="bg-gray-records rounded-2xl p-2 mt-3">
                 {
                     transactions.map((trade, i) => {
                         return (
@@ -46,6 +46,7 @@ export const TransactionsList: React.FC<Props> = (props): JSX.Element => {
                         )
                     })
                 }
+
             </div>
         </>
     )

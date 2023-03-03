@@ -1,5 +1,7 @@
+
 import { ExpensesGraphic } from "../ExpensesGraphic/ExpensesGraphic";
-import { Header } from "../Header/Header";
+import { NavMenu } from "../NavMenu/NavMenu"
+import { Header } from "../Header/Header"
 
 type Props = {};
 
@@ -38,6 +40,8 @@ export const ExpensesPage: React.FC<Props> = (props): JSX.Element => {
           );
         })}
       </div>
+
+      <NavMenu />
     </>
   );
 };

@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import {BrowserRouter , Routes , Route} from "react-router-dom";
 import { BizumTransferPage } from "./components/BizumTransferPage/BizumTransferPage";
 import { CardDetails } from "./components/CardDetails/CardDetails";
 import { CardSecret } from "./components/CardSecret/CardSecret";
@@ -22,34 +23,34 @@ export default function App() {
   const context = true
   return (
     <div className="bg-black min-h-screen pt-[40px] px-[28px] pb-[20px]">
-      
+
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={ <HomePage /> } />
-          
-          <Route path="/auth" element={ <LoginPage /> }/>
-          <Route path="/auth/signup" element={ <SignupForm />} />
-          <Route path="/auth/signin" element={ <SigninForm />} />
-         
+          <Route path="/" element={<HomePage />} />
 
-          <Route path="/records" element={ <RecordsPage />}>
-            <Route path="expenses" element={ <ExpensesPage />} />
+          <Route path="/auth" element={<LoginPage />}>
+            <Route path="signup" element={<SignupForm />} />
+            <Route path="signin" element={<SigninForm />} />
           </Route>
 
-          <Route path="/cards" element={ <CardsPage />}>
-            <Route path="details" element={ <CardDetails />} />
-            <Route path="new" element={ <NewCardForm />} />
-            <Route path="secret" element={ <CardSecret />} />
+          <Route path="/records" element={<RecordsPage />}>
+            <Route path="expenses" element={<ExpensesPage />} />
           </Route>
 
-          <Route path="/transactions/transfer" element={<TransferPage />}/>
-          <Route path="/transactions/bizum" element={ <BizumTransferPage />} />
+          <Route path="/cards" element={<CardsPage />}>
+            <Route path="details" element={<CardDetails />} />
+            <Route path="new" element={<NewCardForm />} />
+            <Route path="secret" element={<CardSecret />} />
+          </Route>
+
+          <Route path="/transactions/transfer" element={<TransferPage />} />
+          <Route path="/transactions/bizum" element={<BizumTransferPage />} />
           <Route path="/transactions/result" element={context ? <TransactionSuccess /> : <TransactionFailure />} />
-        
+
 
           <Route path="/profile" element={<ProfileMenu />}>
-            <Route path="image" element={ <ProfileImage />} />
-            <Route path="data" element={ <ProfileData />} />
+            <Route path="image" element={<ProfileImage />} />
+            <Route path="data" element={<ProfileData />} />
           </Route>
 
         </Routes>

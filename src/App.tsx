@@ -15,13 +15,14 @@ import { SigninForm } from "./components/SigninForm/SigninForm";
 import { SignupForm } from "./components/SignupForm/SignupForm";
 import { TransactionFailure } from "./components/TransactionFailure/TransactionFailure";
 import { TransactionSuccess } from "./components/TransactionSuccess/TransactionSuccess";
-import { TransferPage } from "./components/TransferPage/TransferPage"; 
+import { TransferPage } from "./components/TransferPage/TransferPage";  
+
 
 export default function App() {
   
   const context = true
   return (
-    <div className="bg-black min-h-screen pt-[40px] px-[28px] pb-[20px]">
+    <div className="bg-black min-h-screen pt-[40px] px-[28px] pb-[20px]"> 
       
       <BrowserRouter>
         <Routes>

@@ -57,6 +57,7 @@ export const HomePage: React.FC<Props> = (props): JSX.Element => {
 
   return (
     <>
+
       <div className=" flex flex-col items-center w-96 h-50 gap-5 bg-gray-dark z-10 ">
         <div className="flex w-full justify-between">
           <div className="flex flex-col">
@@ -85,22 +86,24 @@ export const HomePage: React.FC<Props> = (props): JSX.Element => {
             <Link to='' className="underline text-white-faded">View All</Link>
           </div>
           <div className="flex flex-col gap-5 bg-gray-records px-5 py-4 rounded-[20px]">
-            {
-              testArray.map((test, i) => {
-                return <>
-                  <div  className="w-full flex justify-between items-center text-white-faded ">
+          {
+            testArray.map((test, i) => {
+              return (
+                <div key={i}>
+                  <div className="w-full flex justify-between items-center text-white-faded ">
                     <article className="flex gap-4 items-center">
                       <div className="w-[76px] h-[76px] bg-light-blue rounded-full"></div>
-                      <p>Grocery</p>
+                      <p>Clothes</p>
                     </article>
-                    <p>-€400</p>
+                    <p>- €400</p>
                   </div>
                   {
-                    i < testArray.length - 1 ? <div className="h-px w-full bg-gray-400"></div> : ''
+                    i < testArray.length - 1 ? (<div className="h-px w-full mt-4 bg-gray-400"></div>) : ("")
                   }
-                </>
-              })
-            }
+                </div>
+              );
+            })
+          }
           </div>
         </section>
         {/* TRANSACTIONS COMPONENT */}

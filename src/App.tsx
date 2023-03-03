@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import {BrowserRouter , Routes , Route} from "react-router-dom";
 import { BizumTransferPage } from "./components/BizumTransferPage/BizumTransferPage";
 import { CardDetails } from "./components/CardDetails/CardDetails";
 import { CardSecret } from "./components/CardSecret/CardSecret";
@@ -24,6 +25,7 @@ export default function App() {
   const context = true
   return (
     <div className="bg-black min-h-screen pt-[40px] px-[28px] pb-[20px]">
+
       <UserProvider> 
         <BrowserRouter>
           <Routes>

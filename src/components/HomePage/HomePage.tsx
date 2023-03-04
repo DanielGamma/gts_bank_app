@@ -58,6 +58,7 @@ export const HomePage: React.FC<Props> = (props): JSX.Element => {
 
   return (
     <>
+
       <div className=" flex flex-col items-center w-96 h-50 gap-5 bg-gray-dark z-10 ">
         <div className="flex w-full justify-between">
           <div className="flex flex-col">

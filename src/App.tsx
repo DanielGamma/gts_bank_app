@@ -1,4 +1,3 @@
-
 import {BrowserRouter , Routes , Route} from "react-router-dom";
 import { BizumTransferPage } from "./components/BizumTransferPage/BizumTransferPage";
 import { CardDetails } from "./components/CardDetails/CardDetails";

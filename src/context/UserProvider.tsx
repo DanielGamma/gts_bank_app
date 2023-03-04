@@ -12,7 +12,7 @@ import { User } from "../services/interfaces";
 export const UserContext = createContext<corregir | null>(null); 
 
 
-const UserProvider: React.FC<React.ReactNode> = ({children}:any) => { 
+const UserProvider = ({children}:any) => { 
 
   const [currentUser, setCurrentUser] = useState<User>( 
     { 

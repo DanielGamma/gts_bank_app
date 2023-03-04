@@ -14,6 +14,7 @@ module.exports = {
         'gray-card': '#CECECE',
         'gray-nav': '#8D8D8D',
         'gray-records': '#292929',
+        'border-grey': '#585858',
         'gray-bgIcons': '#6A6A6A',
         'gray-icons': '#DDDDDD',
         'light-blue': '#7485B4',

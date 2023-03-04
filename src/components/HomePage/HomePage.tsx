@@ -10,6 +10,7 @@ import { User, Account } from "../../services/interfaces"
 // Icons
 import TransferIcon from '../../assets/transferbutton.png'
 import BizumIcon from '../../assets/mobile.png'
+import { NavMenu } from "../NavMenu/NavMenu"
 
 
 type Props = {}
@@ -107,6 +108,7 @@ export const HomePage: React.FC<Props> = (props): JSX.Element => {
         </section>
         {/* TRANSACTIONS COMPONENT */}
       </div>
+      <NavMenu />
     </>
   )
 }

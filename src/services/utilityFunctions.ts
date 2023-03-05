@@ -1,11 +1,9 @@
-import { Transaction, WeekDivided, Week } from "./interfaces"
+import { Transaction, WeekDivided, Week, Inner } from "./interfaces"
 
 interface HoldWeek {
     [index: string]: Transaction[]
 }
-interface HoldDays {
-    [index: string]: Transaction[]
-}
+
 
 export const divideWeeks = (monthlyTransaction: Week) => {
     const holdParam = { ...monthlyTransaction }
@@ -31,7 +29,6 @@ export const divideWeeks = (monthlyTransaction: Week) => {
         week3,
         week4,
     }
-
 
     const result = Object.keys(holdWeeks).reduce((acc: any, week: string, i: number) => {
         const holdInfo: Transaction[] = holdWeeks[week]
@@ -68,7 +65,6 @@ export const getWeek = (transactionList: WeekDivided[]) => {
     const weekString: string = Object.keys(dictionary).filter(week => dictionary[week].includes(today))[0]
 
     const actualObject: Transaction[] = transactionList.filter((week: WeekDivided) => week.name == weekString)[0].transactions
-
 
     let result: Transaction[] = []
 
@@ -138,11 +134,7 @@ export const changeToLocalTime = (date: string): string => {
 
 
 export const sortTransactionsByWeek = (transactionList: Transaction[]) => {
-    type Inner = {
-        name: string,
-        expense: number,
-        income: number
-    }
+    
     type Outer = {
         [index: string]: Inner
     }
@@ -187,19 +179,13 @@ export const sortTransactionsByWeek = (transactionList: Transaction[]) => {
 }
 
 export const sortTransactionsByMonth = (transactionList: Transaction[]) => {
-
-    type Inner = {
-        name: string,
-        income: number,
-        expense: number
-    }
+    
     type Outer = {
         [index: string]: Inner
     }
     type Dictionary = {
         [index: string]: Number[]
     }
-
     const dictionary: Dictionary = {
         '1-5': [1, 2, 3, 4, 5],
         '6-10': [6, 7, 8, 9, 10],

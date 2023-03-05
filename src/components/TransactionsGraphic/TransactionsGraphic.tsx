@@ -24,29 +24,27 @@ type Inner = {
 
 const TransactionsGraphic: React.FC<Props> = (props): JSX.Element => {
 
-    const [transactions, setTransactions] = useState<TransactionObject>()
-    const []
+    const [transactions, setTransactions] = useState<TransactionObject>({
+        weekly:[],
+        montly:[]
+    })
     const [userId, setUserId] = useState<string>('hHERVC0jfYYpKlPqYEktYcVZcXE2')
 
     useEffect(() => {
         if (userId) {
             getUser(userId).then(async (res) => {
-                // let list: Transaction[] = await getTransactions(res.transactions)
-                let list: Transaction[] = JSON.parse(localStorage.getItem('lista'))
+                let list: Transaction[] = await getTransactions(res.transactions)
                 list = list.map(transaction => {
                     transaction.date = changeToLocalTime(transaction.date)
                     return transaction
                 })
-                console.clear()
                 const weekly = findWeekandSort(list)
-
                 const real = {
                     weekly: sortTransactionsByWeek(weekly),
                     monthly: sortTransactionsByMonth(list),
                     showWeek: True
                 }
                 setTransactions(real)
-
             })
         }
     }, [userId])

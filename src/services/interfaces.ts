@@ -49,4 +49,9 @@ export interface WeekDivided {
     name: string,
     transactions: Transaction[]
 }
+export type Inner = {
+    name: string,
+    expense: number,
+    income: number
+}
 

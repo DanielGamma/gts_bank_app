@@ -12,7 +12,7 @@ export const getTransactions = async (transactionsList: string[]) => {
     const data: Transaction[] = await Promise.all(transactionsList.map(transaction => getDoc(doc(db, 'transactions', transaction)).then(res => res.data() as Transaction)))
     return data
 }
-
+jhyyuh
 export const getAccount = async (account: string) => {
     const array: any[] = []
     const data: any = await getDocs(query(collection(db, 'accounts'), where('iban', '==', account)))

@@ -6,12 +6,12 @@ import { db } from '../../config/firebase_config';
 import { getUser, getTransactions } from '../../services/firebaseFunctions';
 import { Transaction } from '../../services/interfaces';
 import { RecordsPage } from '../RecordsPage/RecordsPage';
-import { findWeekandSort,changeToLocalTime, divideWeeks, getWeek, sortTransactionsByWeek, sortTransactionsByMonth  } from '../../services/utilityFunctions'
+import { findWeekandSort, changeToLocalTime, divideWeeks, getWeek, sortTransactionsByWeek, sortTransactionsByMonth } from '../../services/utilityFunctions'
 
 type Props = {}
 
 interface TransactionObject {
-    [index:string] : Inner[]
+    [index: string]: Inner[]
 }
 
 type Inner = {
@@ -25,10 +25,11 @@ type Inner = {
 const TransactionsGraphic: React.FC<Props> = (props): JSX.Element => {
 
     const [transactions, setTransactions] = useState<TransactionObject>()
+    const []
     const [userId, setUserId] = useState<string>('hHERVC0jfYYpKlPqYEktYcVZcXE2')
 
     useEffect(() => {
-        if(userId){
+        if (userId) {
             getUser(userId).then(async (res) => {
                 // let list: Transaction[] = await getTransactions(res.transactions)
                 let list: Transaction[] = JSON.parse(localStorage.getItem('lista'))
@@ -38,10 +39,11 @@ const TransactionsGraphic: React.FC<Props> = (props): JSX.Element => {
                 })
                 console.clear()
                 const weekly = findWeekandSort(list)
-                
+
                 const real = {
-                    weekly : sortTransactionsByWeek(weekly),
-                    monthly : sortTransactionsByMonth(list)
+                    weekly: sortTransactionsByWeek(weekly),
+                    monthly: sortTransactionsByMonth(list),
+                    showWeek: True
                 }
                 setTransactions(real)
 
@@ -50,23 +52,26 @@ const TransactionsGraphic: React.FC<Props> = (props): JSX.Element => {
     }, [userId])
 
 
-    
+
 
     return (
-        <BarChart
-            width={369}
-            height={240}
-            data={transactions ? transactions.weekly : }
-            margin={{ top: 30, right: 5, bottom: 5, left: 5 }}>
-            <XAxis dataKey={'name'} axisLine={false} tickLine={false} />
-            <YAxis tickLine={false} />
-            <Tooltip />
-            <Legend iconSize={5} iconType='circle' />
-            <Bar barSize={8} dataKey="income" fill="#5A6ACF" />
-            <Bar barSize={8} dataKey="expenses" fill="#D8D9DB" />
-        </BarChart>
+        <>
+            {
+                transactions ? <BarChart
+                    width={369}
+                    height={240}
+                    data={transactions.weekly}
+                    margin={{ top: 30, right: 5, bottom: 5, left: 5 }}>
+                    <XAxis dataKey={'name'} axisLine={false} tickLine={false} />
+                    <YAxis tickLine={false} />
+                    <Tooltip />
+                    <Legend iconSize={5} iconType='circle' />
+                    <Bar barSize={8} dataKey="income" fill="#5A6ACF" />
+                    <Bar barSize={8} dataKey="expenses" fill="#D8D9DB" />
+                </BarChart> : ''
+            }
 
-
+        </>
     )
 }
 

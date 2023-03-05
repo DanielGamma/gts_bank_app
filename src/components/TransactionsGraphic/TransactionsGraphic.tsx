@@ -26,7 +26,7 @@ const TransactionsGraphic: React.FC<Props> = (props): JSX.Element => {
 
     const [transactions, setTransactions] = useState<TransactionObject>({
         weekly:[],
-        montly:[]
+        montly:[],
     })
     const [userId, setUserId] = useState<string>('hHERVC0jfYYpKlPqYEktYcVZcXE2')
 
@@ -42,15 +42,11 @@ const TransactionsGraphic: React.FC<Props> = (props): JSX.Element => {
                 const real = {
                     weekly: sortTransactionsByWeek(weekly),
                     monthly: sortTransactionsByMonth(list),
-                    showWeek: True
                 }
                 setTransactions(real)
             })
         }
     }, [userId])
-
-
-
 
     return (
         <>

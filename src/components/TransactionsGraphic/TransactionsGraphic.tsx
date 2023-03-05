@@ -24,46 +24,43 @@ type Inner = {
 
 const TransactionsGraphic: React.FC<Props> = (props): JSX.Element => {
 
-    const [transactions, setTransactions] = useState<TransactionObject>()
+    const [transactions, setTransactions] = useState<TransactionObject>({
+        weekly:[],
+        montly:[]
+    })
     const [userId, setUserId] = useState<string>('hHERVC0jfYYpKlPqYEktYcVZcXE2')
 
     useEffect(() => {
         if(userId){
             getUser(userId).then(async (res) => {
-                // let list: Transaction[] = await getTransactions(res.transactions)
-                let list: Transaction[] = JSON.parse(localStorage.getItem('lista'))
+                let list: Transaction[] = await getTransactions(res.transactions)
                 list = list.map(transaction => {
                     transaction.date = changeToLocalTime(transaction.date)
                     return transaction
                 })
-                console.clear()
                 const weekly = findWeekandSort(list)
-                
                 const real = {
                     weekly : sortTransactionsByWeek(weekly),
                     monthly : sortTransactionsByMonth(list)
                 }
                 setTransactions(real)
-
             })
         }
     }, [userId])
 
 
-    
-
     return (
         <BarChart
             width={369}
             height={240}
-            data={transactions ? transactions.weekly : }
+            data={transactions.weekly }
             margin={{ top: 30, right: 5, bottom: 5, left: 5 }}>
             <XAxis dataKey={'name'} axisLine={false} tickLine={false} />
             <YAxis tickLine={false} />
             <Tooltip />
             <Legend iconSize={5} iconType='circle' />
             <Bar barSize={8} dataKey="income" fill="#5A6ACF" />
-            <Bar barSize={8} dataKey="expenses" fill="#D8D9DB" />
+            <Bar barSize={8} dataKey="expense" fill="#D8D9DB" />
         </BarChart>
 
 

@@ -1,5 +1,6 @@
-import { createContext, useState } from "react"; 
+import { createContext, useEffect, useState } from "react"; 
 import any from "react/jsx-runtime";
+import { getUser } from "../services/firebaseFunctions";
 import { User } from "../services/interfaces";
 
 
@@ -27,7 +28,12 @@ const UserProvider = ({children}:any) => {
       transactions: [],
       email: "",
     } 
-  ) 
+  )
+
+  useEffect(() => {
+    getUser("IOlHrqIY6Ze7CwbLaj0w5TepRvA3")
+    .then(res=> setCurrentUser(res))
+  }, [])
 
   return (
     <div>

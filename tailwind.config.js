@@ -20,7 +20,11 @@ module.exports = {
         'light-blue': '#7485B4',
         'gray-dots': '#6C6C6C',
         'black' : '#000000',
-        'white': '#FFFFFF'
+        'white': '#FFFFFF',
+        'grey-profile': '#EEEEEE',
+        'white-profile': '#F9F9F9'
+   
+
       },
       fontFamily: {
         Karla: ['Karla', 'sans-serif']

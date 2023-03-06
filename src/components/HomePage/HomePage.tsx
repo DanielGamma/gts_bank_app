@@ -50,8 +50,7 @@ export const HomePage: React.FC<Props> = (props): JSX.Element => {
       const account = await getAccount(res.account)
       setAccount(account)
     })
-  }
-    , [])
+  }, [])
 
   const testArray: number[] = [1, 2]
 

@@ -35,5 +35,23 @@ export interface Transaction {
     origin_account: string | null,
     receiver_name: string,
     type: number,
-    user_uid: string
+    user_uid: string,
+    day?:string
 }
+
+export type Week = {
+    [index: string]: Transaction[]
+}
+
+export interface WeekDivided {
+    expenses : number,
+    income: number,
+    name: string,
+    transactions: Transaction[]
+}
+export type Inner = {
+    name: string,
+    expense: number,
+    income: number
+}
+

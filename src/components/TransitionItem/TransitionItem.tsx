@@ -11,11 +11,11 @@ import { VscJersey } from "react-icons/vsc";
 import { MdRestaurant } from "react-icons/md";
 
 
-type Props = { text: string, money: number, category: string }
+type Props = { text: string, money: number, category: string,  income: number}
 
 
 
-export const TransitionItem: React.FC<Props> = ({ text, category, money }): JSX.Element => {
+export const TransitionItem: React.FC<Props> = ({ text, category, money, income }): JSX.Element => {
     return(
          <>
         
@@ -45,10 +45,10 @@ export const TransitionItem: React.FC<Props> = ({ text, category, money }): JSX.
                                                         <div className='w-12 h-12 rounded-full bg-slate-300 flex justify-center items-center'> < MdEuroSymbol /></div>
                                                         : ""
             }
-                    <h2>{text}</h2>
+                    <h2 >{text}</h2>
                 </div>
                 <div >
-                    <h2>€ {money}</h2>
+                    <h2 className={`${income === 0 ? 'text-red-300' : 'text-green-200'}`}>€ {money}</h2>
                 </div>
             </div>
                 <hr className='my-1' />

@@ -252,7 +252,7 @@ export const findWeekandSort = (transactionList: Transaction[]) => {
 
 
 export const converter = (num: number):string => {
-    console.clear()
+
     let string = num.toFixed(2)
     let result = ''
     let initial = 0
@@ -274,6 +274,22 @@ export const converter = (num: number):string => {
     return result
     
 
+}
+
+
+export const createTransferId = ():string => {
+    const chars = 'abcdefgh0123456789'
+    let result = ''
+    let string = '006e69d3-85d5-43fc-b867-3fc940e9dfcc'
+    for (let i = 0; i < 36; i++) {
+        result += chars[Math.floor(Math.random() * chars.length)]
+        if(i == 8 ||i == 13 || i == 18 || i == 23){
+            result += '-'
+        }
+        
+    }
+    return result
+    
 }
 
 export { }

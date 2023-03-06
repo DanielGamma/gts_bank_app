@@ -18,6 +18,7 @@ export interface User {
     phone_number: string,
     transactions: string[],
     email: string,
+    id : string
 
 }
 
@@ -54,4 +55,12 @@ export type Inner = {
     expense: number,
     income: number
 }
+
+export interface formData{
+    receiverName:string;
+    receiverPhone:string;
+    amount:string;
+    description: string;
+   
+  }
 

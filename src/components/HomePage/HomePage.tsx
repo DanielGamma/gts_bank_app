@@ -38,6 +38,7 @@ export const HomePage: React.FC<Props> = (): JSX.Element => {
     phone_number: '',
     transactions: [],
     email: '',
+    id: ''
   })
   const [account, setAccount] = useState<Account>({
     balance: 0,
@@ -50,9 +51,11 @@ export const HomePage: React.FC<Props> = (): JSX.Element => {
 
   useEffect(() => {
     getUser('pgT11DMkcHR52WfUA1Q5N4hcCtX2').then(async (res) => {
+      console.log(res);
+      
       setUser(res)
       const account = await getAccount(res.account)
-    console.log(account);
+   
     
       setAccount(account)
     })

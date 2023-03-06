@@ -50,25 +50,15 @@ export default function App() {
             <Route path="/transactions/result" element={context ? <TransactionSuccess /> : <TransactionFailure />} />
           
 
-            <Route path="/profile" element={<ProfileMenu />}>
+            <Route path="/profile" element={<ProfilePage />}>
               <Route path="image" element={ <ProfileImage />} />
               <Route path="data" element={ <ProfileData />} />
             </Route>
 
-<<<<<<< HEAD
-
-          <Route path="/profile" element={<ProfilePage />}>
-            <Route path="image" element={<ProfileImage />} />
-            <Route path="data" element={<ProfileData />} />
-          </Route>
-
         </Routes>
       </BrowserRouter>
-=======
-          </Routes>
-        </BrowserRouter> 
+
       </UserProvider>
->>>>>>> develop
     </div>
   );
 }

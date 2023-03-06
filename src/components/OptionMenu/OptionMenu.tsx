@@ -1,8 +1,8 @@
 
 import profile from "../../assets/profileimg.svg"
-import personaldata from "../../assets/presonaldata.svg"
+import personaldata from "../../assets/personaldata.svg"
 import accountadd from "../../assets/accountadd.svg"
-import signout from "../../assets/SignOut.svg"
+import signout from "../../assets/signOut.svg"
 import { OptionItem } from "../OptionItem/OptionItem"
 
 type Props = {}

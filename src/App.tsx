@@ -1,4 +1,3 @@
-
 import {BrowserRouter , Routes , Route} from "react-router-dom";
 import { BizumTransferPage } from "./components/BizumTransferPage/BizumTransferPage";
 import { CardDetails } from "./components/CardDetails/CardDetails";
@@ -16,7 +15,8 @@ import { SigninForm } from "./components/SigninForm/SigninForm";
 import { SignupForm } from "./components/SignupForm/SignupForm";
 import { TransactionFailure } from "./components/TransactionFailure/TransactionFailure";
 import { TransactionSuccess } from "./components/TransactionSuccess/TransactionSuccess";
-import { TransferPage } from "./components/TransferPage/TransferPage";  
+import { TransferPage } from "./components/TransferPage/TransferPage"; 
+import UserProvider from "./context/UserProvider";
 
 
 export default function App() {
@@ -25,37 +25,39 @@ export default function App() {
   return (
     <div className="bg-black min-h-screen pt-[40px] px-[28px] pb-[20px]">
 
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
+      <UserProvider> 
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={ <HomePage /> } />
+            
+            <Route path="/auth" element={ <LoginPage /> }>
+              <Route path="signup" element={ <SignupForm />} />
+              <Route path="signin" element={ <SigninForm />} />
+            </Route>
 
-          <Route path="/auth" element={<LoginPage />}>
-            <Route path="signup" element={<SignupForm />} />
-            <Route path="signin" element={<SigninForm />} />
-          </Route>
+            <Route path="/records" element={ <RecordsPage />}>
+              <Route path="expenses" element={ <ExpensesPage />} />
+            </Route>
 
-          <Route path="/records" element={<RecordsPage />}>
-            <Route path="expenses" element={<ExpensesPage />} />
-          </Route>
+            <Route path="/cards" element={ <CardsPage />}>
+              <Route path="details" element={ <CardDetails />} />
+              <Route path="new" element={ <NewCardForm />} />
+              <Route path="secret" element={ <CardSecret />} />
+            </Route>
 
-          <Route path="/cards" element={<CardsPage />}>
-            <Route path="details" element={<CardDetails />} />
-            <Route path="new" element={<NewCardForm />} />
-            <Route path="secret" element={<CardSecret />} />
-          </Route>
+            <Route path="/transactions/transfer" element={<TransferPage />}/>
+            <Route path="/transactions/bizum" element={ <BizumTransferPage />} />
+            <Route path="/transactions/result" element={context ? <TransactionSuccess /> : <TransactionFailure />} />
+          
 
-          <Route path="/transactions/transfer" element={<TransferPage />} />
-          <Route path="/transactions/bizum" element={<BizumTransferPage />} />
-          <Route path="/transactions/result" element={context ? <TransactionSuccess /> : <TransactionFailure />} />
+            <Route path="/profile" element={<ProfileMenu />}>
+              <Route path="image" element={ <ProfileImage />} />
+              <Route path="data" element={ <ProfileData />} />
+            </Route>
 
-
-          <Route path="/profile" element={<ProfileMenu />}>
-            <Route path="image" element={<ProfileImage />} />
-            <Route path="data" element={<ProfileData />} />
-          </Route>
-
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter> 
+      </UserProvider>
     </div>
   );
 }

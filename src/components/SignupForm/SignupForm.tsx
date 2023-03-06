@@ -86,23 +86,23 @@ export const SignupForm: React.FC<Props> = (props):JSX.Element => {
         <div className="mt-10">
             <form onSubmit={registerForm} className="flex flex-col gap-3">
                 <label htmlFor="name" className="text-white-form text-lg">First Name</label>
-                <input type="text" {...register("firstName",{required:true,pattern: {value:/^[A-Za-z]+$/ , message: "User name invalid."},})}  className="bg-transparent border-b-[1px] border-solid border-[#626262] focus:outline-none !important text-white pb-2 text-lg" />
+                <input type="text" {...register("firstName",{required:"Name required",pattern: {value:/^[A-Za-z]+$/ , message: "User name invalid."},})}  className="bg-transparent border-b-[1px] border-solid border-[#626262] focus:outline-none !important text-white pb-2 text-lg" />
 
 
                 <label htmlFor="last-name" className="text-white-form text-lg">Last Name</label>
-                <input type="text" {...register('secondName',{required:true,pattern: {value:/^[A-Za-z]+$/ , message: "User name invalid."},})}   className="bg-transparent border-b-[1px] border-solid border-[#626262] focus:outline-none !important text-white pb-2 text-lg" />
+                <input type="text" {...register('secondName',{required:"Last Name required",pattern: {value:/^[A-Za-z]+$/ , message: "User name invalid."},})}   className="bg-transparent border-b-[1px] border-solid border-[#626262] focus:outline-none !important text-white pb-2 text-lg" />
 
 
                 <label htmlFor="email" className="text-white-form text-lg">Email</label>
-                <input type="email" {...register('email',{required:true})}   className="bg-transparent border-b-[1px] border-solid border-[#626262] focus:outline-none !important text-white pb-2 text-lg" />
+                <input type="email" {...register('email',{required:"Email required"})}   className="bg-transparent border-b-[1px] border-solid border-[#626262] focus:outline-none !important text-white pb-2 text-lg" />
 
 
                 <label htmlFor="password" className="text-white-form text-lg">Password</label>
-                <input type="password" {...register('password',{required:true,pattern:{value:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,20}$/, message:"Invalid password"},})}  className="bg-transparent border-b-[1px] border-solid border-[#626262] focus:outline-none !important text-white pb-2 text-lg"/>
+                <input type="password" {...register('password',{required:"Password Required",pattern:{value:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,20}$/, message:"Invalid password"},})}  className="bg-transparent border-b-[1px] border-solid border-[#626262] focus:outline-none !important text-white pb-2 text-lg"/>
 
 
                 <label htmlFor="password" className="text-white-form text-lg">Repeat Password</label>
-                <input type="password" {...register('confirmPassword',{required:true,validate:(value => value === getValues("password") || "Passwords don't match")})}   className="bg-transparent border-b-[1px] border-solid border-[#626262] focus:outline-none !important text-white pb-2 text-lg"/>
+                <input type="password" {...register('confirmPassword',{required:"Repeated Password Required",validate:(value => value === getValues("password") || "Passwords don't match")})}   className="bg-transparent border-b-[1px] border-solid border-[#626262] focus:outline-none !important text-white pb-2 text-lg"/>
 
 
                 <ErrorMessage errors={errors} name="firstName" render={({ messages }) => messages && Object.entries(messages).map(([type, message]) => ( <p className="text-red-700" key={type}>{message}</p>))}/>

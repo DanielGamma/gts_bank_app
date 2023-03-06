@@ -10,7 +10,6 @@ import profileWhite from "../../assets/profile-white.svg"
 import navcardsWhite from "../../assets/Card-white.svg"
 
 
-
 type Props = {}
 export const NavMenu: React.FC<Props> = (): JSX.Element => {
 

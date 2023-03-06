@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 type Props = {};
 
 export const LoginPage: React.FC<Props> = (props): JSX.Element => {
-  return (
-    <div className="flex flex-col items-center bg-black w-full min-h-screen">
+  return ( 
+    <div className="flex flex-col items-center bg-black w-full min-h-screen"> 
       <div className="flex flex-col gap-5 absolute top-[50%]">
             <p className=" text-center font-['Karla'] not-italic font-bold text-3xl text-white-faded">Welcome to GTS Bank</p>
             <p className=" text-center font-light font-['Karla'] not-italic text-2xl text-white-faded">The bank for everyone.</p>

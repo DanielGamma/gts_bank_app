@@ -5,19 +5,21 @@ import Bank from "../../assets/Bank";
  // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/scrollbar";
 
 
 // import required modules
-import { Navigation } from "swiper";
+import { Navigation,Scrollbar} from "swiper";
 
 type Props = {}
 
 
 const Carousel: React.FC<Props> = ({}) => {
     
-    const testArray: number[] = [1]
+    const testArray: number[] = [1,2,3,4,5]
     
 
+    
 
   return (
 
@@ -26,7 +28,13 @@ const Carousel: React.FC<Props> = ({}) => {
     <Swiper navigation={{
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
-      }} modules={[Navigation]} className="mySwiper"
+      }} modules={[Navigation,Scrollbar]}
+      scrollbar={{
+        draggable : true,
+        hide: true,
+        snapOnRelease: true
+      }}
+    className="mySwiper"
       spaceBetween={20}
       slidesPerView={1}>
          {

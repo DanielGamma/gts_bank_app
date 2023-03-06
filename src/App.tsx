@@ -44,7 +44,7 @@ export default function App() {
             </Route>
             <Route path="/transactions/transfer" element={<TransferPage />}/>
             <Route path="/transactions/bizum" element={ <BizumTransferPage />} />
-            <Route path="/transactions/result" element={context ? <TransactionSuccess /> : <TransactionFailure />} />
+            <Route path="/transactions/result" element={ <TransactionFailure />} />
           
 
             <Route path="/profile" element={<ProfileMenu />}>

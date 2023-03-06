@@ -10,7 +10,7 @@ import { LoginPage } from "./components/LoginPage/LoginPage";
 import { NewCardForm } from "./components/NewCardForm/NewCardForm";
 import { ProfileData } from "./components/ProfileData/ProfileData";
 import { ProfileImage } from "./components/ProfileImage/ProfileImage";
-import { ProfileMenu } from "./components/ProfileMenu/ProfileMenu";
+import { ProfilePage } from "./components/ProfilePage/ProfilePage";
 import { RecordsPage } from "./components/RecordsPage/RecordsPage";
 import { SigninForm } from "./components/SigninForm/SigninForm";
 import { SignupForm } from "./components/SignupForm/SignupForm";
@@ -49,7 +49,7 @@ export default function App() {
           <Route path="/transactions/result" element={context ? <TransactionSuccess /> : <TransactionFailure />} />
 
 
-          <Route path="/profile" element={<ProfileMenu />}>
+          <Route path="/profile" element={<ProfilePage />}>
             <Route path="image" element={<ProfileImage />} />
             <Route path="data" element={<ProfileData />} />
           </Route>

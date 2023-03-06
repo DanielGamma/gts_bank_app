@@ -2,6 +2,7 @@ import { Outlet, useLocation } from "react-router";
 import { NavMenu } from "../NavMenu/NavMenu";
 import { Header } from "../Header/Header";
 import TransactionsGraphic from "../TransactionsGraphic/TransactionsGraphic";
+import { useState } from "react";
 
 type Props = {};
 
@@ -9,6 +10,12 @@ export const RecordsPage: React.FC<Props> = (props): JSX.Element => {
 
   const { pathname } = useLocation()
   const conditional: boolean = pathname == '/records'
+  const [weeklyGraph, setWeeklyGraph] = useState<boolean>(true)
+ 
+  const handleClick = () => {
+
+  }
+
   
   const testArray = [1,2,3,4,4,4,4,4]
   return (
@@ -17,11 +24,11 @@ export const RecordsPage: React.FC<Props> = (props): JSX.Element => {
         <Header content={conditional ? 'Transactions' : 'Expenses'} arrow={conditional ? false : true} />
         <h2 className='text-white-form text-[20px] font-medium'>Graphic</h2>
         <div className='flex gap-6 w-full justify-end'>
-          <button className='w-[110px] h-10 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Week</button>
-          <button className='w-[110px] h-10 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Month</button>
+          <button  onClick={handleClick} className='w-[110px] h-10 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Week</button>
+          <button  onClick={handleClick} className='w-[110px] h-10 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Month</button>
         </div>
         {
-          conditional ? <TransactionsGraphic /> : <Outlet />
+          conditional ? <TransactionsGraphic weeklyGraph={weeklyGraph}/> : <Outlet />
         }
 
         {

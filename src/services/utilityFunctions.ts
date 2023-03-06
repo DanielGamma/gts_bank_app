@@ -127,14 +127,12 @@ export const changeToLocalTime = (date: string): string => {
     if (convert.length == 1) {
         convert = '0' + convert
     }
-
     const result = date.slice(0, date.indexOf(':') - 2) + convert + date.slice(date.indexOf(':'))
     return result
 }
 
 
 export const sortTransactionsByWeek = (transactionList: Transaction[]) => {
-    
     type Outer = {
         [index: string]: Inner
     }
@@ -144,14 +142,15 @@ export const sortTransactionsByWeek = (transactionList: Transaction[]) => {
             acc[dayName] = {
                 name: dayName,
                 expense: 0,
-                income: 0
+                income: 100
             }
         } else {
             if (transaction.type == 0) {
                 acc[dayName].expense += transaction.amount
-            } else {
-                acc[dayName].income += transaction.amount
-            }
+            } 
+            // else {
+            //     acc[dayName].income += transaction.amount
+            // }
         }
         acc[dayName].income = Number(acc[dayName].income.toFixed(2))
         acc[dayName].expense = Number(acc[dayName].expense.toFixed(2))
@@ -201,16 +200,18 @@ export const sortTransactionsByMonth = (transactionList: Transaction[]) => {
         if (!Object.hasOwn(acc, key)) {
             acc[key] = {
                 name: key,
-                income: 0,
+                income: 200,
                 expense: 0
             }
         } else {
             if (transaction.type == 0) {
                 acc[key].expense += transaction.amount
-            } else {
-                acc[key].income += transaction.amount
-            }
+            } 
+            // else {
+            //     acc[key].income += transaction.amount
+            // }
         }
+        
         acc[key].income = Number(acc[key].income.toFixed(2))
         acc[key].expense = Number(acc[key].expense.toFixed(2))
         return acc

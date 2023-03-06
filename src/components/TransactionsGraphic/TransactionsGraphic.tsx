@@ -4,31 +4,26 @@ import { useEffect, useState } from 'react'
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { db } from '../../config/firebase_config';
 import { getUser, getTransactions } from '../../services/firebaseFunctions';
-import { Transaction } from '../../services/interfaces';
+import { Transaction, Inner } from '../../services/interfaces';
 import { RecordsPage } from '../RecordsPage/RecordsPage';
 import { findWeekandSort, changeToLocalTime, divideWeeks, getWeek, sortTransactionsByWeek, sortTransactionsByMonth } from '../../services/utilityFunctions'
 
-type Props = {}
+type Props = {
+    weeklyGraph : boolean
+}
 
 interface TransactionObject {
     [index: string]: Inner[]
 }
 
-type Inner = {
-    name: string,
-    income: number,
-    expense: number
-}
-
-
-
-const TransactionsGraphic: React.FC<Props> = (props): JSX.Element => {
+const TransactionsGraphic: React.FC<Props> = ({weeklyGraph}): JSX.Element => {
 
     const [transactions, setTransactions] = useState<TransactionObject>({
         weekly:[],
-        montly:[],
+        monthly:[],
     })
     const [userId, setUserId] = useState<string>('hHERVC0jfYYpKlPqYEktYcVZcXE2')
+    
 
     useEffect(() => {
         if (userId) {
@@ -43,10 +38,15 @@ const TransactionsGraphic: React.FC<Props> = (props): JSX.Element => {
                     weekly: sortTransactionsByWeek(weekly),
                     monthly: sortTransactionsByMonth(list),
                 }
+                console.log(real);
+                
                 setTransactions(real)
             })
         }
     }, [userId])
+
+
+
 
     return (
         <>
@@ -54,14 +54,14 @@ const TransactionsGraphic: React.FC<Props> = (props): JSX.Element => {
                 transactions ? <BarChart
                     width={369}
                     height={240}
-                    data={transactions.weekly}
+                    data={weeklyGraph ? transactions.weekly : transactions.monthly}
                     margin={{ top: 30, right: 5, bottom: 5, left: 5 }}>
-                    <XAxis dataKey={'name'} axisLine={false} tickLine={false} />
+                    <XAxis dataKey={'name'} axisLine={false} tickLine={false}/>
                     <YAxis tickLine={false} />
                     <Tooltip />
                     <Legend iconSize={5} iconType='circle' />
                     <Bar barSize={8} dataKey="income" fill="#5A6ACF" />
-                    <Bar barSize={8} dataKey="expenses" fill="#D8D9DB" />
+                    <Bar barSize={8} dataKey="expense" fill="#D8D9DB" />
                 </BarChart> : ''
             }
 

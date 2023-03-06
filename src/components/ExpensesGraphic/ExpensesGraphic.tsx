@@ -3,26 +3,10 @@ import { getTransactions, getUser } from "../../services/firebaseFunctions";
 import { useEffect, useState } from "react";
 import { Transaction } from "../../services/interfaces";
 
-
 type Props = {};
 
-interface Data {
-    name : string,
-    value: number
-}
-
 export const ExpensesGraphic: React.FC<Props> = (props): JSX.Element => {
-
-  const data:Data[] = [
-    { name: "Transportation", value: 450 },
-    { name: "Clothes", value: 200 },
-    { name: "Home", value: 250 },
-    { name: "Education", value: 100 },
-    { name: "Catering", value: 500 },
-    { name: "Health", value: 350 },
-    { name: "Leisure", value: 350 }
-  ];
-
+  
   const colors = ["#FF764A", "#FFA600", "#003F5C", "#374C80","#7A5195", "#BC5090", "#EF5675","#2ABF31","#29B6E5"];
   
   const [expenses, setExpenses] = useState<Transaction[] | []>([])
@@ -69,10 +53,28 @@ export const ExpensesGraphic: React.FC<Props> = (props): JSX.Element => {
   
   const categories:String[] = [ ...new Set(expenses.map(expense => expense.category))]
   
+  interface propsGraph {
+    cx: number,
+    cy: number,
+    midAngle: number,
+    innerRadius:number,
+    outerRadius:number,
+    percent:number,
+    index:number
+  }
 
-  console.log(allExpensesByCategory);
-
-
+  const RADIAN = Math.PI / 180;
+  const renderCustomizedLabel:React.FC<propsGraph> = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+  
+    return (
+      <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+        {`${(percent * 100).toFixed(0)}%`}
+      </text>
+    );
+  };
 
   return (
 
@@ -82,13 +84,14 @@ export const ExpensesGraphic: React.FC<Props> = (props): JSX.Element => {
             data={allExpensesByCategory}
             cx={180}
             cy={150}
+             label={renderCustomizedLabel}
             innerRadius={65}
             outerRadius={120}
             fill="#8884d8"
             paddingAngle={0}
             dataKey="amount"
             >
-            {data.map((entry, index) => (
+            {allExpensesByCategory.map((entry, index) => (
                 <Cell key={index} fill={colors[index % colors.length]} />
             ))}
             </Pie>
@@ -97,9 +100,9 @@ export const ExpensesGraphic: React.FC<Props> = (props): JSX.Element => {
         <h3>Categories</h3>
         <div className="flex flex-wrap mb-4">
             {
-                data.map((e,i) => {
+                allExpensesByCategory.map((e,i) => {
                     return <div key={i} className="flex items-center mb-1 mr-3">
-                            <div className={`w-2 h-2 mr-1 rounded-full bg-[${colors[i]}]`}></div>
+                            <div className={`w-2 h-2 z-10 mr-1 rounded-full bg-[${colors[i]}]`}></div>
                             <p className="text-[10px]">{categories[i]}</p>
                         </div> 
                 })

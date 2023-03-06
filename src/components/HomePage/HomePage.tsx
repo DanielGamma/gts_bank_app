@@ -10,6 +10,7 @@ import { User, Account } from "../../services/interfaces"
 // Icons
 import TransferIcon from '../../assets/transferbutton.png'
 import BizumIcon from '../../assets/mobile.png'
+import { NavMenu } from "../NavMenu/NavMenu"
 
 
 type Props = {}
@@ -52,11 +53,12 @@ export const HomePage: React.FC<Props> = (props): JSX.Element => {
   }
     , [])
 
-  const testArray: number[] = [1, 2]
+  const testArray: number[] = [1]
 
 
   return (
     <>
+
       <div className=" flex flex-col items-center w-96 h-50 gap-5 bg-gray-dark z-10 ">
         <div className="flex w-full justify-between">
           <div className="flex flex-col">
@@ -107,6 +109,7 @@ export const HomePage: React.FC<Props> = (props): JSX.Element => {
         </section>
         {/* TRANSACTIONS COMPONENT */}
       </div>
+      <NavMenu />
     </>
   )
 }

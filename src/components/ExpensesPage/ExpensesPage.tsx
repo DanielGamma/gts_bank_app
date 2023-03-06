@@ -1,7 +1,6 @@
 
 import { ExpensesGraphic } from "../ExpensesGraphic/ExpensesGraphic";
 import { NavMenu } from "../NavMenu/NavMenu"
-import { Header } from "../Header/Header"
 import { getTransactions, getUser } from "../../services/firebaseFunctions";
 import { useEffect, useState } from "react";
 import { Transaction } from "../../services/interfaces";
@@ -20,13 +19,7 @@ export const ExpensesPage: React.FC<Props> = (props): JSX.Element => {
 
   return (
     <>
-      <Header arrow={true} content="Expenses" />
-      <h3 className="text-white mt-6 text-[20px] text-[#EEEEEECC]">Graphic</h3>
-      <div className="flex mt-4 gap-6 w-full justify-end">
-        <button className="w-[110px] h-10 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl">Week</button>
-        <button className="w-[110px] h-10 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl">Month</button>
-      </div>
-
+      
       <ExpensesGraphic />
 
       <h3 className="text-white mt-6 text-[20px] text-[#EEEEEECC]">Expenses Record</h3>

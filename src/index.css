@@ -10,3 +10,53 @@
     font-family: 'Poppins', sans-serif;
 
 }
+.swiper {
+    width: 74%;
+    height: 100%;
+    margin: 0 60%;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+/* navigation */
+.mySwiper .swiper-button-prev,
+.mySwiper  .swiper-button-next {
+  width: 100px;
+  height: 500px;
+  box-sizing: border-box;
+}
+.mySwiper .swiper-button-prev::after,
+.mySwiper .swiper-button-next::after {
+  content: "";
+}
+.mySwiper .swiper-button-prev {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: contain;
+  background-position: 50% 60%;
+  background-repeat: no-repeat;
+
+}
+.mySwiper .swiper-button-next {
+  position: absolute;
+  top: 0;
+  right: 0; 
+  background-size: contain;
+  background-position: 50% 60%;
+  background-repeat: no-repeat;
+}

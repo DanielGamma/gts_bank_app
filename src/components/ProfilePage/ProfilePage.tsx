@@ -1,24 +1,20 @@
 
-import { useContext } from "react"
+
+import React from "react"
 import { NavMenu } from "../NavMenu/NavMenu"
 import { OptionMenu } from "../OptionMenu/OptionMenu"
 import { ProfileCard } from "../ProfileCard/ProfileCard"
-import { userContext } from "../UserProvider/UserProvider"
+
+type Props = { }
+
+export const ProfilePage: React.FC<Props> = (): JSX.Element => {
 
 
-
-type Props = { title: string, subtitle: string, img: string}
-
-export const ProfilePage: React.FC<Props> = ({ title, subtitle, img }): JSX.Element => {
-
-    const {currentUser} = useContext(userContext)
-
-    console.log(currentUser)
 
     return (
-        <div className="">
-            <p className="text-2xl	font-medium	text-white-faded">Profile</p>
-            <ProfileCard title={title} subtitle={subtitle} img={img} />
+        <div>
+            <p className="text-2xlfont-medium text-white-faded text-center p-2 mb-2">Profile</p>
+            <ProfileCard/>
             <OptionMenu/>
             <NavMenu />
         </div>

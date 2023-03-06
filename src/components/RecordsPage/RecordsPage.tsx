@@ -13,7 +13,7 @@ export const RecordsPage: React.FC<Props> = (props): JSX.Element => {
   const [weeklyGraph, setWeeklyGraph] = useState<boolean>(true)
  
   const handleClick = () => {
-
+    
   }
 
   

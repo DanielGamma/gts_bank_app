@@ -22,7 +22,7 @@ export interface User {
 }
 
 export interface Account {
-    balance: string
+    balance: number
     created_at: string
     iban: string
     owner: string

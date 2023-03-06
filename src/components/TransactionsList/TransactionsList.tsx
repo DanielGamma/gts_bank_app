@@ -19,7 +19,7 @@ export const TransactionsList: React.FC<Props> = (props): JSX.Element => {
     }, [])
 
 
-    console.log(transactions);
+   
 
 
     return (

@@ -15,7 +15,7 @@ type Props = {}
 
 const Carousel: React.FC<Props> = ({}) => {
     
-    const testArray: number[] = [1]
+    const testArray: number[] = [1,2,3]
     
 
 
@@ -31,8 +31,8 @@ const Carousel: React.FC<Props> = ({}) => {
       slidesPerView={1}>
          {
             testArray.map((test, i) => {
-                return <SwiperSlide key={i} className=" duration-700 ease-in-out">
-                <article className="h-[163px] w-[275px] flex flex-col justify-between gap-1 bg-gradient-to-r from-[#0a397e] to-[#703c6d] rounded-md carousel">
+                return <SwiperSlide key={i} className=" relative left-7 duration-700 ease-in-out">
+                <article className="h-[163px] w-[275px]  flex flex-col justify-between gap-1 bg-gradient-to-r from-[#0a397e] to-[#703c6d] rounded-md ">
                     <div className="flex justify-between p-4">
                     <div className="flex gap-1 items-center">
                             <Bank/>

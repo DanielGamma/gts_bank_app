@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 // Components
 import { TransferButton } from '../TransferButton/TransferButton'
@@ -11,13 +11,15 @@ import { User, Account } from "../../services/interfaces"
 import TransferIcon from '../../assets/transferbutton.png'
 import BizumIcon from '../../assets/mobile.png'
 import { NavMenu } from "../NavMenu/NavMenu"
-
+import { TransactionsList } from "../TransactionsList/TransactionsList"
+import { converter } from "../../services/utilityFunctions"
+import { corregir, UserContext } from "../../context/UserProvider"
 
 type Props = {}
 
 
 
-export const HomePage: React.FC<Props> = (props): JSX.Element => {
+export const HomePage: React.FC<Props> = (): JSX.Element => {
 
   const [user, setUser] = useState<User>({
     first_name: '',
@@ -38,16 +40,20 @@ export const HomePage: React.FC<Props> = (props): JSX.Element => {
     email: '',
   })
   const [account, setAccount] = useState<Account>({
-    balance: '',
+    balance: 0,
     created_at: '',
     iban: '',
     owner: '',
   })
 
+  const {currentUser} = useContext(UserContext) as corregir
+
   useEffect(() => {
-    getUser('nhI0JztXcOclASp9mtOvr0c8kd53').then(async (res) => {
+    getUser('pgT11DMkcHR52WfUA1Q5N4hcCtX2').then(async (res) => {
       setUser(res)
       const account = await getAccount(res.account)
+    console.log(account);
+    
       setAccount(account)
     })
   }
@@ -58,8 +64,7 @@ export const HomePage: React.FC<Props> = (props): JSX.Element => {
 
   return (
     <>
-
-      <div className=" flex flex-col items-center w-96 h-50 gap-5 bg-gray-dark z-10 ">
+      <div className=" flex flex-col items-center  h-60 gap-5 bg-gray-dark z-10 -mt-10 -mx-7 pt-7 px-7">
         <div className="flex w-full justify-between">
           <div className="flex flex-col">
             <p className="text-2xl text-white-faded font-medium">{user.first_name} {user.last_name}</p>
@@ -67,47 +72,19 @@ export const HomePage: React.FC<Props> = (props): JSX.Element => {
           </div>
           <img src={user.profile_picture} alt="" className="w-16 h-16 rounded-full" />
         </div>
-        <div className="">
-          <p className="text-white-faded text-[26px] font-semibold">{account.balance}€</p>
+        <div className="flex flex-col items-center">
+          <p className="text-white-faded text-[26px] font-semibold">{converter(account.balance)}€</p>
           <p className="text-gray-nav font-medium">Available Balance</p>
-        </div>
-
+        </div> 
       </div>
-      <div className="relative flex flex-col gap-2" data-carousel='static'>
+      <div className=" relative pt-7 flex flex-col gap-6 bg-black rounded-[50px] -mx-7 bottom-10" >
         <h2 className="text-white-faded text-center font-medium text-2xl">My cards</h2>
         <Carousel />
         <div className='flex justify-center gap-14	'>
           <TransferButton url={"transactions/transfer"} icon={TransferIcon} text={"Transfer"} />
           <TransferButton url={"transactions/bizum"} icon={BizumIcon} text={"Bizum"} />
         </div>
-        {/* TRANSACTIONS COMPONENT */}
-        <section className="w-full flex flex-col gap-6">
-          <div className="flex justify-between">
-            <p className="text-lg font-medium text-white-faded">Recent Transactions</p>
-            <Link to='' className="underline text-white-faded">View All</Link>
-          </div>
-          <div className="flex flex-col gap-5 bg-gray-records px-5 py-4 rounded-[20px]">
-          {
-            testArray.map((test, i) => {
-              return (
-                <div key={i}>
-                  <div className="w-full flex justify-between items-center text-white-faded ">
-                    <article className="flex gap-4 items-center">
-                      <div className="w-[76px] h-[76px] bg-light-blue rounded-full"></div>
-                      <p>Clothes</p>
-                    </article>
-                    <p>- €400</p>
-                  </div>
-                  {
-                    i < testArray.length - 1 ? (<div className="h-px w-full mt-4 bg-gray-400"></div>) : ("")
-                  }
-                </div>
-              );
-            })
-          }
-          </div>
-        </section>
-        {/* TRANSACTIONS COMPONENT */}
+       
       </div>
       <NavMenu />
     </>

@@ -9,8 +9,8 @@ type Props = {};
 export const RecordsPage: React.FC<Props> = (props): JSX.Element => {
 
   const { pathname } = useLocation()
-  const conditional: boolean = pathname == '/records'
-  const [weeklyGraph, setWeeklyGraph] = useState<boolean>(true)
+  const conditional: boolean = pathname === '/records'
+  const [weeklyGraph] = useState<boolean>(true)
  
   const handleClick = () => {
     
@@ -19,7 +19,6 @@ export const RecordsPage: React.FC<Props> = (props): JSX.Element => {
   
   const testArray = [1,2,3,4,4,4,4,4]
   return (
-    <>
       <div className='w-full  '>
         <Header content={conditional ? 'Transactions' : 'Expenses'} arrow={conditional ? false : true} />
         <h2 className='text-white-form text-[20px] font-medium'>Graphic</h2>
@@ -45,23 +44,22 @@ export const RecordsPage: React.FC<Props> = (props): JSX.Element => {
         <div className="flex flex-col gap-5 bg-gray-records px-5 py-4 rounded-[20px]">
             {
               testArray.map((test, i) => {
-                return <>
-                  <div  className="w-full flex justify-between items-center text-white-faded ">
-                    <article className="flex gap-4 items-center">
-                      <div className="w-[76px] h-[76px] bg-light-blue rounded-full"></div>
-                      <p>Grocery</p>
-                    </article>
-                    <p>-€400</p>
-                  </div>
-                  {
-                    i < testArray.length - 1 ? <div className="h-px w-full bg-gray-400"></div> : ''
-                  }
-                </>
+                return <div key={i}>
+                <div className="w-full flex justify-between items-center text-white-faded ">
+                  <article className="flex gap-4 items-center">
+                    <div className="w-[76px] h-[76px] bg-light-blue rounded-full"></div>
+                    <p>Clothes</p>
+                  </article>
+                  <p>- €400</p>
+                </div>
+                {
+                  i < testArray.length - 1 ? (<div className="h-px w-full mt-4 bg-gray-400"></div>) : ("")
+                }
+              </div>
               })
             }
           </div>
         <NavMenu />
       </div>
-    </>
   )
 }

@@ -5,36 +5,55 @@ import { getTransactions, getUser } from "../../services/firebaseFunctions"
 import { Transaction } from "../../services/interfaces"
 import { useState, useEffect } from 'react'
 
-type Props = {
 
+
+type Props = {
 }
+
+let all: Transaction[] = []
+
 
 export const TransactionsList: React.FC<Props> = (props): JSX.Element => {
 
     const [transactions, setTransactions] = useState<Transaction[] | []>([])
+    const [transactionType, setTransactionType] = useState<string>("")
+
 
     useEffect(() => {
         getUser("IOlHrqIY6Ze7CwbLaj0w5TepRvA3")
-            .then(res => getTransactions(res.transactions).then(res => setTransactions(res)))
+            .then(res => getTransactions(res.transactions).then(res => {
+                setTransactions(res)
+                return all = res
+            }))
     }, [])
 
 
-   
+    useEffect(() => {
 
+        if (transactionType === "all") {
+            setTransactions(all)
+        } else if (transactionType === "income") {
+            setTransactions(all.filter(e => e.type === 1))
+        } else if (transactionType === "expenses") {
+            setTransactions(all.filter(e => e.type === 0))
+        }
+
+    }, [transactionType])
 
     return (
         <>
             <div>
                 <h2>Transactions Record</h2>
-                <div className="flex justify-between  text-white gap-2 h-10">
-                    <button className="bg-gray-dark rounded-[20px] w-16">All</button>
-                    <div className="flex justify-center items-center gap-2 bg-gray-dark rounded-[20px] w-[120px] ">
-                        <img src={income} alt="" />
+                <div className="flex justify-around opacity-60 hover:opacity-100 text-white gap-2 h-10">
+                    <button className="bg-gray-dark rounded-[20px] w-16 " onClick={() => setTransactionType("all")}>All</button>
+                  
+                    <div onClick={() => setTransactionType("income")} className="flex justify-center items-center gap-2 bg-gray-dark opacity-40 hover:opacity-100 rounded-[20px] w-[120px]">
+                        <img src={income} alt="income" />
                         <button >Income</button>
                     </div>
-                    <div className="flex justify-center items-center gap-2 bg-gray-dark rounded-[20px] w-[120px]">
+                    <div onClick={() => setTransactionType("expenses")} className="flex justify-center items-center gap-2 bg-gray-dark opacity-40 hover:opacity-100 rounded-[20px] w-[120px]">
                         <img src={expense} alt="" />
-                        <button>Expense</button>
+                        <button >Expense</button>
                     </div>
                 </div>
             </div>
@@ -42,7 +61,7 @@ export const TransactionsList: React.FC<Props> = (props): JSX.Element => {
                 {
                     transactions.map((trade, i) => {
                         return (
-                            <TransitionItem key={i} text={trade.receiver_name} money={trade.amount} category={trade.category} />
+                            <TransitionItem key={i} text={trade.receiver_name} money={trade.amount} category={trade.category} income={trade.type} />
                         )
                     })
                 }

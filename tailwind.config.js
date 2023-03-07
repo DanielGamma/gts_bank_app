@@ -22,7 +22,16 @@ module.exports = {
         'black' : '#000000',
         'white': '#FFFFFF',
         'grey-profile': '#EEEEEE',
-        'white-profile': '#F9F9F9'
+        'white-profile': '#F9F9F9',
+        'color-1' : '#FED7AA',
+        'color-2' : '#C7D2FE',
+        'color-3' : '#FEE2E2',
+        'color-4' : '#FB7185',
+        'color-5' : '#7DD3FC',
+        'color-6' : '#F7FEE7',
+        'color-7' : '#CCFBF1',
+        'color-8' : '#FED7AA',
+        'color-9' : '#E9D5FF',
       },
       fontFamily: {
         Karla: ['Karla', 'sans-serif']

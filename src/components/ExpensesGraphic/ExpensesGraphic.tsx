@@ -1,27 +1,30 @@
 import { PieChart, Pie, Cell } from "recharts";
 import { Transaction } from "../../services/interfaces";
 import { sortByCategory} from "../../services/utilityFunctions";
+import Legend from "../Legend/Legend";
 
 type Props = {
   list: Transaction[]
+
 };
 
-export const ExpensesGraphic: React.FC<Props> = ({ list }): JSX.Element => {
+type Color = {
+  [index: string]: string
+}
 
-  type Color = {
-    [index: string]: string
-  }
-  const colors: Color = {
-    Grocery: '#FED7AA',
-    Others: '#C7D2FE',
-    Commuting: '#FEE2E2',
-    Health: '#FB7185',
-    Home: '#7DD3FC',
-    Education: '#F7FEE7',
-    Traveling: '#CCFBF1',
-    Leisure: '#2DD4C0',
-    Clothes: '#E9D5FF'
-  }
+export const colors: Color = {
+  Grocery: '#FED7AA',
+  Others: '#C7D2FE',
+  Commuting: '#FEE2E2',
+  Health: '#FB7185',
+  Home: '#7DD3FC',
+  Education: '#F7FEE7',
+  Traveling: '#CCFBF1',
+  Leisure: '#2DD4BF',
+  Clothes: '#E9D5FF'
+}
+
+export const ExpensesGraphic: React.FC<Props> = ({ list }): JSX.Element => {
 
   const holdList = sortByCategory([...list].filter(transac => transac.type === 0))
 
@@ -33,7 +36,7 @@ export const ExpensesGraphic: React.FC<Props> = ({ list }): JSX.Element => {
           <Pie
             data={holdList}
             cx={180}
-            cy={150}
+            cy={120}
             label={true}
             labelLine={true}
             innerRadius={20}
@@ -56,10 +59,7 @@ export const ExpensesGraphic: React.FC<Props> = ({ list }): JSX.Element => {
         <div className="flex flex-wrap ">
           {
             holdList.map((e, i) => {
-              return <div key={i} className="flex items-center mb-1 mr-3">
-                <div className={`w-2 h-2 mr-1 rounded-full bg-[${colors[e.name]}]`}></div>
-                <p className="text-[10px]">{e.name}</p>
-              </div>
+              return <Legend key={i} name={e.name} color={colors[e.name]}/>
             })
           }
         </div>

@@ -53,7 +53,7 @@ export const HomePage: React.FC<Props> = (props): JSX.Element => {
   }
     , [])
 
-  const testArray: number[] = [1, 2]
+  const testArray: number[] = [1]
 
 
   return (

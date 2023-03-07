@@ -1,18 +1,34 @@
-import vector from '../../assets/Vector.png' 
-
+import { Formik, Form, Field } from "formik";
+import vector from '../../assets/Vector.png'  
+import { doc, setDoc, getDoc } from "firebase/firestore";  
+import {auth, db} from '../../config/firebase_config.js' 
+import validationSchema from "./validationSchema";
 
 type Props = {}  
 
-  type SubmitForm = { 
+  interface SubmitForm {
     cardNumber: number; 
-    expirationDate: Date; 
+    expirationDate: string; 
     cvv: number; 
-    service: string; 
-  }; 
-
+    service: string;
+  }   
 
 export const NewCardForm: React.FC<Props> = (props):JSX.Element => {  
 
+  const initialValues: SubmitForm = {
+    cardNumber: 0, 
+    expirationDate: "",  
+    cvv: 0, 
+    service: "",
+  };
+
+  const onSubmit = (values: SubmitForm) => {
+    setTimeout(() => { 
+      console.log(values);
+    }, 500); 
+
+    setDoc(doc(db, "user", ""), values);
+  };
 
     return ( 
         <div className='bg-[#000000] text-[#F9F9F9] px-7'> 
@@ -24,41 +40,47 @@ export const NewCardForm: React.FC<Props> = (props):JSX.Element => {
 
             <h1 className='fontFamily text-4xl font-bold pb-14'>Add New Card</h1> 
 
-            <form 
-                className='flex flex-col gap-8 font-poppins' action=""> 
+          <Formik 
+            validationSchema = {validationSchema} onSubmit={onSubmit}  initialValues={initialValues}> 
+
+            <form className='flex flex-col gap-8 font-poppins' action=""> 
                 
                 <section className='flex flex-col gap-5 form-group'> 
                   <label className='text-[#EEEEEE] text-base font-medium'
-                    htmlFor="">Card Number</label> 
-
+                    htmlFor="cardNumber">Card Number</label> 
                   <input 
                     className='text-[#FFFFFF] border-b-4 border-[#626262] bg-black' 
-                    id='cardNumber' name='cardNumber' placeholder=' 5555888877774444' />  
+                    id='cardNumber' name='cardNumber' placeholder=' 5555888877774444' type='number' />  
                 </section> 
 
                 <section className='flex flex-col gap-5 form-group'> 
                     <label className='text-[#EEEEEE] text-base font-medium'
-                      htmlFor="">Expiration Date</label> 
-                    <input className='text-[#FFFFFF] border-b-4 border-[#626262] bg-black'
-                      type="date" placeholder=' 01/26' required id='expirationDate' name='expirationDate' />                         
+                      htmlFor="expirationDate">Expiration Date</label> 
+                    <input 
+                      className='text-[#FFFFFF] border-b-4 border-[#626262] bg-black'
+                      type="date" placeholder=' 01/26' required id='expirationDate' name='expirationDate' />                          
                 </section> 
 
                 <section className='flex flex-col gap-5 form-group'> 
                   <label className='text-[#EEEEEE] text-base font-medium'
-                    htmlFor="">CVV</label> 
-                  <input className='text-[#FFFFFF] border-b-4 border-[#626262] bg-black'
-                    type="number" placeholder='559' max='3' required id='cvv' name='cvv'/>    
+                    htmlFor="cvv">CVV</label> 
+                  <input 
+                    className='text-[#FFFFFF] border-b-4 border-[#626262] bg-black'
+                    type="number" placeholder='559' required id='cvv' name='cvv'/>     
                 </section> 
 
                 <section className='flex flex-col gap-5 form-group'> 
                   <label className='text-[#EEEEEE] text-base font-medium'
-                    htmlFor="">Service</label> 
-                  <input className='text-[#FFFFFF] border-b-4 border-[#626262] bg-black'
+                    htmlFor="service">Service</label> 
+                  <input 
+                    className='text-[#FFFFFF] border-b-4 border-[#626262] bg-black'
                     type="text" id='service' name='service' placeholder='Visa, Mastercard o American Express' required/>
-                </section>
-            </form> 
-
-            <button className='mt-24 mb-16 bg-[#414A61] rounded-2xl py-1.5 w-full font-medium text-base'>Send</button>
+                </section> 
+              <button className='mt-24 mb-16 bg-[#414A61] rounded-2xl py-1.5 w-full font-medium text-base' 
+              type='submit'>Send</button>
+            </form>  
+          </Formik>
         </div>
     )
-}
+} 
+

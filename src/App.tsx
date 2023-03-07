@@ -10,7 +10,7 @@ import MyCards from "./components/MyCards/MyCards";
 import { NewCardForm } from "./components/NewCardForm/NewCardForm";
 import { ProfileData } from "./components/ProfileData/ProfileData";
 import { ProfileImage } from "./components/ProfileImage/ProfileImage";
-import { ProfileMenu } from "./components/ProfileMenu/ProfileMenu";
+import { ProfilePage } from "./components/ProfilePage/ProfilePage";
 import { RecordsPage } from "./components/RecordsPage/RecordsPage";
 import { SigninForm } from "./components/SigninForm/SigninForm";
 import { SignupForm } from "./components/SignupForm/SignupForm";
@@ -29,6 +29,7 @@ export default function App() {
       <UserProvider> 
         <BrowserRouter>
           <Routes>
+<<<<<<< HEAD
             <Route path="/" element={ <LoginPage /> } />
             <Route path="/auth/signin" element={ <SigninForm /> } />
             <Route path="/auth/signup" element={ <SignupForm /> } />
@@ -50,6 +51,14 @@ export default function App() {
               <Route path="signup" element={ <SignupForm />} />
               <Route path="signin" element={ } />
             </Route>
+=======
+            <Route path="/" element={ <HomePage /> } />
+            
+            <Route path="/auth" element={ <LoginPage /> }/>
+            <Route path="/signup" element={ <SignupForm />} />
+            <Route path="/signin" element={ <SigninForm />} />
+
+>>>>>>> develop
             <Route path="/records" element={ <RecordsPage />}>
               <Route path="expenses" element={ <ExpensesPage />} />
             </Route>
@@ -58,12 +67,29 @@ export default function App() {
               <Route path="new" element={ <NewCardForm />} />
               <Route path="secret" element={ <CardSecret />} />
             </Route>
+<<<<<<< HEAD
             <Route path="/profile" element={<ProfileMenu />}>
               <Route path="image" element={ <ProfileImage />} />
               <Route path="data" element={ <ProfileData />} />
             </Route> */}
           </Routes>
         </BrowserRouter> 
+=======
+
+            <Route path="/transactions/transfer" element={<TransferPage />}/>
+            <Route path="/transactions/bizum" element={ <BizumTransferPage />} />
+            <Route path="/transactions/result" element={context ? <TransactionSuccess /> : <TransactionFailure />} />
+          
+
+            <Route path="/profile" element={<ProfilePage />}>
+              <Route path="image" element={ <ProfileImage />} />
+              <Route path="data" element={ <ProfileData />} />
+            </Route>
+
+        </Routes>
+      </BrowserRouter>
+
+>>>>>>> develop
       </UserProvider>
     </div>
   );

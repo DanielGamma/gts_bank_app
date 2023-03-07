@@ -2,6 +2,7 @@ import React from 'react'
 import { Outlet } from 'react-router'
 import { NavMenu } from '../NavMenu/NavMenu'
 import { OptionMenu } from '../OptionMenu/OptionMenu'
+import { ProfileData } from '../ProfileData/ProfileData'
 import { ProfileImage } from '../ProfileImage/ProfileImage'
 
 
@@ -13,6 +14,7 @@ export const ProfileMenu: React.FC<Props> = (props):JSX.Element => {
     <>
     <Outlet />
     {/* <OptionMenu/> */}
+     
      <ProfileImage />
     <NavMenu />
     </>

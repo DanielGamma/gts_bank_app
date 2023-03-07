@@ -6,8 +6,6 @@ import { Transaction } from "../../services/interfaces"
 import { useState, useEffect, useContext } from 'react'
 import { corregir, UserContext } from "../../context/UserProvider"
 
-
-
 type Props = {
     transactionType : string,
     setTransactionType : React.Dispatch<React.SetStateAction<string>>
@@ -15,24 +13,17 @@ type Props = {
 
 let all: Transaction[] = []
 
-
 export const TransactionsList: React.FC<Props> = ({transactionType, setTransactionType}): JSX.Element => {
 
     const [transactions, setTransactions] = useState<Transaction[]>([])
-    // const [transactionType, setTransactionType] = useState<string>("")
-
     const {currentUser} = useContext(UserContext) as corregir
 
     useEffect(() => {
-        
             getTransactions(currentUser.transactions).then(res => {
                 setTransactions(res)
                 return all = res 
             })
-        
     }, [])
-
-
     useEffect(() => {
 
         if (transactionType === "all") {
@@ -42,7 +33,6 @@ export const TransactionsList: React.FC<Props> = ({transactionType, setTransacti
         } else if (transactionType === "expenses") {
             setTransactions(all.filter(e => e.type === 0))
         }
-
     }, [transactionType])
 
     return (

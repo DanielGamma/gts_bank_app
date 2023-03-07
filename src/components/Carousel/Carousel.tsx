@@ -6,23 +6,19 @@ import Bank from "../../assets/Bank";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/scrollbar";
-
-
-// import required modules
 import { Navigation,Scrollbar} from "swiper";
+import { useContext } from "react";
+import { corregir, UserContext } from "../../context/UserProvider";
 
 type Props = {}
 
 
 const Carousel: React.FC<Props> = ({}) => {
-    
+  
+    const {currentUser} = useContext(UserContext) as corregir
+    const {card_formatted, cvc,expiration_date, service} = currentUser.card
     const testArray: number[] = [1,2,3]
-    
-
-    
-
   return (
-
     <>
     
     <Swiper navigation={{
@@ -39,12 +35,10 @@ const Carousel: React.FC<Props> = ({}) => {
       slidesPerView={1}
       onSlideChange={index => {
         const slideInfo = document.querySelectorAll(".slide>.carousel>.num>.numb>.numberCard")[index.snapIndex].innerHTML
-        console.log(slideInfo); 
+       
       }}
     >
-         {
-            testArray.map((test, i) => {
-                return <SwiperSlide key={i} className=" slide duration-700 ease-in-out">
+                 <SwiperSlide  className=" slide duration-700 ease-in-out">
                 <article className="h-[163px] w-[275px] flex flex-col justify-between gap-1 bg-gradient-to-r from-[#0a397e] to-[#703c6d] rounded-md carousel">
                     <div className="flex justify-between p-4">
                     <div className="flex gap-1 items-center">
@@ -55,7 +49,7 @@ const Carousel: React.FC<Props> = ({}) => {
                     </div>
                     <div className="flex justify-between px-4 num">
                     <div className="numb">
-                      <p className="font-Inter font-bold text-sm text-white numberCard">0000  2363  8364  8269</p></div>
+                      <p className="font-Inter font-bold text-sm text-white numberCard">{card_formatted}</p></div>
                         <div>
                           <Wifi/>
                         </div>
@@ -65,18 +59,17 @@ const Carousel: React.FC<Props> = ({}) => {
                             <p className="text-[5px] font-medium text-white">VALID</p>
                             <p  className="text-[5px] font-medium text-white">THRU</p>
                         </div>
-                        <div><p className="font-Inter font-bold text-sm text-white validate">5/23</p></div>
+                        <div><p className="font-Inter font-bold text-sm text-white validate">{expiration_date}</p></div>
                     </div>
                     <div className="flex justify-between px-4 pb-2">
-                    <div><p className="font-Inter font-bold text-sm text-white">Andrey Utley</p></div>
+                    <div><p className="font-Inter font-bold text-sm text-white">{currentUser.first_name} {currentUser.last_name}</p></div>
                         <div>
                             <MasterCard/>
                         </div>
                     </div>
                 </article>
                 </SwiperSlide>
-            })
-            }
+
         <div className="swiper-button-next"></div>
         <div className="swiper-button-prev"></div>
     </Swiper>

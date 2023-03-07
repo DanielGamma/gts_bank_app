@@ -2,46 +2,43 @@ import { Outlet, useLocation } from "react-router";
 import { NavMenu } from "../NavMenu/NavMenu";
 import { Header } from "../Header/Header";
 import TransactionsGraphic from "../TransactionsGraphic/TransactionsGraphic";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { TransactionsList } from "../TransactionsList/TransactionsList";
+import { corregir, UserContext } from "../../context/UserProvider";
+import { Link } from "react-router-dom";
+import { ExpensesGraphic } from "../ExpensesGraphic/ExpensesGraphic";
 
 type Props = {};
 
 export const RecordsPage: React.FC<Props> = (props): JSX.Element => {
 
-  const { pathname } = useLocation()
-  const conditional: boolean = pathname === '/records'
-  const [weeklyGraph] = useState<boolean>(true)
- 
-  const handleClick = () => {
-    
-  }
+  const [weeklyGraph, setWeeklyGraph] = useState<boolean>(true)
+  const [transactionType, setTransactionType] = useState<string>("")
 
-  
-  const testArray = [1,2,3,4,4,4,4,4]
+  const { currentUser } = useContext(UserContext) as corregir
+
+
+
   return (
-      <div className='w-full  '>
-        <Header content='Transactions' arrow={false} url='/' />
-        <h2 className='text-white-form text-[20px] font-medium'>Graphic</h2>
-        <div className='flex gap-6 w-full justify-end'>
-          <button  onClick={handleClick} className='w-[110px] h-10 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Week</button>
-          <button  onClick={handleClick} className='w-[110px] h-10 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Month</button>
-        </div>
-        
-         <TransactionsGraphic weeklyGraph={weeklyGraph}/> 
-        
+    <div className='w-full  '>
+      <Header content='Transactions' arrow={false} url='/' />
+      <h2 className='text-white-form text-[20px] font-medium'>Graphic</h2>
+      <div className='flex gap-6 w-full justify-end'>
+        <button onClick={() => setWeeklyGraph(true)} className='w-[110px] h-10 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Week</button>
+        <button onClick={() => setWeeklyGraph(false)} className='w-[110px] h-10 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Month</button>
+      </div>
+      <div className="py-10">
 
-        
-          
-          <p className="text-lg font-medium text-white-faded">Transactions Record</p>
-         
-          <div className='flex gap-6 w-full justify-around mb-4'>
-            <button className='py-3 px-5 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>All</button>
-            <button className='py-3 px-5 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Income</button>
-            <button className='py-3 px-5 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Expenses</button>
-          </div> 
-        
-        
-        <div className="flex flex-col gap-5 bg-gray-records px-5 py-4 rounded-[20px]">
+
+        {
+          transactionType != 'expenses' ? <TransactionsGraphic weeklyGraph={weeklyGraph} /> : <ExpensesGraphic weeklyGraph={weeklyGraph}/>
+        }
+
+
+
+      </div>
+      <p className="text-lg font-medium text-white-faded mt-4">Transactions Record</p>
+      {/* <div className="flex flex-col gap-5 bg-gray-records px-5 py-4 rounded-[20px]">
             {
               testArray.map((test, i) => {
                 return <div key={i}>
@@ -58,8 +55,10 @@ export const RecordsPage: React.FC<Props> = (props): JSX.Element => {
               </div>
               })
             }
-          </div>
-        <NavMenu />
-      </div>
+          </div> */}
+
+      <TransactionsList transactionType={transactionType} setTransactionType={setTransactionType} />
+      <NavMenu />
+    </div>
   )
 }

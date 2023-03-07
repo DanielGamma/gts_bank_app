@@ -3,28 +3,33 @@ import expense from "../../assets/expense.svg"
 import { TransitionItem } from "../TransitionItem/TransitionItem"
 import { getTransactions, getUser } from "../../services/firebaseFunctions"
 import { Transaction } from "../../services/interfaces"
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { corregir, UserContext } from "../../context/UserProvider"
 
 
 
 type Props = {
+    transactionType : string,
+    setTransactionType : React.Dispatch<React.SetStateAction<string>>
 }
 
 let all: Transaction[] = []
 
 
-export const TransactionsList: React.FC<Props> = (props): JSX.Element => {
+export const TransactionsList: React.FC<Props> = ({transactionType, setTransactionType}): JSX.Element => {
 
-    const [transactions, setTransactions] = useState<Transaction[] | []>([])
-    const [transactionType, setTransactionType] = useState<string>("")
+    const [transactions, setTransactions] = useState<Transaction[]>([])
+    // const [transactionType, setTransactionType] = useState<string>("")
 
+    const {currentUser} = useContext(UserContext) as corregir
 
     useEffect(() => {
-        getUser("IOlHrqIY6Ze7CwbLaj0w5TepRvA3")
-            .then(res => getTransactions(res.transactions).then(res => {
+        
+            getTransactions(currentUser.transactions).then(res => {
                 setTransactions(res)
-                return all = res
-            }))
+                return all = res 
+            })
+        
     }, [])
 
 

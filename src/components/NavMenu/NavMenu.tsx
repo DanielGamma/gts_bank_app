@@ -7,7 +7,7 @@ import navcards from "../../assets/card.svg"
 import HomeWhite from "../../assets/Home-white.svg"
 import transactionsWhite from "../../assets/transactions-white.svg"
 import profileWhite from "../../assets/profile-white.svg"
-import navcardsWhite from "../../assets/Card-white.svg"
+import navcardsWhite from "../../assets/cardWhite.svg"
 
 
 type Props = {}
@@ -15,9 +15,9 @@ export const NavMenu: React.FC<Props> = (): JSX.Element => {
 
     return (
         <div className="flex items-center gap-16 fixed bottom-0 py-4 bg-black ">
-            <NavButton icon={Home} iconWhite={HomeWhite} text={"Home"} link={"/"}/>
+            <NavButton icon={Home} iconWhite={HomeWhite} text={"Home"} link={"/home"}/>
             <NavButton icon={navcards} iconWhite={navcardsWhite} text={"Cards"} link={"/cards"}/>
-            <NavButton icon={transactions} iconWhite={transactionsWhite} text={"Transactions"} link={"/transactions/result"}/>
+            <NavButton icon={transactions} iconWhite={transactionsWhite} text={"Transactions"} link={"/records"}/>
             <NavButton icon={profile}  iconWhite={profileWhite} text={"Profile"} link={"/profile"}/>
         </div>
     )

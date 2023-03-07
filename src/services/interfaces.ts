@@ -62,7 +62,8 @@ export interface WeekDivided {
 export type Inner = {
     name: string,
     expense: number,
-    income: number
+    income: number,
+    category :string
 }
 
 export interface formData{

@@ -142,7 +142,8 @@ export const sortTransactionsByWeek = (transactionList: Transaction[]) => {
             acc[dayName] = {
                 name: dayName,
                 expense: 0,
-                income: 100
+                income: 100,
+                category: transaction.category
             }
         } else {
             if (transaction.type == 0) {
@@ -200,8 +201,9 @@ export const sortTransactionsByMonth = (transactionList: Transaction[]) => {
         if (!Object.hasOwn(acc, key)) {
             acc[key] = {
                 name: key,
-                income: 200,
-                expense: 0
+                income: 500,
+                expense: 0,
+                category : transaction.category
             }
         } else {
             if (transaction.type == 0) {
@@ -223,8 +225,19 @@ export const sortTransactionsByMonth = (transactionList: Transaction[]) => {
         return acc
     }, [])
 
+    type Sort = {
+        [index: string]: number
+    }
+    const sort: Sort = {
+        '1-5': 1,
+        '6-10': 2,
+        '11-15': 3,
+        '16-20': 4,
+        '21-25': 5,
+        '26-31': 6,
+    }
 
-    return result.sort()
+    return result.sort((a, b) => sort[a.name] - sort[b.name])
 }
 
 export const findWeekandSort = (transactionList: Transaction[]) => {
@@ -251,7 +264,7 @@ export const findWeekandSort = (transactionList: Transaction[]) => {
 }
 
 
-export const converter = (num: number):string => {
+export const converter = (num: number): string => {
 
     let string = num.toFixed(2)
     let result = ''
@@ -260,36 +273,65 @@ export const converter = (num: number):string => {
     if (string.includes('.')) {
         initial = 2
         string = string.replace('.', ',')
-        result = string.slice(string.indexOf(',')+1)
+        result = string.slice(string.indexOf(',') + 1)
     }
-    
+
     console.log(string);
     for (let i = 0; i < string.length - initial; i++) {
-        result = string[string.length - 1 -initial - i ] + result
-        if(i % 3 === 0 && i !== 0){
+        result = string[string.length - 1 - initial - i] + result
+        if (i % 3 === 0 && i !== 0) {
             result = '.' + result
         }
-        
+
     }
     return result
-    
+
 
 }
 
 
-export const createTransferId = ():string => {
+export const createTransferId = (): string => {
     const chars = 'abcdefgh0123456789'
     let result = ''
     let string = '006e69d3-85d5-43fc-b867-3fc940e9dfcc'
     for (let i = 0; i < 36; i++) {
         result += chars[Math.floor(Math.random() * chars.length)]
-        if(i == 8 ||i == 13 || i == 18 || i == 23){
+        if (i == 8 || i == 13 || i == 18 || i == 23) {
             result += '-'
         }
-        
     }
     return result
-    
 }
+
+export const sortByCategory = (transactionsList: Transaction[]) => {
+    type Outer =  {
+      [index:string] : Inner
+    }
+    type Inner =  {
+        name: string,
+        expense: number
+      }
+    const sortCategory: Outer = transactionsList.reduce((acc:Outer,transaction:Transaction) => {
+      if(!Object.hasOwn(acc, transaction.category)){
+        acc[transaction.category] = {
+          name: transaction.category,
+          expense: transaction.amount
+        }
+      }else{
+        acc[transaction.category].expense += transaction.amount
+      }
+      acc[transaction.category].expense = Number(acc[transaction.category].expense.toFixed(2))
+      return acc
+    },{})
+
+
+    const result: Inner[] = Object.keys(sortCategory).reduce((acc:any, key:string) => {
+      acc.push(sortCategory[key])
+      return acc
+    },[])
+    
+    
+    return result
+  } 
 
 export { }

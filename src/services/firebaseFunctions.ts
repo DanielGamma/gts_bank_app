@@ -5,6 +5,7 @@ import { User, Transaction } from './interfaces'
 export const getUser = async (uid: string) => {
     const data: any = await getDoc(doc(db, 'users', uid))
     const result: User = await data.data()
+    result.id = data.id
     return result
 }
 

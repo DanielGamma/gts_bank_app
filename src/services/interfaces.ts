@@ -27,11 +27,12 @@ export interface User {
     phone_number: string,
     transactions: string[],
     email: string,
+    id : string
 
 }
 
 export interface Account {
-    balance: string
+    balance: number
     created_at: string
     iban: string
     owner: string
@@ -63,4 +64,12 @@ export type Inner = {
     expense: number,
     income: number
 }
+
+export interface formData{
+    receiverName:string;
+    receiverPhone:string;
+    amount:string;
+    description: string;
+   
+  }
 

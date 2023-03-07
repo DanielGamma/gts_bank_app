@@ -7,7 +7,7 @@ import navcards from "../../assets/card.svg"
 import HomeWhite from "../../assets/Home-white.svg"
 import transactionsWhite from "../../assets/transactions-white.svg"
 import profileWhite from "../../assets/profile-white.svg"
-import navcardsWhite from "../../assets/Card-white.svg"
+import navcardsWhite from "../../assets/CardWhite.svg"
 
 
 type Props = {}

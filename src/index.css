@@ -14,11 +14,14 @@
     width: 74%;
     height: 100%;
     margin: 0 60%;
+
   }
+
   
   .swiper-slide {
     text-align: center;
     font-size: 18px;
+    padding-bottom: 16px;
   
     /* Center slide text vertically */
     display: flex;
@@ -59,4 +62,20 @@
   background-size: contain;
   background-position: 50% 60%;
   background-repeat: no-repeat;
+}
+
+
+.mySwiper .swiper-scrollbar {
+  display: block !important;
+  width: 96px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  background-color:transparent;
+}
+.mySwiper
+  .swiper-scrollbar
+  .swiper-scrollbar-drag {
+  background-color: #B1BEEC;
 }

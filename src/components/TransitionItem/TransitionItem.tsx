@@ -18,7 +18,6 @@ type Props = { text: string, money: number, category: string,  income: number}
 export const TransitionItem: React.FC<Props> = ({ text, category, money, income }): JSX.Element => {
     return(
          <>
-        
             <div className="flex  p-2  text-white items-center justify-between ">
                 <div className="flex items-center gap-4">
                 {category === "Grocery" ?

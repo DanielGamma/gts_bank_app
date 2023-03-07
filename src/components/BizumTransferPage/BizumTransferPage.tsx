@@ -54,7 +54,7 @@ export const BizumTransferPage: React.FC<Props> = (props): JSX.Element => {
 
   return (
     <>
-      <Header arrow={true} content={"Bizum"} />
+      <Header arrow={true} content={"Bizum"} url='/home'/>
       <div className="flex flex-col gap-4 mt-10">
         <p className="text-white-form text-xl font-medium">From</p>
         <div className="bg-light-blue w-full flex flex-col gap-1 py-5 rounded-[20px] items-center">

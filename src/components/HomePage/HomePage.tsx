@@ -3,15 +3,11 @@ import { Link } from "react-router-dom"
 // Components
 import { TransferButton } from '../TransferButton/TransferButton'
 import Carousel from "../Carousel/Carousel"
-// Firebase services
 import { getUser, getAccount } from "../../services/firebaseFunctions"
-// Interface models
 import { User, Account } from "../../services/interfaces"
-// Icons
 import TransferIcon from '../../assets/transferbutton.png'
 import BizumIcon from '../../assets/mobile.png'
 import { NavMenu } from "../NavMenu/NavMenu"
-import { TransactionsList } from "../TransactionsList/TransactionsList"
 import { converter } from "../../services/utilityFunctions"
 import { corregir, UserContext } from "../../context/UserProvider"
 
@@ -48,17 +44,13 @@ export const HomePage: React.FC<Props> = (): JSX.Element => {
   })
 
   const {currentUser} = useContext(UserContext) as corregir
+  
+  
 
   useEffect(() => {
-    getUser('pgT11DMkcHR52WfUA1Q5N4hcCtX2').then(async (res) => {
-      console.log(res);
-      
-      setUser(res)
-      const account = await getAccount(res.account)
-   
-    
-      setAccount(account)
-    })
+
+     getAccount(currentUser.id).then(res => setAccount(res))
+  
   }
     , [])
 
@@ -70,10 +62,10 @@ export const HomePage: React.FC<Props> = (): JSX.Element => {
       <div className=" flex flex-col items-center  h-60 gap-5 bg-gray-dark z-10 -mt-10 -mx-7 pt-7 px-7">
         <div className="flex w-full justify-between">
           <div className="flex flex-col">
-            <p className="text-2xl text-white-faded font-medium">{user.first_name} {user.last_name}</p>
-            <p className="text-lg text-gray-card font-medium">{user.account}</p>
+            <p className="text-2xl text-white-faded font-medium">{currentUser.first_name} {currentUser.last_name}</p>
+            <p className="text-lg text-gray-card font-medium">{currentUser.account}</p>
           </div>
-          <img src={user.profile_picture} alt="" className="w-16 h-16 rounded-full" />
+          <img src={currentUser.profile_picture} alt="" className="w-16 h-16 rounded-full" />
         </div>
         <div className="flex flex-col items-center">
           <p className="text-white-faded text-[26px] font-semibold">{converter(account.balance)}€</p>

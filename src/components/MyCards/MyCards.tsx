@@ -6,7 +6,7 @@ type Props = {}
 const MyCards = (props: Props) => {
   return (
     <>
-      <Header arrow={false} content='My Cards' />
+      <Header arrow={false} content='My Cards' url='' />
       <div className="w-full bg-gray-records rounded-3xl">
         <div className="p-5 w-full flex justify-between items-center text-white-form border-b border-border-grey">
           <div className="flex gap-4 items-center">
@@ -40,3 +40,5 @@ const MyCards = (props: Props) => {
     </>
   )
 }
+
+export default MyCards

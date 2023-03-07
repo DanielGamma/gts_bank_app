@@ -1,10 +1,12 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import {createUserWithEmailAndPassword} from "firebase/auth"
 import { ErrorMessage } from '@hookform/error-message';
 import { auth,db } from "../../config/firebase_config";
 import { getDoc, doc,setDoc  } from "firebase/firestore";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { corregir, UserContext } from "../../context/UserProvider";
+import { getUser } from "../../services/firebaseFunctions";
 
 type Props = {}
 
@@ -22,7 +24,10 @@ export const SignupForm: React.FC<Props> = (props):JSX.Element => {
         criteriaMode: "all"
       })
 
+    const navigate = useNavigate()
     const [ err, setErr] = useState<boolean>(false)
+
+    const { setCurrentUser} = useContext(UserContext) as corregir
 
     const registerForm = handleSubmit(async(values) =>{
 
@@ -61,7 +66,9 @@ export const SignupForm: React.FC<Props> = (props):JSX.Element => {
                 iban:userIban,
                 owner:userCredential.user.uid,
             })
-
+            const saveInfo = await getUser(userCredential.user.uid) 
+            setCurrentUser(saveInfo)
+            navigate('/home')
         })
         .catch( err => {
             console.log(err);
@@ -72,7 +79,7 @@ export const SignupForm: React.FC<Props> = (props):JSX.Element => {
 
     return (
         <>
-        <Link to="/auth">
+        <Link to="/">
             <svg width="14" height="23" viewBox="0 0 14 23" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M11.336 22.6721L14 20.0081L5.34683 11.336L14 2.66396L11.336 -7.62939e-06L0 11.336L11.336 22.6721Z" fill="white"/>
             </svg>

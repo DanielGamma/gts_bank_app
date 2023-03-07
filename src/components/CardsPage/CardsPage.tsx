@@ -7,7 +7,7 @@ export const CardsPage: React.FC<Props> = (props):JSX.Element => {
   return (
     <>
     <Outlet/>
-    <div>CardsPage</div>
+    
     <NavMenu/>
     </>
   )

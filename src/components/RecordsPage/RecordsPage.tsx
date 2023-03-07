@@ -13,34 +13,34 @@ export const RecordsPage: React.FC<Props> = (props): JSX.Element => {
   const [weeklyGraph] = useState<boolean>(true)
  
   const handleClick = () => {
-
+    
   }
 
   
   const testArray = [1,2,3,4,4,4,4,4]
   return (
       <div className='w-full  '>
-        <Header content={conditional ? 'Transactions' : 'Expenses'} arrow={conditional ? false : true} />
+        <Header content='Transactions' arrow={false} url='/' />
         <h2 className='text-white-form text-[20px] font-medium'>Graphic</h2>
         <div className='flex gap-6 w-full justify-end'>
           <button  onClick={handleClick} className='w-[110px] h-10 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Week</button>
           <button  onClick={handleClick} className='w-[110px] h-10 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Month</button>
         </div>
-        {
-          conditional ? <TransactionsGraphic weeklyGraph={weeklyGraph}/> : <Outlet />
-        }
+        
+         <TransactionsGraphic weeklyGraph={weeklyGraph}/> 
+        
 
-        {
-          conditional ? <>
-          <p className="text-lg font-medium text-white-faded">{conditional? 'Transactions Record' : 'Expenses Record'}</p>
+        
+          
+          <p className="text-lg font-medium text-white-faded">Transactions Record</p>
          
           <div className='flex gap-6 w-full justify-around mb-4'>
             <button className='py-3 px-5 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>All</button>
             <button className='py-3 px-5 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Income</button>
             <button className='py-3 px-5 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Expenses</button>
-          </div></> : ''
+          </div> 
         
-        }
+        
         <div className="flex flex-col gap-5 bg-gray-records px-5 py-4 rounded-[20px]">
             {
               testArray.map((test, i) => {

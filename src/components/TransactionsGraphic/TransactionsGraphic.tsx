@@ -38,8 +38,6 @@ const TransactionsGraphic: React.FC<Props> = ({weeklyGraph}): JSX.Element => {
                     weekly: sortTransactionsByWeek(weekly),
                     monthly: sortTransactionsByMonth(list),
                 }
-                console.log(real);
-                
                 setTransactions(real)
             })
         }

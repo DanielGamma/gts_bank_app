@@ -147,7 +147,7 @@ export const sortTransactionsByWeek = (transactionList: Transaction[]) => {
         } else {
             if (transaction.type == 0) {
                 acc[dayName].expense += transaction.amount
-            } 
+            }
             // else {
             //     acc[dayName].income += transaction.amount
             // }
@@ -178,7 +178,7 @@ export const sortTransactionsByWeek = (transactionList: Transaction[]) => {
 }
 
 export const sortTransactionsByMonth = (transactionList: Transaction[]) => {
-    
+
     type Outer = {
         [index: string]: Inner
     }
@@ -206,12 +206,12 @@ export const sortTransactionsByMonth = (transactionList: Transaction[]) => {
         } else {
             if (transaction.type == 0) {
                 acc[key].expense += transaction.amount
-            } 
+            }
             // else {
             //     acc[key].income += transaction.amount
             // }
         }
-        
+
         acc[key].income = Number(acc[key].income.toFixed(2))
         acc[key].expense = Number(acc[key].expense.toFixed(2))
         return acc
@@ -248,6 +248,48 @@ export const findWeekandSort = (transactionList: Transaction[]) => {
     })
     return result
 
+}
+
+
+export const converter = (num: number):string => {
+
+    let string = num.toFixed(2)
+    let result = ''
+    let initial = 0
+
+    if (string.includes('.')) {
+        initial = 2
+        string = string.replace('.', ',')
+        result = string.slice(string.indexOf(',')+1)
+    }
+    
+    console.log(string);
+    for (let i = 0; i < string.length - initial; i++) {
+        result = string[string.length - 1 -initial - i ] + result
+        if(i % 3 === 0 && i !== 0){
+            result = '.' + result
+        }
+        
+    }
+    return result
+    
+
+}
+
+
+export const createTransferId = ():string => {
+    const chars = 'abcdefgh0123456789'
+    let result = ''
+    let string = '006e69d3-85d5-43fc-b867-3fc940e9dfcc'
+    for (let i = 0; i < 36; i++) {
+        result += chars[Math.floor(Math.random() * chars.length)]
+        if(i == 8 ||i == 13 || i == 18 || i == 23){
+            result += '-'
+        }
+        
+    }
+    return result
+    
 }
 
 export { }

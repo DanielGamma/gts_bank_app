@@ -27,6 +27,7 @@ const UserProvider = ({children}:any) => {
       phone_number: '',
       transactions: [],
       email: "",
+      id : ''
     } 
   )
 

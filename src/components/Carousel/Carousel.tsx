@@ -16,7 +16,7 @@ type Props = {}
 
 const Carousel: React.FC<Props> = ({}) => {
     
-    const testArray: number[] = [1,2,3,4,5]
+    const testArray: number[] = [1,2,3]
     
 
     

@@ -6,10 +6,11 @@ import { CardsPage } from "./components/CardsPage/CardsPage";
 import { ExpensesPage } from "./components/ExpensesPage/ExpensesPage";
 import { HomePage } from "./components/HomePage/HomePage";
 import { LoginPage } from "./components/LoginPage/LoginPage";
+import MyCards from "./components/MyCards/MyCards";
 import { NewCardForm } from "./components/NewCardForm/NewCardForm";
 import { ProfileData } from "./components/ProfileData/ProfileData";
 import { ProfileImage } from "./components/ProfileImage/ProfileImage";
-import { ProfileMenu } from "./components/ProfileMenu/ProfileMenu";
+import { ProfilePage } from "./components/ProfilePage/ProfilePage";
 import { RecordsPage } from "./components/RecordsPage/RecordsPage";
 import { SigninForm } from "./components/SigninForm/SigninForm";
 import { SignupForm } from "./components/SignupForm/SignupForm";
@@ -30,15 +31,13 @@ export default function App() {
           <Routes>
             <Route path="/" element={ <HomePage /> } />
             
-            <Route path="/auth" element={ <LoginPage /> }>
-              <Route path="signup" element={ <SignupForm />} />
-              <Route path="signin" element={ <SigninForm />} />
-            </Route>
+            <Route path="/auth" element={ <LoginPage /> }/>
+            <Route path="/signup" element={ <SignupForm />} />
+            <Route path="/signin" element={ <SigninForm />} />
 
             <Route path="/records" element={ <RecordsPage />}>
               <Route path="expenses" element={ <ExpensesPage />} />
             </Route>
-
             <Route path="/cards" element={ <CardsPage />}>
               <Route path="details" element={ <CardDetails />} />
               <Route path="new" element={ <NewCardForm />} />
@@ -50,13 +49,14 @@ export default function App() {
             <Route path="/transactions/result" element={context ? <TransactionSuccess /> : <TransactionFailure />} />
           
 
-            <Route path="/profile" element={<ProfileMenu />}>
+            <Route path="/profile" element={<ProfilePage />}>
               <Route path="image" element={ <ProfileImage />} />
               <Route path="data" element={ <ProfileData />} />
             </Route>
 
-          </Routes>
-        </BrowserRouter> 
+        </Routes>
+      </BrowserRouter>
+
       </UserProvider>
     </div>
   );

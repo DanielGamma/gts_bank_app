@@ -4,12 +4,13 @@ import { NavMenu } from "../NavMenu/NavMenu"
 import { getTransactions, getUser } from "../../services/firebaseFunctions";
 import { useEffect, useState } from "react";
 import { Transaction } from "../../services/interfaces";
+import { Header } from "../Header/Header";
 
 type Props = {};
 
 export const ExpensesPage: React.FC<Props> = (props): JSX.Element => {
   
-  const [expenses, setExpenses] = useState<Transaction[] | []>([])
+  const [expenses, setExpenses] = useState<Transaction[]>([])
 
   useEffect(() => {
     getUser("IOlHrqIY6Ze7CwbLaj0w5TepRvA3")
@@ -19,7 +20,7 @@ export const ExpensesPage: React.FC<Props> = (props): JSX.Element => {
 
   return (
     <>
-      
+      <Header arrow={true} content='Expenses' url='/records'/>
       <ExpensesGraphic />
 
       <h3 className="text-white mt-6 text-[20px] text-[#EEEEEECC]">Expenses Record</h3>

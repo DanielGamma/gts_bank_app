@@ -1,4 +1,3 @@
-
 import profile from "../../assets/profileimg.svg"
 import personaldata from "../../assets/presonaldata.svg"
 import accountadd from "../../assets/accountadd.svg"
@@ -20,4 +19,5 @@ export const OptionMenu: React.FC<Props> = (): JSX.Element => {
             <OptionItem icon={signout}  text={"Sign Out"} url={"/"}/>
         </div>
     )
-}
+} 
+

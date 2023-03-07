@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import {auth} from '../../config/firebase_config'
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {corregir, UserContext} from '../../context/UserProvider' 
 import vector from '../../assets/Vector.png' 
 import {getUser} from '../../services/firebaseFunctions'
@@ -24,7 +24,7 @@ export const SigninForm: React.FC<Props> = (props):JSX.Element => {
   .then(async(userCredential) => {  
     const saveInfo = await getUser(userCredential.user.uid) 
     setCurrentUser(saveInfo) 
-    navigate("/")
+    navigate("/home")
     
   })
   .catch(() => { 
@@ -38,8 +38,11 @@ export const SigninForm: React.FC<Props> = (props):JSX.Element => {
     <> 
     <div className='bg-[#000000] px-7 font-Karla text-white'>  
     
-      <img className="pt-16 pl-7 "
-        src={vector} alt="vect" />
+      <Link to="/">
+            <svg width="14" height="23" viewBox="0 0 14 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.336 22.6721L14 20.0081L5.34683 11.336L14 2.66396L11.336 -7.62939e-06L0 11.336L11.336 22.6721Z" fill="white"/>
+            </svg>
+        </Link>     
       <section className='pb-28'> 
         <h1 className="text-4xl text-[#F9F9F9] font-normal pt-12">Sign into your Account</h1> 
         <p className="pt-6 font-thin text-xs text-[#F9F9F9]">Log into your GTS Bank account</p>

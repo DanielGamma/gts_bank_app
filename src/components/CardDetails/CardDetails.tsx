@@ -3,38 +3,26 @@ import { Header } from "../Header/Header"
 type Props = {}
 
 export const CardDetails: React.FC<Props> = (props): JSX.Element => {
+  
+
   return (
     <>
-      <Header arrow={false} content='My Cards' />
-      <div className="w-full bg-gray-records rounded-3xl">
-        <div className="p-5 w-full flex justify-between items-center text-white-form border-b border-border-grey">
-          <div className="flex gap-4 items-center">
-            <article className="w-14 h-14 bg-gray-400 rounded-full"></article>
-            <p>Card Details</p>
-          </div>
-          <p className="">{'>'}</p>
-        </div>
-        <div className="p-5 w-full flex justify-between items-center text-white-form border-b border-border-grey">
-          <div className="flex gap-4 items-center">
-            <article className="w-14 h-14 bg-gray-400 rounded-full"></article>
-            <p>Card Details</p>
-          </div>
-          <p className="">{'>'}</p>
-        </div>
-        <div className="p-5 w-full flex justify-between items-center text-white-form border-b border-border-grey">
-          <div className="flex gap-4 items-center">
-            <article className="w-14 h-14 bg-gray-400 rounded-full"></article>
-            <p>Card Details</p>
-          </div>
-          <p className="">{'>'}</p>
-        </div>
-        <div className="p-5 w-full flex justify-between items-center text-white-form ">
-          <div className="flex gap-4 items-center">
-            <article className="w-14 h-14 bg-gray-400 rounded-full"></article>
-            <p>Card Details</p>
-          </div>
-          <p className="">{'>'}</p>
-        </div>
+      <Header arrow={true} content='Details' />
+      <div className="flex flex-col gap-3 mt-10">
+        <p className="font-medium text-lg text-white-form">Related Account</p>
+        <p className="font-medium text-xl text-white">ES8501281115756786467939</p>
+      </div>
+      <div className="flex flex-col gap-3 mt-10">
+        <p className="font-medium text-lg text-white-form">Card number</p>
+        <p className="font-medium text-xl text-white">3116433744757640</p>
+      </div>
+      <div className="flex flex-col gap-3 mt-10">
+        <p className="font-medium text-lg text-white-form">Expiration date</p>
+        <p className="font-medium text-xl text-white">11/25</p>
+      </div>
+      <div className="flex flex-col gap-3 mt-10">
+        <p className="font-medium text-lg text-white-form">Service</p>
+        <p className="font-medium text-xl text-white">Visa</p>
       </div>
     </>
   )

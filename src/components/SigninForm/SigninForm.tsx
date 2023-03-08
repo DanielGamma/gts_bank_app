@@ -3,7 +3,7 @@ import {auth} from '../../config/firebase_config'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import {corregir, UserContext} from '../../context/UserProvider' 
-import vector from '../../assets/Vector.png' 
+// import vector from '../../assets/Vector.png' 
 import {getUser} from '../../services/firebaseFunctions'
 
 type Props = {} 
@@ -12,6 +12,7 @@ type Props = {}
 export const SigninForm: React.FC<Props> = (props):JSX.Element => {  
 
   const navigate = useNavigate()
+  // Dios no existe
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState(''); 
   const [error, setError] = useState<boolean>(false) 
@@ -66,7 +67,7 @@ export const SigninForm: React.FC<Props> = (props):JSX.Element => {
         <p className="font-light text-sm text-[#0066F6] pb-24">click here to recover it</p>
 
         
-        {error ? "" : <p>Invalid username or password</p>} 
+        {error ? <p>Invalid username or password</p> : ""} 
 
         <button disabled={email === "" && password === "" ? true : false}
         className= "bg-[#414A61] rounded-2xl py-1.5 font-medium text-base">LOG IN</button> 

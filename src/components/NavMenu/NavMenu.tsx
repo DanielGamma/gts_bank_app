@@ -13,7 +13,7 @@ type Props = {}
 export const NavMenu: React.FC<Props> = (): JSX.Element => {
 
     return (
-        <div className="flex items-center gap-16 bottom-0 py-4 bg-black pt-11">
+        <div className="flex justify-center items-center gap-16 bottom-0 py-4 bg-black pt-8 fixed w-screen left-0">
             <NavButton icon={Home} iconWhite={HomeWhite} text={"Home"} link={"/home"}/>
             <NavButton icon={navcards} iconWhite={navcardsWhite} text={"Cards"} link={"/cards"}/>
             <NavButton icon={transactions} iconWhite={transactionsWhite} text={"Transactions"} link={"/records"}/>

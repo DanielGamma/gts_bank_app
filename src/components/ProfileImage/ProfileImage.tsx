@@ -10,13 +10,14 @@ import { useForm } from "react-hook-form"
 
 
 
+
 type Props = {
   
 }
 
 interface FormData{
-  img: string,
   
+  profile_picture:string
 }
 
 export const ProfileImage: React.FC<Props> = (props): JSX.Element => {
@@ -36,6 +37,7 @@ export const ProfileImage: React.FC<Props> = (props): JSX.Element => {
  
    const onSubmit = (e: any, data: any)=> {
     e.preventDefault()
+    // sendNewPicture()
    }
 
   return (
@@ -53,7 +55,8 @@ export const ProfileImage: React.FC<Props> = (props): JSX.Element => {
 
       <form onSubmit={handleSubmit(onSubmit)} className={`text-white flex flex-col gap-4 pt-16 font-normal ${show ? '' : 'hidden'}`} >
         <label htmlFor="">Image URL</label>
-        <input {...register("img",{required: true})} type="text" className="bg-black " placeholder={currentUser ? currentUser.profile_picture : ""} />
+        <input {...register("profile_picture",{required: true})} type="text" className="bg-black " placeholder={currentUser ? currentUser.profile_picture : ""} />
+
         <hr />
         <input type="submit" name="" value="Upload" id="" className="bg-gray-dark w-[377px] h-[63px] rounded-2xl mt-64" />
       </form>

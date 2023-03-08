@@ -4,13 +4,23 @@ import { useForm } from "react-hook-form";
 import { NavMenu } from "../NavMenu/NavMenu";
 import { UserContext, corregir } from "../../context/UserProvider"
 import { useContext, useState } from "react"
+import { sendNewinfo } from "../../services/firebaseFunctions";
+import { doc, updateDoc } from "@firebase/firestore";
+import { db } from "../../config/firebase_config";
+import { User } from "../../services/interfaces";
+
+
 
 type Props = {};
 
 interface FormData {
-  img: string,
-  profilepic: string,
+
+  phone_number: string,
+  first_name: string,
+  last_name: string,
 }
+
+
 
 export const ProfileData: React.FC<Props> = (props): JSX.Element => {
 
@@ -20,19 +30,36 @@ export const ProfileData: React.FC<Props> = (props): JSX.Element => {
 
   const { currentUser, setCurrentUser } = useContext(UserContext) as corregir;
 
-
   // muestra y oculta el formulario
   const [showform, setShowform] = useState(false)
   const handleClick = () => {
     setShowform(prev => !prev)
   }
-  const editUser = (e: any, data: any) => {
-    e.preventDefault()
-    console.log(data);
+
+  const editUser = async (data: FormData) => {
+    let { phone_number, first_name, last_name } = data
+
+    if (phone_number == '') {
+      data.phone_number = currentUser.phone_number
+    }
+    if (first_name == '') {
+      data.first_name = currentUser.first_name
+    }
+    if (last_name == '') {
+      data.last_name = currentUser.last_name
+    }
+
+    await sendNewinfo(currentUser, data)
+    const holdPrev = {...currentUser}
+    holdPrev.first_name = data.first_name
+    holdPrev.last_name = data.last_name
+    holdPrev.phone_number = data.phone_number
+
+    setCurrentUser(holdPrev)
+
+
   }
 
-  console.log(setShowform);
-  
 
   return (
     <>
@@ -45,29 +72,32 @@ export const ProfileData: React.FC<Props> = (props): JSX.Element => {
       <div className="flex flex-col text-white gap-8 ">
         <div>
           <p className="text-lg font-medium leading-9">First Name</p>
-          <h3 className="font-medium text-xl leading-[30px]">Andrey</h3>
+          <h3 className="font-medium text-xl leading-[30px]">{currentUser.first_name}</h3>
         </div>
         <div>
           <p className="text-lg font-medium leading-9">Last Name</p>
-          <h3 className="font-medium text-xl leading-[30px]">Utley</h3>
+          <h3 className="font-medium text-xl leading-[30px]">{currentUser.last_name}</h3>
         </div>
         <div>
           <p className="text-lg font-medium leading-9">Phone Number</p>
-          <h3 className="font-medium text-xl leading-[30px]">666 555 999</h3>
+          <h3 className="font-medium text-xl leading-[30px]">{currentUser.phone_number}</h3>
         </div>
       </div>
       <h1 onClick={handleClick} className="text-white mt-12 mb-12">Edit</h1>
 
-      <form onSubmit={handleSubmit(editUser)} className={`text-white flex flex-col gap-2 pt-2 text-lg font-normal ${showform ? '' : 'hidden'}`}>
+      <form action="#" onSubmit={handleSubmit(editUser)} className={`text-white flex flex-col gap-2 pt-2 text-lg font-normal ${showform ? '' : 'hidden'}`}>
 
         <label htmlFor="">First Name</label>
-        <input {...register("img", { required: true })} type="text" name="" id="" className="bg-black " placeholder={currentUser ? currentUser.first_name : ""} />
+        <input {...register("first_name", { required: false })} type="text" id="" className="bg-black " placeholder={currentUser ? currentUser.first_name : ""} />
+
         <hr />
         <label htmlFor="">Last Name</label>
-        <input {...register("img", { required: true })} type="text" name="" id="" className="bg-black" placeholder={currentUser ? currentUser.last_name : ""} />
+        <input {...register("last_name", { required: false })} type="text" id="" className="bg-black" placeholder={currentUser ? currentUser.last_name : ""} />
+
         <hr />
         <label htmlFor="">Phone Number</label>
-        <input {...register("img", { required: true })} type="text" name="" id="" className="bg-black" placeholder={currentUser ? currentUser.last_name : ""} />
+        <input {...register("phone_number", { required: false })} type="text" id="" className="bg-black" placeholder={currentUser ? currentUser.phone_number : ""} />
+
         <hr />
         <input type="submit" value="Save" name="" id="" className="bg-gray-dark w-[377px] h-[63px] rounded-2xl mt-4" />
       </form>

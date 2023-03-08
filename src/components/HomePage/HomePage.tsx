@@ -49,7 +49,7 @@ export const HomePage: React.FC<Props> = (): JSX.Element => {
 
   useEffect(() => {
 
-     getAccount(currentUser.id).then(res => setAccount(res))
+     getAccount(currentUser.account).then(res => setAccount(res))
   
   }
     , [])

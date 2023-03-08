@@ -29,7 +29,6 @@ export default function App() {
       <UserProvider> 
         <BrowserRouter>
           <Routes>
-<<<<<<< HEAD
             <Route path="/" element={ <LoginPage /> } />
             <Route path="/auth/signin" element={ <SigninForm /> } />
             <Route path="/auth/signup" element={ <SignupForm /> } />
@@ -40,7 +39,7 @@ export default function App() {
             <Route path="/cards/details" element={ <CardDetails /> } />
             <Route path="/cards/new" element={ <NewCardForm /> } />
             <Route path="/cards/secret" element={ <CardSecret /> } />
-            <Route path="/profile" element={ <ProfileMenu /> } />
+            <Route path="/profile" element={ <ProfilePage /> } />
             <Route path="/profile/image" element={ <ProfileImage /> } />
             <Route path="/profile/data" element={ <ProfileData /> } />
             <Route path="/transactions/transfer" element={<TransferPage />}/>
@@ -51,14 +50,6 @@ export default function App() {
               <Route path="signup" element={ <SignupForm />} />
               <Route path="signin" element={ } />
             </Route>
-=======
-            <Route path="/" element={ <HomePage /> } />
-            
-            <Route path="/auth" element={ <LoginPage /> }/>
-            <Route path="/signup" element={ <SignupForm />} />
-            <Route path="/signin" element={ <SigninForm />} />
-
->>>>>>> develop
             <Route path="/records" element={ <RecordsPage />}>
               <Route path="expenses" element={ <ExpensesPage />} />
             </Route>
@@ -67,29 +58,12 @@ export default function App() {
               <Route path="new" element={ <NewCardForm />} />
               <Route path="secret" element={ <CardSecret />} />
             </Route>
-<<<<<<< HEAD
             <Route path="/profile" element={<ProfileMenu />}>
               <Route path="image" element={ <ProfileImage />} />
               <Route path="data" element={ <ProfileData />} />
             </Route> */}
           </Routes>
         </BrowserRouter> 
-=======
-
-            <Route path="/transactions/transfer" element={<TransferPage />}/>
-            <Route path="/transactions/bizum" element={ <BizumTransferPage />} />
-            <Route path="/transactions/result" element={context ? <TransactionSuccess /> : <TransactionFailure />} />
-          
-
-            <Route path="/profile" element={<ProfilePage />}>
-              <Route path="image" element={ <ProfileImage />} />
-              <Route path="data" element={ <ProfileData />} />
-            </Route>
-
-        </Routes>
-      </BrowserRouter>
-
->>>>>>> develop
       </UserProvider>
     </div>
   );

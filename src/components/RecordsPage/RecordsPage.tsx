@@ -1,65 +1,69 @@
-import { Outlet, useLocation } from "react-router";
+
 import { NavMenu } from "../NavMenu/NavMenu";
 import { Header } from "../Header/Header";
 import TransactionsGraphic from "../TransactionsGraphic/TransactionsGraphic";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { TransactionsList } from "../TransactionsList/TransactionsList";
+import { corregir, UserContext } from "../../context/UserProvider";
+import { ExpensesGraphic } from "../ExpensesGraphic/ExpensesGraphic";
+import { Inner, Transaction } from "../../services/interfaces";
+import { getTransactions } from "../../services/firebaseFunctions";
+import { changeToLocalTime, findWeekandSort } from "../../services/utilityFunctions";
 
 type Props = {};
 
+interface TransactionObject {
+  [index: string]: Transaction[]
+}
+
 export const RecordsPage: React.FC<Props> = (props): JSX.Element => {
 
-  const { pathname } = useLocation()
-  const conditional: boolean = pathname === '/records'
-  const [weeklyGraph] = useState<boolean>(true)
- 
-  const handleClick = () => {
-    
+  const [weeklyGraph, setWeeklyGraph] = useState<boolean>(true)
+  const [transactions, setTransactions] = useState<TransactionObject>({
+    weekly: [],
+    monthly: [],
+  })
+  const [transactionType, setTransactionType] = useState<string>("")
+  const { currentUser } = useContext(UserContext) as corregir
+
+  const getData = async () => {
+    let list: Transaction[] = await getTransactions(currentUser.transactions)
+    list = list.map(transaction => {
+      transaction.date = changeToLocalTime(transaction.date)
+      return transaction
+    })
+    const weekly = findWeekandSort(list)
+
+    const real = {
+      weekly: weekly,
+      monthly: list
+    }
+    setTransactions(real)
   }
 
-  
-  const testArray = [1,2,3,4,4,4,4,4]
-  return (
-      <div className='w-full  '>
-        <Header content='Transactions' arrow={false} url='/' />
-        <h2 className='text-white-form text-[20px] font-medium'>Graphic</h2>
-        <div className='flex gap-6 w-full justify-end'>
-          <button  onClick={handleClick} className='w-[110px] h-10 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Week</button>
-          <button  onClick={handleClick} className='w-[110px] h-10 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Month</button>
-        </div>
-        
-         <TransactionsGraphic weeklyGraph={weeklyGraph}/> 
-        
+  useEffect(() => {
+    getData()
+  }, [])
 
-        
-          
-          <p className="text-lg font-medium text-white-faded">Transactions Record</p>
-         
-          <div className='flex gap-6 w-full justify-around mb-4'>
-            <button className='py-3 px-5 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>All</button>
-            <button className='py-3 px-5 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Income</button>
-            <button className='py-3 px-5 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl'>Expenses</button>
-          </div> 
-        
-        
-        <div className="flex flex-col gap-5 bg-gray-records px-5 py-4 rounded-[20px]">
-            {
-              testArray.map((test, i) => {
-                return <div key={i}>
-                <div className="w-full flex justify-between items-center text-white-faded ">
-                  <article className="flex gap-4 items-center">
-                    <div className="w-[76px] h-[76px] bg-light-blue rounded-full"></div>
-                    <p>Clothes</p>
-                  </article>
-                  <p>- €400</p>
-                </div>
-                {
-                  i < testArray.length - 1 ? (<div className="h-px w-full mt-4 bg-gray-400"></div>) : ("")
-                }
-              </div>
-              })
-            }
-          </div>
-        <NavMenu />
+  return (
+    <div className='w-full  '>
+      <Header content='Transactions' arrow={false} url='/' />
+      <h2 className='text-white-form text-[20px] font-medium'>Graphic</h2>
+      <div className='flex gap-6 w-full justify-end'>
+        <button onClick={() => setWeeklyGraph(true)} className={`w-[110px] h-10 text-white text-[16px] font-medium flex  bg-gray-dark justify-center items-center rounded-3xl ${weeklyGraph ? '': 'opacity-70'}`}>Week</button>
+        <button onClick={() => setWeeklyGraph(false)} className={`w-[110px] h-10 text-white text-[16px] font-medium flex bg-gray-dark justify-center items-center rounded-3xl ${weeklyGraph ? 'opacity-70': ''}`}>Month</button>
       </div>
+      <div className="py-10">
+
+        {
+          transactionType != 'expenses' ? <TransactionsGraphic weeklyGraph={weeklyGraph} list={weeklyGraph ? transactions.weekly : transactions.monthly} /> : <ExpensesGraphic list={weeklyGraph ? transactions.weekly : transactions.monthly} />
+        }
+
+      </div>
+      <p className="text-lg font-medium text-white-faded mt-4">Transactions Record</p>
+
+      <TransactionsList transactionType={transactionType} setTransactionType={setTransactionType} />
+      <NavMenu />
+    </div>
   )
 }

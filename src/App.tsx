@@ -35,7 +35,7 @@ export default function App() {
             <Route path="/home" element={ <HomePage /> } />
             <Route path="/records" element={ <RecordsPage /> } />
             <Route path="/records/expense" element={ <ExpensesPage /> } />
-            <Route path="/cards" element={ <MyCards />} />
+            <Route path="/cards" element={ <CardsPage />} />
             <Route path="/cards/details" element={ <CardDetails /> } />
             <Route path="/cards/new" element={ <NewCardForm /> } />
             <Route path="/cards/secret" element={ <CardSecret /> } />
@@ -50,6 +50,7 @@ export default function App() {
               <Route path="signup" element={ <SignupForm />} />
               <Route path="signin" element={ } />
             </Route>
+<<<<<<< HEAD
             <Route path="/records" element={ <RecordsPage />}>
               <Route path="expenses" element={ <ExpensesPage />} />
             </Route>
@@ -58,6 +59,8 @@ export default function App() {
               <Route path="new" element={ <NewCardForm />} />
               <Route path="secret" element={ <CardSecret />} />
             </Route>
+=======
+>>>>>>> bc479e34536ff49f3ff4d5f05ba877fb5bf08009
             <Route path="/profile" element={<ProfileMenu />}>
               <Route path="image" element={ <ProfileImage />} />
               <Route path="data" element={ <ProfileData />} />

@@ -21,7 +21,7 @@ const Carousel: React.FC<Props> = ({ }) => {
 
   return (
     <div className="card-container relative flex justify-center items-center">
-      <article className="h-52 w-96 flex flex-col justify-between gap-1 bg-gradient-to-r from-[#0a397e] to-[#703c6d] rounded-md carousel">
+      <article className="h-48 w-80 flex flex-col justify-between gap-1 bg-gradient-to-r from-[#0a397e] to-[#703c6d] rounded-md carousel">
         <div className="flex justify-between p-4">
           <div className="flex gap-1 items-center">
             <Bank />

@@ -29,6 +29,8 @@ export const RecordsPage: React.FC<Props> = (props): JSX.Element => {
   const getData = async () => {
     let list: Transaction[] = await getTransactions(currentUser.transactions)
     list = list.map(transaction => {
+      console.log(transaction);
+      
       transaction.date = changeToLocalTime(transaction.date)
       return transaction
     })

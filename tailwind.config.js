@@ -32,7 +32,7 @@ module.exports = {
         'color-7' : '#FFA600',
         'color-8' : '#2DD4BF',
         'color-9' : '#E9D5FF',
-        'red' :'#DF2E38'
+        'light-red' :'#DF2E38'
       },
       fontFamily: {
         Karla: ['Karla', 'sans-serif']

@@ -44,7 +44,7 @@ export const HomePage: React.FC<Props> = (): JSX.Element => {
   }, [])
 
 
-  console.log(transactions)
+
 
   return (
     <>

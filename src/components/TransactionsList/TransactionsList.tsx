@@ -56,7 +56,10 @@ export const TransactionsList: React.FC<Props> = ({transactionType, setTransacti
                 {
                     transactions.map((trade, i) => {
                         return (
+                        <>
                             <TransitionItem key={i} text={trade.receiver_name} money={trade.amount} category={trade.category} income={trade.type} />
+                            <div className={i === transactions.length - 1 ? "hidden" : "w-full h-px bg-white"}></div>
+                            </>
                         )
                     })
                 }

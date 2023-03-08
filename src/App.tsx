@@ -24,7 +24,7 @@ export default function App() {
   
   const context = true
   return (
-    <div className="bg-black min-h-screen pt-[40px] px-[28px] pb-[20px]">
+    <div className="bg-black min-h-screen pt-[40px] px-[28px] pb-28">
 
       <UserProvider> 
         <BrowserRouter>

@@ -17,44 +17,41 @@ type Props = {}
 
 export const HomePage: React.FC<Props> = (): JSX.Element => {
 
-  const [user, setUser] = useState<User>({
-    first_name: '',
-    last_name: '',
-    account: '',
-    profile_picture: '',
-    card: {
-      card: '',
-      card_formatted: '',
-      cvc: '',
-      expiration_date: '',
-      service: ''
-    },
-    friends: [],
-    gender: '',
-    phone_number: '',
-    transactions: [],
-    email: '',
-    id: ''
-  })
+  // const [user, setUser] = useState<User>({
+  //   first_name: '',
+  //   last_name: '',
+  //   account: '',
+  //   profile_picture: '',
+  //   card: {
+  //     card: '',
+  //     card_formatted: '',
+  //     cvc: '',
+  //     expiration_date: '',
+  //     service: ''
+  //   },
+  //   friends: [],
+  //   gender: '',
+  //   phone_number: '',
+  //   transactions: [],
+  //   email: '',
+  //   id: ''
+  // })
   const [account, setAccount] = useState<Account>({
     balance: 0,
     created_at: '',
     iban: '',
     owner: '',
   })
-
+ 
+  
   const {currentUser} = useContext(UserContext) as corregir
+
   
   useEffect(() => {
-
      getAccount(currentUser.account).then(res => setAccount(res))
-  
   }
     , [])
-
   const testArray: number[] = [1]
-
-
   return (
     <>
       <div className=" flex flex-col items-center  h-60 gap-5 bg-gray-dark z-10 -mt-10 -mx-7 pt-7 px-7">

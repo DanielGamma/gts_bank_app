@@ -49,20 +49,11 @@ export interface Transaction {
     day?:string
 }
 
-export type Week = {
-    [index: string]: Transaction[]
-}
-
-export interface WeekDivided {
-    expenses : number,
-    income: number,
-    name: string,
-    transactions: Transaction[]
-}
 export type Inner = {
     name: string,
     expense: number,
-    income: number
+    income: number,
+    category :string
 }
 
 export interface formData{

@@ -20,7 +20,7 @@ export const ExpensesPage: React.FC<Props> = (props): JSX.Element => {
 
   return (
     <>
-      <Header arrow={true} content='Expenses' url='/records'/>
+      {/* <Header arrow={true} content='Expenses' url='/records'/>
       <ExpensesGraphic />
 
       <h3 className="text-white mt-6 text-[20px] text-[#EEEEEECC]">Expenses Record</h3>
@@ -44,7 +44,7 @@ export const ExpensesPage: React.FC<Props> = (props): JSX.Element => {
         })}
       </div>
 
-      <NavMenu />
+      <NavMenu /> */}
     </>
   );
 };

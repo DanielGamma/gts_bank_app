@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import { NavMenu } from "../NavMenu/NavMenu"
 import { UserContext, corregir } from "../../context/UserProvider"
 import { useForm } from "react-hook-form"
+import { sendNewPicture } from "../../services/firebaseFunctions"
 
 
 
@@ -35,9 +36,9 @@ export const ProfileImage: React.FC<Props> = (props): JSX.Element => {
   }
 
  
-   const onSubmit = (e: any, data: any)=> {
-    e.preventDefault()
-    // sendNewPicture()
+   const onSubmit = ( data: any)=> {
+
+    sendNewPicture(currentUser,data)
    }
 
   return (
@@ -49,7 +50,7 @@ export const ProfileImage: React.FC<Props> = (props): JSX.Element => {
         </div>
       </Link>
       <div className="flex justify-center ">
-        <img src={foto} alt="" />
+        <img src={currentUser.profile_picture} alt="" className="w-14 h-14"/>
       </div>
       <h1 onClick={handleClick} className="text-white mt-24">Change Image</h1>
 

@@ -47,12 +47,8 @@ export const HomePage: React.FC<Props> = (): JSX.Element => {
   const {currentUser} = useContext(UserContext) as corregir
 
   
-  
-
   useEffect(() => {
-     getAccount(currentUser.account).then(res => {
-      setAccount(res)
-     })
+     getAccount(currentUser.account).then(res => setAccount(res))
   }
     , [])
   const testArray: number[] = [1]

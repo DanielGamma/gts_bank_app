@@ -60,7 +60,7 @@ export const SigninForm: React.FC<Props> = (props):JSX.Element => {
           htmlFor="">Password</label> 
         <input onChange={e=> setPassword(e.target.value)}
           className='border-b-4 border-[#626262] bg-black'
-          type="text" placeholder="   **********" name="password" id="password"/> 
+          type="password" placeholder="   **********" name="password" id="password"/> 
 
         <p className="font-thin pt-9 text-xs text-[#F9F9F9]">Have you forgotten your password?, </p> 
         <p className="font-light text-sm text-[#0066F6] pb-24">click here to recover it</p>

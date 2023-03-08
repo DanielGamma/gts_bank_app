@@ -50,14 +50,6 @@ export default function App() {
               <Route path="signup" element={ <SignupForm />} />
               <Route path="signin" element={ } />
             </Route>
-            <Route path="/records" element={ <RecordsPage />}>
-              <Route path="expenses" element={ <ExpensesPage />} />
-            </Route>
-            <Route path="/cards" element={ <CardsPage />}>
-              <Route path="details" element={ <CardDetails />} />
-              <Route path="new" element={ <NewCardForm />} />
-              <Route path="secret" element={ <CardSecret />} />
-            </Route>
             <Route path="/profile" element={<ProfileMenu />}>
               <Route path="image" element={ <ProfileImage />} />
               <Route path="data" element={ <ProfileData />} />

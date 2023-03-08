@@ -35,7 +35,7 @@ export default function App() {
             <Route path="/home" element={ <HomePage /> } />
             <Route path="/records" element={ <RecordsPage /> } />
             <Route path="/records/expense" element={ <ExpensesPage /> } />
-            <Route path="/cards" element={ <MyCards />} />
+            <Route path="/cards" element={ <CardsPage />} />
             <Route path="/cards/details" element={ <CardDetails /> } />
             <Route path="/cards/new" element={ <NewCardForm /> } />
             <Route path="/cards/secret" element={ <CardSecret /> } />

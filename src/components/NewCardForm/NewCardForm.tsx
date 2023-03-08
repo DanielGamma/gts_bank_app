@@ -3,6 +3,7 @@ import vector from '../../assets/Vector.png'
 import { doc, setDoc, getDoc } from "firebase/firestore";  
 import {auth, db} from '../../config/firebase_config.js' 
 import validationSchema from "./validationSchema";
+import { Header } from "../Header/Header";
 
 type Props = {}  
 
@@ -32,11 +33,7 @@ export const NewCardForm: React.FC<Props> = (props):JSX.Element => {
 
     return ( 
         <div className='bg-[#000000] text-[#F9F9F9] px-7'> 
-            <article className='flex gap-[50%] pt-11 pb-6'> 
-                <img className='w-3.5 h-5'
-                    src={vector} alt="foto" /> 
-                <h1 className='font-medium text-2xl'>New Card</h1>
-            </article> 
+            <Header arrow={true} content={"New Card"} url={"/cards"} />
 
             <h1 className='fontFamily text-4xl font-bold pb-14'>Add New Card</h1> 
 

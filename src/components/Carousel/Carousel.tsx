@@ -18,9 +18,6 @@ const Carousel: React.FC<Props> = ({}) => {
     
     const testArray: number[] = [1,2,3]
     
-
-    
-
   return (
 
     <>

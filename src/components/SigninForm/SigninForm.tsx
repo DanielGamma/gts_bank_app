@@ -12,6 +12,7 @@ type Props = {}
 export const SigninForm: React.FC<Props> = (props):JSX.Element => {  
 
   const navigate = useNavigate()
+  // Dios no existe
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState(''); 
   const [error, setError] = useState<boolean>(false) 

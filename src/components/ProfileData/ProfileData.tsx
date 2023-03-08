@@ -12,7 +12,6 @@ interface FormData {
   profilepic: string,
 }
 
-
 export const ProfileData: React.FC<Props> = (props): JSX.Element => {
 
   const { register, handleSubmit, formState: { errors }, getValues } = useForm<FormData>({
@@ -32,6 +31,8 @@ export const ProfileData: React.FC<Props> = (props): JSX.Element => {
     console.log(data);
   }
 
+  console.log(setShowform);
+  
 
   return (
     <>
@@ -60,7 +61,7 @@ export const ProfileData: React.FC<Props> = (props): JSX.Element => {
       <form onSubmit={handleSubmit(editUser)} className={`text-white flex flex-col gap-2 pt-2 text-lg font-normal ${showform ? '' : 'hidden'}`}>
 
         <label htmlFor="">First Name</label>
-        <input {...register("img", { required: true })} type="text" name="" id="" className="bg-black" placeholder={currentUser ? currentUser.first_name : ""} />
+        <input {...register("img", { required: true })} type="text" name="" id="" className="bg-black " placeholder={currentUser ? currentUser.first_name : ""} />
         <hr />
         <label htmlFor="">Last Name</label>
         <input {...register("img", { required: true })} type="text" name="" id="" className="bg-black" placeholder={currentUser ? currentUser.last_name : ""} />

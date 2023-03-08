@@ -54,7 +54,6 @@ export const ProfileImage: React.FC<Props> = (props): JSX.Element => {
       <form onSubmit={handleSubmit(onSubmit)} className={`text-white flex flex-col gap-4 pt-16 font-normal ${show ? '' : 'hidden'}`} >
         <label htmlFor="">Image URL</label>
         <input {...register("img",{required: true})} type="text" className="bg-black " placeholder={currentUser ? currentUser.profile_picture : ""} />
-        
         <hr />
         <input type="submit" name="" value="Upload" id="" className="bg-gray-dark w-[377px] h-[63px] rounded-2xl mt-64" />
       </form>

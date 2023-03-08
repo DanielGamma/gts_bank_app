@@ -6,17 +6,11 @@ import { Link } from "react-router-dom"
 import { NavMenu } from "../NavMenu/NavMenu"
 import { UserContext, corregir } from "../../context/UserProvider"
 import { useForm } from "react-hook-form"
+import { Header } from "../Header/Header"
 
+type Props = {}
 
-
-
-
-type Props = {
-  
-}
-
-interface FormData{
-  
+interface FormData{ 
   profile_picture:string
 }
 
@@ -26,7 +20,7 @@ export const ProfileImage: React.FC<Props> = (props): JSX.Element => {
     criteriaMode: "all"
   })
 
-  const { currentUser  } = useContext(UserContext) as corregir;
+  const { currentUser } = useContext(UserContext) as corregir;
 
   //estado para ocultar y mostrar el formulario
   const [show, setShow] = useState(false)
@@ -42,14 +36,9 @@ export const ProfileImage: React.FC<Props> = (props): JSX.Element => {
 
   return (
     <>
-      <Link to="/profile">
-        <div className="flex text-white gap-36 pb-10">
-          <img src={arrow} alt="" />
-          <h1>Image</h1>
-        </div>
-      </Link>
+      <Header arrow={true} url={"/profile"} content="Image" />
       <div className="flex justify-center ">
-        <img src={foto} alt="" />
+        <img src={currentUser.profile_picture} alt="" className="w-40 h-40 rounded-full"/>
       </div>
       <h1 onClick={handleClick} className="text-white mt-24">Change Image</h1>
 

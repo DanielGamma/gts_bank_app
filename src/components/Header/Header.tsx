@@ -10,7 +10,7 @@ type Props = {
 export const Header: React.FC<Props> = ({arrow,content, url}): JSX.Element => {
 
   return (
-    <div className="text-white flex items-center justify-between">
+    <div className="pb-6 text-white flex items-center justify-between">
       {
         (arrow) ? <Link to={url}><img  className="w-6" src={backArrow} alt="arrow"/></Link> : <p></p>
       }

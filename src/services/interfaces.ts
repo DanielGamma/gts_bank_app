@@ -56,11 +56,5 @@ export type Inner = {
     category :string
 }
 
-export interface formData{
-    receiverName:string;
-    receiverPhone:string;
-    amount:string;
-    description: string;
-   
-  }
+
 

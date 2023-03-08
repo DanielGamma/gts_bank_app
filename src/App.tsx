@@ -15,6 +15,7 @@ import { RecordsPage } from "./components/RecordsPage/RecordsPage";
 import { SigninForm } from "./components/SigninForm/SigninForm";
 import { SignupForm } from "./components/SignupForm/SignupForm";
 import { TransactionFailure } from "./components/TransactionFailure/TransactionFailure";
+import TransactionResult from "./components/TransactionResult/TransactionResult";
 import { TransactionSuccess } from "./components/TransactionSuccess/TransactionSuccess";
 import { TransferPage } from "./components/TransferPage/TransferPage"; 
 import UserProvider from "./context/UserProvider";
@@ -44,7 +45,7 @@ export default function App() {
             <Route path="/profile/data" element={ <ProfileData /> } />
             <Route path="/transactions/transfer" element={<TransferPage />}/>
             <Route path="/transactions/bizum" element={ <BizumTransferPage />} />
-            <Route path="/transactions/result" element={ <TransactionFailure />} />
+            <Route path="/transactions/result/:state" element={ <TransactionResult />} />
             {/* <Route path="/transactions/result" element={ <TransactionSuccess />} /> */}
             {/* <Route path="/auth" element={ <LoginPage /> }>
               <Route path="signup" element={ <SignupForm />} />

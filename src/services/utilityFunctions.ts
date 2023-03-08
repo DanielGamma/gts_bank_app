@@ -1,3 +1,4 @@
+import { index } from "d3-array"
 import { Transaction, Inner } from "./interfaces"
 
 
@@ -229,5 +230,27 @@ export const sortByCategory = (transactionsList: Transaction[]) => {
 
     return result.sort((a,b) => dictionary[a.name] - dictionary[b.name])
   } 
+
+  
+
+type Data = {
+    [index:string] : string
+}
+  const validateForm = (data:Data):Data | boolean => {
+    let {receivingAccount, receivingName, amount, receivingPhone} = data
+
+    amount = amount.replace(',','.')
+    let holdName = receivingName.split(' ')
+    receivingName = holdName.map( element => element[0].toUpperCase() + element.slice(1).toLowerCase()).join(' ')
+    if(receivingAccount != ''){
+        if(receivingAccount.length != 24) return false
+        if(receivingAccount.slice(0,2) != 'ES')return false
+        }
+    if((typeof Number(amount) != 'number') ) return false
+    
+    
+
+    return data
+  }
 
 export { }

@@ -24,8 +24,8 @@ export const TransactionsList: React.FC<Props> = ({transactionType, setTransacti
                 return all = res 
             })
     }, [])
-    useEffect(() => {
 
+    useEffect(() => {
         if (transactionType === "all") {
             setTransactions(all)
         } else if (transactionType === "income") {

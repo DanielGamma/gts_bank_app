@@ -12,7 +12,6 @@ type Props = {}
 export const SigninForm: React.FC<Props> = (props):JSX.Element => {  
 
   const navigate = useNavigate()
-  // Dios no existe
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState(''); 
   const [error, setError] = useState<boolean>(false) 
@@ -29,6 +28,11 @@ export const SigninForm: React.FC<Props> = (props):JSX.Element => {
     
   })
   .catch(() => { 
+    if(email === "" && password === "") { 
+        setError(true) 
+    } else if (email === "" || password === "") { 
+        setError(true)
+    }
     setError(true) 
     console.log("Invalid username or password")
   }); 
@@ -55,7 +59,7 @@ export const SigninForm: React.FC<Props> = (props):JSX.Element => {
           htmlFor="" >Email</label> 
         <input onChange={e=> setEmail(e.target.value)}
           className='border-b-4 border-[#626262] bg-black' 
-          type="text" id="email" placeholder="   rfordham4@ning.com" name="email"/> 
+          type="text" id="email" placeholder="   example@gmail.com" name="email"/> 
 
         <label className='pt-7 pb-4' 
           htmlFor="">Password</label> 
@@ -63,12 +67,12 @@ export const SigninForm: React.FC<Props> = (props):JSX.Element => {
           className='border-b-4 border-[#626262] bg-black'
           type="password" placeholder="   **********" name="password" id="password"/> 
 
-        <p className="font-thin pt-9 text-xs text-[#F9F9F9]">Have you forgotten your password?, </p> 
+        {error ? <p className="pt-4 text-red-600">Invalid username or password</p> : ""} 
+
+        <p className="font-thin pt-6 text-xs text-[#F9F9F9]">Have you forgotten your password?, </p> 
         <p className="font-light text-sm text-[#0066F6] pb-24">click here to recover it</p>
 
         
-        {error ? <p>Invalid username or password</p> : ""} 
-
         <button disabled={email === "" && password === "" ? true : false}
         className= "bg-[#414A61] rounded-2xl py-1.5 font-medium text-base">LOG IN</button> 
 

@@ -3,7 +3,7 @@ import {auth} from '../../config/firebase_config'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import {corregir, UserContext} from '../../context/UserProvider' 
-import vector from '../../assets/Vector.png' 
+// import vector from '../../assets/Vector.png' 
 import {getUser} from '../../services/firebaseFunctions'
 
 type Props = {} 

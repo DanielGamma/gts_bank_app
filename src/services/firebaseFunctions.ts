@@ -41,3 +41,22 @@ export const changeAccountValues = async(accountSending:Account, userReceiving:U
     })
     
  }
+
+
+export const sendNewinfo = async (currentUser:any , data:any) => {
+    await updateDoc(doc(db, 'users', currentUser.id),
+        {
+            first_name: data.first_name ,
+            last_name: data.last_name,
+            phone_number: data.phone_number
+        }
+    )
+}
+
+export const sendNewPicture = async (currentUser:any , data:any) => {
+    await updateDoc(doc(db, 'users', currentUser.id),
+        {
+            profile_picture: data.profile_picture ,
+        }
+    )
+}

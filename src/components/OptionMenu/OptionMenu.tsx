@@ -1,7 +1,7 @@
 import profile from "../../assets/profileimg.svg"
-import personaldata from "../../assets/presonaldata.svg"
+import personaldata from "../../assets/personaldata.svg"
 import accountadd from "../../assets/accountadd.svg"
-import signout from "../../assets/SignOut.svg"
+import signout from "../../assets/signOut.svg"
 import { OptionItem } from "../OptionItem/OptionItem"
 
 type Props = {}
@@ -9,7 +9,7 @@ type Props = {}
 export const OptionMenu: React.FC<Props> = (): JSX.Element => {
 
     return (
-        <div className="flex flex-col bg-gray-records rounded-2xl h-full">
+        <div className="flex flex-col bg-gray-records rounded-2xl h-full w-full">
             <OptionItem icon={profile} text={"Profile Image"} url={"/profile/image"}/>
             <div className="border-border-grey border-b"></div>
             <OptionItem icon={personaldata} text={"Personal Data"} url={"/profile/data"}/>
@@ -19,5 +19,4 @@ export const OptionMenu: React.FC<Props> = (): JSX.Element => {
             <OptionItem icon={signout}  text={"Sign Out"} url={"/"}/>
         </div>
     )
-} 
-
+}

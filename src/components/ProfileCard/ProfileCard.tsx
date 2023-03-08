@@ -3,7 +3,7 @@ type Props = { img: string, title: string, subtitle: string, email: string}
 export const ProfileCard: React.FC<Props> = ({img, title, subtitle, email}): JSX.Element => {
 
     return (
-        <div className="w-96 h-56 bg-light-blue rounded-3xl mb-24 ">
+        <div className="w-full h-full bg-light-blue rounded-3xl mb-20 ">
             <div className="flex flex-col justify-center items-center p-3">
             <img className="w-24 h-24 rounded-full" src={img} alt="" />
             <p className="font-semibold text-3xl text-white-profile pt-5 ">{title} {subtitle}</p>

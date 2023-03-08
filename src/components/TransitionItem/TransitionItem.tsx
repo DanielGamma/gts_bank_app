@@ -21,23 +21,23 @@ export const TransitionItem: React.FC<Props> = ({ text, category, money, income 
             <div className="flex  p-2  text-white items-center justify-between ">
                 <div className="flex items-center gap-4">
                 {category === "Grocery" ?
-                <div className='w-12 h-12 rounded-full bg-orange-200 flex justify-center items-center'> <HiShoppingCart /></div>
+                <div className='w-12 h-12 rounded-full bg-color-1 flex justify-center items-center'> <HiShoppingCart /></div>
                 : category === "Others" ?
-                    <div className='w-12 h-12 rounded-full bg-indigo-200 flex justify-center items-center'> < ImFilm /></div>
+                    <div className='w-12 h-12 rounded-full bg-color-2 flex justify-center items-center'> < ImFilm /></div>
                     : category === "Commuting" ?
-                        <div className='w-12 h-12 rounded-full bg-red-100 flex justify-center items-center'> < BsFillFuelPumpFill /></div>
+                        <div className='w-12 h-12 rounded-full bg-color-3 flex justify-center items-center'> < BsFillFuelPumpFill /></div>
                         : category === "Health" ?
-                            <div className='w-12 h-12 rounded-full bg-rose-400 flex justify-center items-center'> < IoMdMedkit /></div>
+                            <div className='w-12 h-12 rounded-full bg-color-4 flex justify-center items-center'> < IoMdMedkit /></div>
                             : category === "Clothes" ?
-                                <div className='w-12 h-12 rounded-full bg-purple-200 flex justify-center items-center'> < VscJersey /></div>
+                                <div className='w-12 h-12 rounded-full bg-color-5 flex justify-center items-center'> < VscJersey /></div>
                                 : category === "Home" ?
-                                    <div className='w-12 h-12 rounded-full bg-sky-300 flex justify-center items-center'> < ImHome /></div>
+                                    <div className='w-12 h-12 rounded-full bg-color-6 flex justify-center items-center'> < ImHome /></div>
                                     : category === "Education" ?
-                                        <div className='w-12 h-12 rounded-full bg-lime-50 flex justify-center items-center'> < IoIosSchool /></div>
+                                        <div className='w-12 h-12 rounded-full bg-color-7 flex justify-center items-center'> < IoIosSchool /></div>
                                         : category === "Traveling" ?
-                                            <div className='w-12 h-12 rounded-full bg-teal-100	flex justify-center items-center'> < MdAirplanemodeActive /></div>
+                                            <div className='w-12 h-12 rounded-full bg-color-8 flex justify-center items-center'> < MdAirplanemodeActive /></div>
                                             : category === "Leisure" ?
-                                                <div className='w-12 h-12 rounded-full bg-teal-400	flex justify-center items-center'> < MdRestaurant /></div>
+                                                <div className='w-12 h-12 rounded-full bg-color-9	flex justify-center items-center'> < MdRestaurant /></div>
                                                 : category === "Salary" ?
                                                     <div className='w-12 h-12 rounded-full bg-slate-300 flex justify-center items-center'> < MdEuroSymbol /></div>
                                                     : category === "Income" ?
@@ -50,9 +50,6 @@ export const TransitionItem: React.FC<Props> = ({ text, category, money, income 
                     <h2 className={`${income === 0 ? 'text-red-300' : 'text-green-200'}`}>€ {money}</h2>
                 </div>
             </div>
-                <hr className='my-1' />
-
-        
         </>
     )
 

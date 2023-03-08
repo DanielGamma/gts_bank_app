@@ -1,122 +1,5 @@
-import { Transaction, WeekDivided, Week, Inner } from "./interfaces"
+import { Transaction, Inner } from "./interfaces"
 
-interface HoldWeek {
-    [index: string]: Transaction[]
-}
-
-
-export const divideWeeks = (monthlyTransaction: Week) => {
-    const holdParam = { ...monthlyTransaction }
-    const daysArray = Object.keys(holdParam)
-    let week1: Transaction[] = []
-    let week2: Transaction[] = []
-    let week3: Transaction[] = []
-    let week4: Transaction[] = []
-    daysArray.forEach(day => {
-        if (Number(day) <= 7) {
-            week1 = week1.concat(holdParam[day])
-        } else if (Number(day) <= 14) {
-            week2 = week2.concat(holdParam[day])
-        } else if (Number(day) <= 21) {
-            week3 = week3.concat(holdParam[day])
-        } else {
-            week4 = week4.concat(holdParam[day])
-        }
-    })
-    const holdWeeks: HoldWeek = {
-        week1,
-        week2,
-        week3,
-        week4,
-    }
-
-    const result = Object.keys(holdWeeks).reduce((acc: any, week: string, i: number) => {
-        const holdInfo: Transaction[] = holdWeeks[week]
-        const push = holdInfo.reduce((acc: any, info: any) => {
-            if (info.type == 0) {
-                acc.expenses += Number(Math.floor(info.amount).toFixed(2))
-            }
-            acc.transactions.push(info)
-            return acc
-        }, {
-            name: `week${i + 1}`,
-            expenses: 0,
-            income: 1000,
-            transactions: []
-        })
-        acc.push(push)
-        return acc
-    }, [])
-    return result
-}
-
-export const getWeek = (transactionList: WeekDivided[]) => {
-    const today = new Date().getDate()
-    type Dictionary = {
-        [index: string]: number[]
-    }
-    const dictionary: Dictionary = {
-        week1: [1, 2, 3, 4, 5, 6, 7],
-        week2: [8, 9, 10, 11, 12, 13, 14],
-        week3: [15, 16, 17, 18, 19, 20, 21],
-        week4: [22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
-    }
-
-    const weekString: string = Object.keys(dictionary).filter(week => dictionary[week].includes(today))[0]
-
-    const actualObject: Transaction[] = transactionList.filter((week: WeekDivided) => week.name == weekString)[0].transactions
-
-    let result: Transaction[] = []
-
-    type Legend = {
-        [index: string]: string
-    }
-    const legend: Legend = {
-        '0': 'Mon',
-        '1': 'Tue',
-        '2': 'Wed',
-        '3': 'Thu',
-        '4': 'Fri',
-        '5': 'Sat',
-        '6': 'Sun'
-    }
-
-    for (let i = 0; i < 7; i++) {
-        const objectDays = actualObject.reduce((acc: any, transaction: Transaction) => {
-            const day = new Date(transaction.date).getDay().toString()
-            acc.name = legend[day]
-
-
-            return acc
-        }, {
-            name: '',
-            expense: 0,
-            income: 100
-        })
-        result.push(objectDays)
-    }
-
-
-    return result
-
-
-
-
-
-
-}
-
-export const sortedTransactions = (transactionsList: Transaction[]) => {
-    transactionsList.map(transaction => {
-
-        return transaction.date = changeToLocalTime(transaction.date)
-
-    })
-    const actualMonth = new Date().getMonth()
-    const monthTransactions = transactionsList.filter(transaction => {
-        return new Date(transaction.date).getMonth() == actualMonth
-    })
-}
 
 export const changeToLocalTime = (date: string): string => {
     const extract = date.slice(date.indexOf(':') - 2, date.indexOf(':'))
@@ -142,7 +25,8 @@ export const sortTransactionsByWeek = (transactionList: Transaction[]) => {
             acc[dayName] = {
                 name: dayName,
                 expense: 0,
-                income: 100
+                income: 100,
+                category: transaction.category
             }
         } else {
             if (transaction.type == 0) {
@@ -200,8 +84,9 @@ export const sortTransactionsByMonth = (transactionList: Transaction[]) => {
         if (!Object.hasOwn(acc, key)) {
             acc[key] = {
                 name: key,
-                income: 200,
-                expense: 0
+                income: 500,
+                expense: 0,
+                category : transaction.category
             }
         } else {
             if (transaction.type == 0) {
@@ -223,8 +108,19 @@ export const sortTransactionsByMonth = (transactionList: Transaction[]) => {
         return acc
     }, [])
 
+    type Sort = {
+        [index: string]: number
+    }
+    const sort: Sort = {
+        '1-5': 1,
+        '6-10': 2,
+        '11-15': 3,
+        '16-20': 4,
+        '21-25': 5,
+        '26-31': 6,
+    }
 
-    return result.sort()
+    return result.sort((a, b) => sort[a.name] - sort[b.name])
 }
 
 export const findWeekandSort = (transactionList: Transaction[]) => {
@@ -251,7 +147,7 @@ export const findWeekandSort = (transactionList: Transaction[]) => {
 }
 
 
-export const converter = (num: number):string => {
+export const converter = (num: number): string => {
 
     let string = num.toFixed(2)
     let result = ''
@@ -260,36 +156,78 @@ export const converter = (num: number):string => {
     if (string.includes('.')) {
         initial = 2
         string = string.replace('.', ',')
-        result = string.slice(string.indexOf(',')+1)
+        result = string.slice(string.indexOf(',') + 1)
     }
-    
-    console.log(string);
     for (let i = 0; i < string.length - initial; i++) {
-        result = string[string.length - 1 -initial - i ] + result
-        if(i % 3 === 0 && i !== 0){
+        result = string[string.length - 1 - initial - i] + result
+        if (i % 3 === 0 && i !== 0) {
             result = '.' + result
         }
-        
+
     }
     return result
-    
-
 }
 
 
-export const createTransferId = ():string => {
+export const createTransferId = (): string => {
     const chars = 'abcdefgh0123456789'
     let result = ''
     let string = '006e69d3-85d5-43fc-b867-3fc940e9dfcc'
     for (let i = 0; i < 36; i++) {
         result += chars[Math.floor(Math.random() * chars.length)]
-        if(i == 8 ||i == 13 || i == 18 || i == 23){
+        if (i == 8 || i == 13 || i == 18 || i == 23) {
             result += '-'
         }
-        
     }
     return result
-    
 }
+
+export const sortByCategory = (transactionsList: Transaction[]) => {
+    type Outer =  {
+      [index:string] : Inner
+    }
+    type Inner =  {
+        name: string,
+        expense: number
+      }
+    const sortCategory: Outer = transactionsList.reduce((acc:Outer,transaction:Transaction) => {
+      if(!Object.hasOwn(acc, transaction.category)){
+        acc[transaction.category] = {
+          name: transaction.category,
+          expense: transaction.amount
+        }
+      }else{
+        acc[transaction.category].expense += transaction.amount
+      }
+      acc[transaction.category].expense = Number(acc[transaction.category].expense.toFixed(2))
+      return acc
+    },{})
+
+
+    const result: Inner[] = Object.keys(sortCategory).reduce((acc:any, key:string) => {
+      acc.push(sortCategory[key])
+      return acc
+    },[])
+    
+    
+    type Sort = {
+        [index: string]: number
+    }
+
+    const dictionary:Sort = {
+        Health : 1,
+        Traveling : 2,
+        Grocery : 3,
+        Leisure : 4,
+        Clothes : 5,
+        Home : 6,
+        Education : 7,
+        Commuting : 8,
+        Others : 9,
+    }
+
+
+    return result.sort((a,b) => dictionary[a.name] - dictionary[b.name])
+  } 
 
 export { }

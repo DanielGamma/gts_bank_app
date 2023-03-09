@@ -130,8 +130,7 @@ export const TransferPage: React.FC<Props> = (props): JSX.Element => {
           <article className="w-14 h-14 rounded-full bg-[#DBE3F8] flex items-center justify-center self-start">+</article>
           {
             friends.map((friend, i) => {
-              return <div
-                className="flex flex-col items-center">
+              return <div key={i} className="flex flex-col items-center">
                 <img src={friend.profile_picture} className={`w-14 h-14 rounded-full bg-white`} />
                 <p className="font-medium text-xs text-white-form">{friend.first_name}</p>
               </div>

@@ -1,18 +1,27 @@
+import detail from '../../assets/detail.png'
+import newCard from '../../assets/newCard.png'
+import cvvPin from '../../assets/cvvPin.png'
+import remove from '../../assets/remove.png'
 import { Header } from "../Header/Header"
 import { NavMenu } from "../NavMenu/NavMenu"
 import Carousel from "../Carousel/Carousel"
-import MyCards from "../MyCards/MyCards"
+import { OptionMenu } from "../OptionMenu/OptionMenu"
 
 
 type Props = {}
 
-export const CardsPage: React.FC<Props> = (props):JSX.Element => {
+export const CardsPage: React.FC<Props> = (props): JSX.Element => {
   return (
     <>
-    <Header arrow={false} content={"My Cards"} url={""}/>
-    <Carousel />
-    <MyCards />
-    <NavMenu/>
+      <Header arrow={false} content={"My Cards"} url={""} />
+      <div className='flex flex-col items-center gap-4'>
+        <Carousel />
+        <div className="w-full bg-gray-records rounded-3xl">
+          <OptionMenu icons={[detail, newCard, cvvPin, remove]} texts={["Card Details", "New Card", "Check CVV & PIN", "Remove Card"]} urls={["/cards/details", "/cards/new", "/cards/secret", "/cards"]} />
+        </div>
+      </div>
+
+      <NavMenu />
     </>
   )
 }

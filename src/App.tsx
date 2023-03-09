@@ -6,7 +6,6 @@ import { CardsPage } from "./components/CardsPage/CardsPage";
 import { ExpensesPage } from "./components/ExpensesPage/ExpensesPage";
 import { HomePage } from "./components/HomePage/HomePage";
 import { LoginPage } from "./components/LoginPage/LoginPage";
-import MyCards from "./components/MyCards/MyCards";
 import { NewCardForm } from "./components/NewCardForm/NewCardForm";
 import { ProfileData } from "./components/ProfileData/ProfileData";
 import { ProfileImage } from "./components/ProfileImage/ProfileImage";
@@ -51,7 +50,6 @@ export default function App() {
               <Route path="signup" element={ <SignupForm />} />
               <Route path="signin" element={ } />
             </Route>
-<<<<<<< HEAD
             <Route path="/records" element={ <RecordsPage />}>
               <Route path="expenses" element={ <ExpensesPage />} />
             </Route>
@@ -60,8 +58,6 @@ export default function App() {
               <Route path="new" element={ <NewCardForm />} />
               <Route path="secret" element={ <CardSecret />} />
             </Route>
-=======
->>>>>>> bc479e34536ff49f3ff4d5f05ba877fb5bf08009
             <Route path="/profile" element={<ProfileMenu />}>
               <Route path="image" element={ <ProfileImage />} />
               <Route path="data" element={ <ProfileData />} />

@@ -81,7 +81,7 @@ export const HomePage: React.FC<Props> = (): JSX.Element => {
             return (
               <>
               <TransitionItem key={i} text={trade.receiver_name} money={trade.amount} category={trade.category} income={trade.type} />
-              <div className={i === transactions.slice(0,5).length - 1 ? "hidden" : "w-full h-px bg-white"}></div>
+              <div key={i + 100} className={i === transactions.slice(0,5).length - 1 ? "hidden" : "w-full h-px bg-white"}></div>
               </>
             )
           })

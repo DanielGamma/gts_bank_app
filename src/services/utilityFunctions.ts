@@ -26,16 +26,16 @@ export const sortTransactionsByWeek = (transactionList: Transaction[]) => {
             acc[dayName] = {
                 name: dayName,
                 expense: 0,
-                income: 100,
+                income: 0,
                 category: transaction.category
             }
         } else {
             if (transaction.type == 0) {
                 acc[dayName].expense += transaction.amount
             }
-            // else {
-            //     acc[dayName].income += transaction.amount
-            // }
+            else {
+                acc[dayName].income += transaction.amount
+            }
         }
         acc[dayName].income = Number(acc[dayName].income.toFixed(2))
         acc[dayName].expense = Number(acc[dayName].expense.toFixed(2))
@@ -85,7 +85,7 @@ export const sortTransactionsByMonth = (transactionList: Transaction[]) => {
         if (!Object.hasOwn(acc, key)) {
             acc[key] = {
                 name: key,
-                income: 500,
+                income: 0,
                 expense: 0,
                 category : transaction.category
             }
@@ -93,9 +93,9 @@ export const sortTransactionsByMonth = (transactionList: Transaction[]) => {
             if (transaction.type == 0) {
                 acc[key].expense += transaction.amount
             }
-            // else {
-            //     acc[key].income += transaction.amount
-            // }
+            else {
+                acc[key].income += transaction.amount
+            }
         }
 
         acc[key].income = Number(acc[key].income.toFixed(2))

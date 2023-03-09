@@ -30,7 +30,7 @@ export const TransferPage: React.FC<Props> = (props): JSX.Element => {
   const navigate = useNavigate()
   const { register, handleSubmit, reset, watch, formState: { errors } } = useForm<formData>();
   const { currentUser, setCurrentUser } = useContext(UserContext) as corregir
-  const[placeholder, setPlaceholder] = useState<Placeholder>({
+  const [placeholder, setPlaceholder] = useState<Placeholder>({
     receivingName : '',
     receivingAccount : '',
     receivingPhone: ''
@@ -107,13 +107,6 @@ export const TransferPage: React.FC<Props> = (props): JSX.Element => {
   }
 
 
-
-
- 
-
-
-
-
   return (
     <>
       <Header arrow={true} content="Transfer" url='/home' />
@@ -130,7 +123,14 @@ export const TransferPage: React.FC<Props> = (props): JSX.Element => {
           <article className="w-14 h-14 rounded-full bg-[#DBE3F8] flex items-center justify-center self-start">+</article>
           {
             friends.map((friend, i) => {
-              return <div key={i} className="flex flex-col items-center">
+              return <div key={i} onClick={() => {
+                const holdSetter = {
+                  receiverName: friend.first_name,
+                  receiverAccount: friend.account,
+                }
+                setPlaceholder(holdSetter)
+              }}
+                className="flex flex-col items-center">
                 <img src={friend.profile_picture} className={`w-14 h-14 rounded-full bg-white`} />
                 <p className="font-medium text-xs text-white-form">{friend.first_name}</p>
               </div>
@@ -143,22 +143,22 @@ export const TransferPage: React.FC<Props> = (props): JSX.Element => {
         <div className="flex flex-col border-b border-[#626262]">
           <label className="font-medium text-lg text-white-form" htmlFor="account">Receiver Account</label>
           <input {...register('receiverAccount', { required: true, })}
-            className="py-2 bg-transparent text-white font-medium text-xl focus:outline-none" type="text" placeholder={placeholder.receiverPhone} />
+            className="py-2 bg-transparent text-white font-medium text-xl focus:outline-none" type="text" placeholder="ES1234567891234567894561" value={placeholder.receiverAccount != '' ? placeholder.receiverAccount : watch('receiverAccount')} />
         </div>
         <div className="flex flex-col border-b border-[#626262]">
           <label className="font-medium text-lg text-white-form" htmlFor="name">Receiver Name</label>
-          <input {...register('receiverName', { required: true, value: 'a' })}
-            className="py-2 bg-transparent text-white font-medium text-xl focus:outline-none" type="text" placeholder={placeholder.receiver_name} />
+          <input {...register('receiverName', { required: true})}
+            className="py-2 bg-transparent text-white font-medium text-xl focus:outline-none" type="text" placeholder="Rodrigo" value={placeholder.receiverName != '' ? placeholder.receiverName : watch('receiverName')} />
         </div>
         <div className="flex flex-col border-b border-[#626262]">
           <label className="font-medium text-lg text-white-form" htmlFor="amount">Amount</label>
-          <input {...register('amount', { required: true, pattern: /[0-9]/g })}
-            className="py-2 bg-transparent text-white font-medium text-xl focus:outline-none" type="text" />
+          <input {...register('amount', { required: true})}
+            className="py-2 bg-transparent text-white font-medium text-xl focus:outline-none" type="text" placeholder="0,00€" value={watch('amount')}/>
         </div>
         <div className="flex flex-col border-b border-[#626262]">
           <label className="font-medium text-lg text-white-form" htmlFor="description">Description</label>
           <input {...register('description', { required: true })}
-            className="py-2 bg-transparent text-white font-medium text-xl focus:outline-none" type="text" />
+            className="py-2 bg-transparent text-white font-medium text-xl focus:outline-none" type="text" placeholder="Thanks for the other day!"/>
         </div>
         <input className="py-4 bg-[#414A61] flex items-center justify-center rounded-2xl text-white-faded" type="submit" value='Send' />
       </form>

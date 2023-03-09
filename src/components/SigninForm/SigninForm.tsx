@@ -67,7 +67,7 @@ export const SigninForm: React.FC<Props> = (props):JSX.Element => {
           className='border-b-4 border-[#626262] bg-black'
           type="password" placeholder="   **********" name="password" id="password"/> 
 
-        {error ? <p className="pt-4 text-red-600">Invalid username or password</p> : ""} 
+        {error ? <p className="pt-4 text-red">Invalid username or password</p> : ""} 
 
         <p className="font-thin pt-6 text-xs text-[#F9F9F9]">Have you forgotten your password?, </p> 
         <p className="font-light text-sm text-[#0066F6] pb-24">click here to recover it</p>

@@ -5,24 +5,14 @@ import { NavMenu } from "../NavMenu/NavMenu";
 import { UserContext, corregir } from "../../context/UserProvider"
 import { useContext, useState } from "react"
 import { sendNewinfo } from "../../services/firebaseFunctions";
-import { doc, updateDoc } from "@firebase/firestore";
-import { db } from "../../config/firebase_config";
-import { User } from "../../services/interfaces";
-
-
-
-type Props = {};
 
 interface FormData {
-
   phone_number: string,
   first_name: string,
   last_name: string,
 }
 
-
-
-export const ProfileData: React.FC<Props> = (props): JSX.Element => {
+export const ProfileData: React.FC = (): JSX.Element => {
 
   const { register, handleSubmit, formState: { errors }, getValues } = useForm<FormData>({
     criteriaMode: "all"
@@ -49,13 +39,14 @@ export const ProfileData: React.FC<Props> = (props): JSX.Element => {
       data.last_name = currentUser.last_name
     }
 
-    await sendNewinfo(currentUser, data)
+    await sendNewinfo(currentUser, data);
     const holdPrev = {...currentUser}
     holdPrev.first_name = data.first_name
     holdPrev.last_name = data.last_name
     holdPrev.phone_number = data.phone_number
 
-    setCurrentUser(holdPrev)
+    setCurrentUser(holdPrev);
+    setShowform(false)
 
 
   }
@@ -83,7 +74,7 @@ export const ProfileData: React.FC<Props> = (props): JSX.Element => {
           <h3 className="font-medium text-xl leading-[30px]">{currentUser.phone_number}</h3>
         </div>
       </div>
-      <h1 onClick={handleClick} className="text-white mt-12 mb-12">Edit</h1>
+      <h1 onClick={handleClick} className="text-white mt-12 mb-12 underline">Edit</h1>
 
       <form action="#" onSubmit={handleSubmit(editUser)} className={`text-white flex flex-col gap-2 pt-2 text-lg font-normal ${showform ? '' : 'hidden'}`}>
 

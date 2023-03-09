@@ -15,7 +15,7 @@ const MyCards = (props: Props) => {
     <>
       {/* <Header arrow={false} content='My Cards' url='' /> */}
       <div className="w-full bg-gray-records rounded-3xl mt-6">
-        <OptionMenu icons={[detail, newCard, cvvPin, remove]} texts={["Card Details", "New Card", "Check CVV & PIN", "Remove Card"]} urls={["/cards/details", "/cards/new", "/cards/secret", "/"]} />
+        <OptionMenu icons={[detail, newCard, cvvPin, remove]} texts={["Card Details", "New Card", "Check CVV & PIN", "Remove Card"]} urls={["/cards/details", "/cards/new", "/cards/secret", "/cards"]} />
       </div>
     </>
   )

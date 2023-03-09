@@ -1,4 +1,4 @@
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import { NavMenu } from "../NavMenu/NavMenu"
 import { TransactionFailure } from "../TransactionFailure/TransactionFailure"
 import { TransactionSuccess } from "../TransactionSuccess/TransactionSuccess"
@@ -9,7 +9,7 @@ type Props = {}
 const TransactionResult = (props: Props) => {
     const { state } = useParams()
 
-
+    const navigate = useNavigate();
 
     return (
         <>
@@ -23,7 +23,7 @@ const TransactionResult = (props: Props) => {
                     {/* ----------- */}
                 </div>
 
-                <button className="bg-gray-dark py-4 w-full absolute bottom-0 text-white-faded rounded-2xl">Continue</button>
+                <button onClick={() => navigate("/home")} className="bg-gray-dark py-4 w-full absolute bottom-0 text-white-faded rounded-2xl">Continue</button>
 
             </div>
             <NavMenu />

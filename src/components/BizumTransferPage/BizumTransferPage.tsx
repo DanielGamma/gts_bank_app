@@ -8,6 +8,7 @@ import { db } from "../../config/firebase_config";
 import { createTransferId } from "../../services/utilityFunctions";
 import { changeAccountValues, getAccount, getUser } from "../../services/firebaseFunctions";
 import Modal from "../Modal/Modal";
+import { useNavigate } from "react-router-dom";
 
 type Props = {}
 
@@ -20,6 +21,8 @@ export interface formData{
 
 
 export const BizumTransferPage: React.FC<Props> = (props): JSX.Element => {
+
+  const navigate = useNavigate();
 
   const[placeholder, setPlaceholder] = useState<formData>({
     receiverName : '',
@@ -96,6 +99,8 @@ export const BizumTransferPage: React.FC<Props> = (props): JSX.Element => {
 
     changeAccountValues(account, friend, Number(data.amount))
     reset()
+
+    navigate("/transactions/result/1");
 
   }
 

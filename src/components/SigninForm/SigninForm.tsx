@@ -18,7 +18,7 @@ export const SigninForm: React.FC<Props> = (props):JSX.Element => {
   const { setCurrentUser } = useContext(UserContext) as corregir; 
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault()
+    e.preventDefault();    
    
   signInWithEmailAndPassword(auth, email, password) 
   .then(async(userCredential) => {  
@@ -67,14 +67,13 @@ export const SigninForm: React.FC<Props> = (props):JSX.Element => {
           className='border-b-4 border-[#626262] bg-black'
           type="password" placeholder="   **********" name="password" id="password"/> 
 
-        {error ? <p className="pt-4 text-red-600">Invalid username or password</p> : ""} 
+        {error ? <p className="pt-4 text-red">Invalid username or password</p> : ""} 
 
         <p className="font-thin pt-6 text-xs text-[#F9F9F9]">Have you forgotten your password?, </p> 
         <p className="font-light text-sm text-[#0066F6] pb-24">click here to recover it</p>
 
         
-        <button disabled={email === "" && password === "" ? true : false}
-        className= "bg-[#414A61] rounded-2xl py-1.5 font-medium text-base">LOG IN</button> 
+        <button className= "bg-[#414A61] rounded-2xl py-1.5 font-medium text-base">LOG IN</button> 
 
         <p className='pt-4 pb-9 font-thin text-xs text-[#F9F9F9]'>Do you not have a BankMe account? <span className='text-[#0066F6]'>Sign in here</span> </p>
       </form>

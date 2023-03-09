@@ -6,7 +6,6 @@ import { CardsPage } from "./components/CardsPage/CardsPage";
 import { ExpensesPage } from "./components/ExpensesPage/ExpensesPage";
 import { HomePage } from "./components/HomePage/HomePage";
 import { LoginPage } from "./components/LoginPage/LoginPage";
-import MyCards from "./components/MyCards/MyCards";
 import { NewCardForm } from "./components/NewCardForm/NewCardForm";
 import { ProfileData } from "./components/ProfileData/ProfileData";
 import { ProfileImage } from "./components/ProfileImage/ProfileImage";

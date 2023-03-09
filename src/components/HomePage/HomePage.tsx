@@ -43,9 +43,6 @@ export const HomePage: React.FC<Props> = (): JSX.Element => {
     })
   }, [])
 
-
-  console.log(transactions)
-
   return (
     <>
       <div className=" flex flex-col items-center  h-60 gap-5 bg-gray-dark z-10 -mt-10 -mx-7 pt-7 px-7">
@@ -81,7 +78,7 @@ export const HomePage: React.FC<Props> = (): JSX.Element => {
             return (
               <>
               <TransitionItem key={i} text={trade.receiver_name} money={trade.amount} category={trade.category} income={trade.type} />
-              <div className={i === transactions.slice(0,5).length - 1 ? "hidden" : "w-full h-px bg-white"}></div>
+              <div key={i + 100} className={i === transactions.slice(0,5).length - 1 ? "hidden" : "w-full h-px bg-white"}></div>
               </>
             )
           })

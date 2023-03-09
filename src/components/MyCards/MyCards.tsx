@@ -16,7 +16,7 @@ const MyCards = (props: Props) => {
       <div className="w-full bg-gray-records rounded-3xl mt-6">
         
         <Link to="details">
-          <div className="p-5 w-full flex justify-between items-center text-white-form border-b border-border-grey"> 
+          <div className=" w-full flex justify-between items-center text-white-form border-b border-border-grey"> 
             <div className="flex gap-4 items-center"> 
               <article className="w-14 h-14 bg-gray-400 rounded-full flex justify-center items-center"> 
               <img src={detail} alt="foto" />
@@ -28,7 +28,7 @@ const MyCards = (props: Props) => {
         </Link> 
 
         <Link to="new"> 
-          <div className="p-5 w-full flex justify-between items-center text-white-form border-b border-border-grey">
+          <div className=" w-full flex justify-between items-center text-white-form border-b border-border-grey">
             <div className="flex gap-4 items-center">
               <article className="w-14 h-14 bg-gray-400 rounded-full flex justify-center items-center"> 
                 <img src={newCard} alt="foto" />
@@ -40,7 +40,7 @@ const MyCards = (props: Props) => {
         </Link>
 
         <Link to="secret"> 
-          <div className="p-5 w-full flex justify-between items-center text-white-form border-b border-border-grey">
+          <div className=" w-full flex justify-between items-center text-white-form border-b border-border-grey">
             <div className="flex gap-4 items-center">
               <article className="w-14 h-14 bg-gray-400 rounded-full flex justify-center items-center"> 
                 <img src={cvvPin} alt="foto" />
@@ -52,7 +52,7 @@ const MyCards = (props: Props) => {
         </Link> 
 
         <Link to="/cards"> 
-          <div className="p-5 w-full flex justify-between items-center text-white-form ">
+          <div className=" w-full flex justify-between items-center text-white-form ">
             <div className="flex gap-4 items-center">
               <article className="w-14 h-14 bg-gray-400 rounded-full flex justify-center items-center"> 
                 <img src={remove} alt="foto" />

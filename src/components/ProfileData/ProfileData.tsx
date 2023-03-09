@@ -5,6 +5,7 @@ import { NavMenu } from "../NavMenu/NavMenu";
 import { UserContext, corregir } from "../../context/UserProvider"
 import { useContext, useState } from "react"
 import { sendNewinfo } from "../../services/firebaseFunctions";
+import { Header } from "../Header/Header";
 
 interface FormData {
   phone_number: string,
@@ -54,12 +55,7 @@ export const ProfileData: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <Link to="/profile">
-        <div className="flex text-white gap-36 pb-8">
-          <img src={arrow} alt="" />
-          <h1 >Personal Data</h1>
-        </div>
-      </Link>
+      <Header arrow={true} content={"Personal Data"} url={"/profile"} />
       <div className="flex flex-col text-white gap-8 ">
         <div>
           <p className="text-lg font-medium leading-9">First Name</p>
@@ -79,15 +75,15 @@ export const ProfileData: React.FC = (): JSX.Element => {
       <form action="#" onSubmit={handleSubmit(editUser)} className={`text-white flex flex-col gap-2 pt-2 text-lg font-normal ${showform ? '' : 'hidden'}`}>
 
         <label htmlFor="">First Name</label>
-        <input {...register("first_name", { required: false })} type="text" id="" className="bg-black " placeholder={currentUser ? currentUser.first_name : ""} />
+        <input {...register("first_name", { required: false })} type="text" id="" className="bg-black focus:outline-none" placeholder={currentUser ? currentUser.first_name : ""} />
 
         <hr />
         <label htmlFor="">Last Name</label>
-        <input {...register("last_name", { required: false })} type="text" id="" className="bg-black" placeholder={currentUser ? currentUser.last_name : ""} />
+        <input {...register("last_name", { required: false })} type="text" id="" className="bg-black focus:outline-none" placeholder={currentUser ? currentUser.last_name : ""} />
 
         <hr />
         <label htmlFor="">Phone Number</label>
-        <input {...register("phone_number", { required: false })} type="text" id="" className="bg-black" placeholder={currentUser ? currentUser.phone_number : ""} />
+        <input {...register("phone_number", { required: false })} type="text" id="" className="bg-black focus:outline-none" placeholder={currentUser ? currentUser.phone_number : ""} />
 
         <hr />
         <input type="submit" value="Save" name="" id="" className="bg-gray-dark w-[377px] h-[63px] rounded-2xl mt-4" />

@@ -112,18 +112,18 @@ export const SignupForm: React.FC<Props> = (props):JSX.Element => {
                 <input type="password" {...register('confirmPassword',{required:"Repeated Password Required",validate:(value => value === getValues("password") || "Passwords don't match")})}   className="bg-transparent border-b-[1px] border-solid border-[#626262] focus:outline-none !important text-white pb-2 text-lg"/>
 
 
-                <ErrorMessage errors={errors} name="firstName" render={({ messages }) => messages && Object.entries(messages).map(([type, message]) => ( <p className="text-red-700" key={type}>{message}</p>))}/>
+                <ErrorMessage errors={errors} name="firstName" render={({ messages }) => messages && Object.entries(messages).map(([type, message]) => ( <p className="text-red" key={type}>{message}</p>))}/>
                 
-                <ErrorMessage errors={errors} name="secondName" render={({ messages }) => messages && Object.entries(messages).map(([type, message]) => ( <p className="text-red-700" key={type}>{message}</p>))}/>
+                <ErrorMessage errors={errors} name="secondName" render={({ messages }) => messages && Object.entries(messages).map(([type, message]) => ( <p className="text-red" key={type}>{message}</p>))}/>
 
-                <ErrorMessage errors={errors} name="password" render={({ messages }) => messages && Object.entries(messages).map(([type, message]) => ( <p className="text-red-700" key={type}>{message}</p>))}/>
+                <ErrorMessage errors={errors} name="password" render={({ messages }) => messages && Object.entries(messages).map(([type, message]) => ( <p className="text-red" key={type}>{message}</p>))}/>
 
                 {
-                errors.confirmPassword && <p className="text-red-700">{errors.confirmPassword.message}</p>
+                errors.confirmPassword && <p className="text-red">{errors.confirmPassword.message}</p>
                 }
 
                 {
-                    err? <p className="text-red-700">Email already exist</p> : ''
+                    err? <p className="text-red">Email already exist</p> : ''
                 }
 
                 <button type="submit" className="bg-gray-dark rounded-xl w-full flex justify-center items-center px-6 py-2 mt-12">

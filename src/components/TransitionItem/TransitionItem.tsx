@@ -47,7 +47,7 @@ export const TransitionItem: React.FC<Props> = ({ text, category, money, income 
                     <h2 >{text}</h2>
                 </div>
                 <div >
-                    <h2 className={`${income === 0 ? 'text-red-300' : 'text-green-200'}`}>€ {money}</h2>
+                    <h2 className={`${income === 0 ? 'text-light-red' : 'text-green-200'}`}>€ {money}</h2>
                 </div>
             </div>
         </>

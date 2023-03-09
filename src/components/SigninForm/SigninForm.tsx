@@ -58,13 +58,13 @@ export const SigninForm: React.FC<Props> = (props):JSX.Element => {
         <label className='pt-3 pb-4' 
           htmlFor="" >Email</label> 
         <input onChange={e=> setEmail(e.target.value)}
-          className='border-b-4 border-[#626262] bg-black' 
+          className='border-b-4 border-[#626262] bg-black focus:outline-none' 
           type="text" id="email" placeholder="   example@gmail.com" name="email"/> 
 
         <label className='pt-7 pb-4' 
           htmlFor="">Password</label> 
         <input onChange={e=> setPassword(e.target.value)}
-          className='border-b-4 border-[#626262] bg-black'
+          className='border-b-4 border-[#626262] bg-black focus:outline-none'
           type="password" placeholder="   **********" name="password" id="password"/> 
 
         {error ? <p className="pt-4 text-red">Invalid username or password</p> : ""} 

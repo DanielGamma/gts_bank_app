@@ -19,7 +19,7 @@ export const ProfilePage: React.FC = (): JSX.Element => {
         <Header arrow={false} content="Profile" url="" />
         <div className="flex flex-col justify-start items-center gap-6">
             <ProfileCard img={currentUser.profile_picture} title={currentUser.first_name} subtitle={currentUser.last_name} email={currentUser.email}/>
-            <OptionMenu icons={[profile, personaldata, accountadd, signout]} texts={["Profile Image", "Personal Data", "Add Account", "Sign Out"]} urls={["/profile/image", "/profile/data", "/profile", "/profile"]} />
+            <OptionMenu icons={[profile, personaldata, accountadd, signout]} texts={["Profile Image", "Personal Data", "Add Account", "Sign Out"]} urls={["/profile/image", "/profile/data", "/profile", "/"]} />
             <NavMenu />
         </div>
         </>    

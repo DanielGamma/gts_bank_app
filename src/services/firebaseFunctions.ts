@@ -59,4 +59,8 @@ export const sendNewPicture = async (currentUser:any , data:any) => {
             profile_picture: data.profile_picture ,
         }
     )
+    
 }
+
+
+

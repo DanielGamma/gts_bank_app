@@ -77,7 +77,7 @@ export const HomePage: React.FC<Props> = (): JSX.Element => {
       </div>
       <div className="bg-gray-records rounded-2xl p-2 mt-3">
         {
-          transactions.slice(0, 5).map((trade, i) => {
+          transactions.slice(0,5).map((trade, i) => {
             return (
               <>
               <TransitionItem key={i} text={trade.receiver_name} money={trade.amount} category={trade.category} income={trade.type} />

@@ -143,17 +143,17 @@ export const TransferPage: React.FC<Props> = (props): JSX.Element => {
         <div className="flex flex-col border-b border-[#626262]">
           <label className="font-medium text-lg text-white-form" htmlFor="account">Receiver Account</label>
           <input {...register('receiverAccount', { required: true, })}
-            className="py-2 bg-transparent text-white font-medium text-xl focus:outline-none" type="text" placeholder="ES1234567891234567894561" value={placeholder.receiverAccount} />
+            className="py-2 bg-transparent text-white font-medium text-xl focus:outline-none" type="text" placeholder="ES1234567891234567894561" value={placeholder.receiverAccount != '' ? placeholder.receiverAccount : watch('receiverAccount')} />
         </div>
         <div className="flex flex-col border-b border-[#626262]">
           <label className="font-medium text-lg text-white-form" htmlFor="name">Receiver Name</label>
           <input {...register('receiverName', { required: true})}
-            className="py-2 bg-transparent text-white font-medium text-xl focus:outline-none" type="text" placeholder="Rodrigo" value={placeholder.receiverName} />
+            className="py-2 bg-transparent text-white font-medium text-xl focus:outline-none" type="text" placeholder="Rodrigo" value={placeholder.receiverName != '' ? placeholder.receiverName : watch('receiverName')} />
         </div>
         <div className="flex flex-col border-b border-[#626262]">
           <label className="font-medium text-lg text-white-form" htmlFor="amount">Amount</label>
           <input {...register('amount', { required: true})}
-            className="py-2 bg-transparent text-white font-medium text-xl focus:outline-none" type="text" placeholder="0,00€"/>
+            className="py-2 bg-transparent text-white font-medium text-xl focus:outline-none" type="text" placeholder="0,00€" value={watch('amount')}/>
         </div>
         <div className="flex flex-col border-b border-[#626262]">
           <label className="font-medium text-lg text-white-form" htmlFor="description">Description</label>
